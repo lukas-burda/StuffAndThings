@@ -8,7 +8,7 @@
 <h1>@ViewData["Title"]</h1>
 
 <div class="wrapper fadeInDown">
-    <div id="formContent">
+    <div id="formContent" class="bg-secondary">
         <!-- Tabs Titles -->
         <!-- Icon -->
         <div class="fadeIn first">
@@ -36,11 +36,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" class="fadeIn fourth" value="Log In">
+                <input type="submit" class="fadeIn fourth bg-dark" value="Log In">
             </div>
-            <div id="formFooter">
-                <a id="forgot-password" asp-page="./ForgotPassword">Forgot Password?</a>
-                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+            <div id="formFooter" class="bg-secondary">
+                <a id="forgot-password" asp-page="./ForgotPassword" style="color:black">Forgot Password?</a>
             </div>
         </form>
             
