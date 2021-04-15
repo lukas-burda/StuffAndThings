@@ -219,65 +219,6 @@ namespace StuffAndThings.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("StuffAndThings.Models.ProductModel", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("ProductModelId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductModelId");
-
-                    b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("StuffAndThings.Models.SkuModel", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("AvailableQuantity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Barcode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Color")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<Guid?>("ProductModelId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductModelId");
-
-                    b.ToTable("Skus");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -327,20 +268,6 @@ namespace StuffAndThings.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("StuffAndThings.Models.ProductModel", b =>
-                {
-                    b.HasOne("StuffAndThings.Models.ProductModel", null)
-                        .WithMany("Products")
-                        .HasForeignKey("ProductModelId");
-                });
-
-            modelBuilder.Entity("StuffAndThings.Models.SkuModel", b =>
-                {
-                    b.HasOne("StuffAndThings.Models.ProductModel", null)
-                        .WithMany("Skus")
-                        .HasForeignKey("ProductModelId");
                 });
 #pragma warning restore 612, 618
         }
