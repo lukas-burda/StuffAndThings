@@ -1,0 +1,19 @@
+﻿@model StuffAndThings.Models.ProductModel
+
+@foreach (var item in Model.Products)
+{
+    <h1>@item.Id</h1>
+    <h1>@item.Name</h1>
+    <h1>@item.Description</h1>
+    <h1>@item.Code</h1>
+    <h1>@item.ImageUrl</h1>
+    foreach (var item2 in item.Skus)
+    {
+        <h2>@item2.Id</h2>
+        <h2>@item2.Name</h2>
+        <h2>@item2.Color</h2>
+        <h2>@item2.Barcode</h2>
+        <h2>@item2.AvailableQuantity</h2>
+        <h2>@item2.Price</h2>
+    }
+}

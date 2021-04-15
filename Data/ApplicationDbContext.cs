@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using StuffAndThings.Models;
 
 namespace StuffAndThings.Data
 {
@@ -12,5 +13,7 @@ namespace StuffAndThings.Data
             : base(options)
         {
         }
+        public DbSet<StuffAndThings.Models.ProductModel> Products { get; set; }
+        public DbSet<StuffAndThings.Models.SkuModel> Skus { get; set; }
     }
 }
