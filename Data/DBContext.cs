@@ -16,11 +16,7 @@ namespace StuffAndThings.Data
         }
         public DbSet<ProductModel> Products { get; set; }
         public DbSet<SkuModel> Skus { get; set; }
-
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<ProductModel>().ToTable("Products");
-        //    modelBuilder.Entity<SkuModel>().ToTable("Skus");
-        //}
+        public DbSet<UserModel> Users { get; set; }
+        public DbSet<SkuStocksModel> Stocks { get; set; }
     }
 }

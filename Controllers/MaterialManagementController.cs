@@ -13,30 +13,36 @@ namespace StuffAndThings.Controllers
         public IActionResult Index()
         {
             DBContext _context = new DBContext();
+            List<SkuStocksModel> stocks = _context.Stocks.ToList();
+            return View(stocks);
+        }
 
-            //ProductModel p = new ProductModel();
-            //p.Id = new Guid();
-            //p.Name = "Lukas Gay";
-            //p.Code = "24";
-            //p.Description = "O Lukas é Gay";
-            //SkuModel s = new SkuModel();
-            //s.Id = new Guid();
-            //s.Name = "5";
-            //s.Color = "Rosa";
-            //s.Barcode = "GAY24";
-            //s.AvailableQuantity = 57;
-            //s.Price = 24.24;
-            //p.Skus.Add(s);
+        public IActionResult Create()
+        {
+            return View();
+        }
 
-            //_context.Products.Add(p);
-            //_context.SaveChanges();
+        public IActionResult Edit(Guid Id)
+        {
+            DBContext _context = new DBContext();
+            SkuStocksModel stock = _context.Stocks.Where(x => x.Id == Id).FirstOrDefault();
+            return View(stock);
+        }
 
-            ProductModel Product = new ProductModel();
+        public IActionResult Upsert(SkuStocksModel stock)
+        {
+            DBContext _context = new DBContext();
+            if (stock.Id == new Guid())
+            {
+                stock.Id = Guid.NewGuid();
+                _context.Stocks.Add(stock);
+            }
+            else
+            {
+                _context.Stocks.Update(stock);
+            }
 
-            //Comentado pq iremos usar outro local para puxar a lista de produtos
-            //Product.Products = _context.Products.ToList();
-
-            return View(Product);
+            return RedirectToAction("Index");
         }
     }
 }

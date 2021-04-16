@@ -3,20 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StuffAndThings.Models
+namespace StuffAndThings.Data.Entities
 {
-    public class ProductModel
+    public class ProductEntity
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public string Code { get; set; }
-        public List<SkuModel> Skus { get; set; }
-
-        public ProductModel()
-        {
-            Skus = new List<SkuModel>();
-        }
     }
 }

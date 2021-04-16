@@ -1,21 +1,40 @@
-﻿@model StuffAndThings.Models.ProductModel
+﻿@model IEnumerable<StuffAndThings.Models.SkuStocksModel>
 
-<h1 class="text-center">LISTA DE PRODUTOS</h1>
-
-@foreach (var item in Model.Products)
-{
-    <h1>@item.Id</h1>
-    <h1>@item.Name</h1>
-    <h1>@item.Description</h1>
-    <h1>@item.Code</h1>
-    <h1>@item.ImageUrl</h1>
-    foreach (var item2 in item.Skus)
-    {
-        <h2>@item2.Id</h2>
-        <h2>@item2.Name</h2>
-        <h2>@item2.Color</h2>
-        <h2>@item2.Barcode</h2>
-        <h2>@item2.AvailableQuantity</h2>
-        <h2>@item2.Price</h2>
-    }
+@{
+    ViewData["Title"] = "Index";
 }
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AvailableQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastUpdate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvailableQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastUpdate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

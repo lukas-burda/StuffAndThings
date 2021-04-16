@@ -37,12 +37,7 @@ namespace StuffAndThings.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("ProductModelId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductModelId");
 
                     b.ToTable("Products");
                 });
@@ -52,9 +47,6 @@ namespace StuffAndThings.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("AvailableQuantity")
-                        .HasColumnType("int");
 
                     b.Property<string>("Barcode")
                         .HasColumnType("nvarchar(max)");
@@ -78,11 +70,57 @@ namespace StuffAndThings.Migrations
                     b.ToTable("Skus");
                 });
 
-            modelBuilder.Entity("StuffAndThings.Models.ProductModel", b =>
+            modelBuilder.Entity("StuffAndThings.Models.SkuStocksModel", b =>
                 {
-                    b.HasOne("StuffAndThings.Models.ProductModel", null)
-                        .WithMany("Products")
-                        .HasForeignKey("ProductModelId");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("AvailableQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastUpdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("SellerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("SkuId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SellerId");
+
+                    b.HasIndex("SkuId");
+
+                    b.ToTable("Stocks");
+                });
+
+            modelBuilder.Entity("StuffAndThings.Models.UserModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CNPJ")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CPF")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discriminator")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("StuffAndThings.Models.SkuModel", b =>
@@ -90,6 +128,17 @@ namespace StuffAndThings.Migrations
                     b.HasOne("StuffAndThings.Models.ProductModel", null)
                         .WithMany("Skus")
                         .HasForeignKey("ProductModelId");
+                });
+
+            modelBuilder.Entity("StuffAndThings.Models.SkuStocksModel", b =>
+                {
+                    b.HasOne("StuffAndThings.Models.UserModel", "Seller")
+                        .WithMany()
+                        .HasForeignKey("SellerId");
+
+                    b.HasOne("StuffAndThings.Models.SkuModel", "Sku")
+                        .WithMany()
+                        .HasForeignKey("SkuId");
                 });
 #pragma warning restore 612, 618
         }
