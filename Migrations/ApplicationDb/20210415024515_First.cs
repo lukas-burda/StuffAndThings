@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace StuffAndThings.Migrations
+namespace StuffAndThings.Migrations.ApplicationDb
 {
-    public partial class Identity : Migration
+    public partial class First : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

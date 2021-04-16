@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace StuffAndThings.Migrations.DB
+namespace StuffAndThings.Migrations
 {
     public partial class First : Migration
     {

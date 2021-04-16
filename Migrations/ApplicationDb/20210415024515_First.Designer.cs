@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StuffAndThings.Data;
 
-namespace StuffAndThings.Migrations
+namespace StuffAndThings.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210415023343_Identity")]
-    partial class Identity
+    [Migration("20210415024515_First")]
+    partial class First
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
