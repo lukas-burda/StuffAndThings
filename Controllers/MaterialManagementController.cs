@@ -33,7 +33,8 @@ namespace StuffAndThings.Controllers
 
             ProductModel Product = new ProductModel();
 
-            Product.Products = _context.Products.ToList();
+            //Comentado pq iremos usar outro local para puxar a lista de produtos
+            //Product.Products = _context.Products.ToList();
 
             return View(Product);
         }

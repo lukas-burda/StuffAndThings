@@ -12,6 +12,5 @@ namespace StuffAndThings.Models
         public string Name { get; set; }
         public string Color { get; set; }
         public double Price { get; set; }
-        public int AvailableQuantity { get; set; }
+        public ProductModel Product{ get; set; }
     }
-}
