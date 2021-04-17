@@ -12,6 +12,6 @@ namespace StuffAndThings.Models
         public UserModel Seller { get; set; }
         public SkuModel Sku { get; set; }
         public DateTime LastUpdate{ get; set; }
-
+    
     }
 }
