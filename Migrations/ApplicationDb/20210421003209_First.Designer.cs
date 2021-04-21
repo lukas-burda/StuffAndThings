@@ -10,7 +10,7 @@ using StuffAndThings.Data;
 namespace StuffAndThings.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210416221544_First")]
+    [Migration("20210421003209_First")]
     partial class First
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
