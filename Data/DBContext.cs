@@ -18,5 +18,6 @@ namespace StuffAndThings.Data
         public DbSet<SkuModel> Skus { get; set; }
         public DbSet<UserModel> Users { get; set; }
         public DbSet<SkuStocksModel> Stocks { get; set; }
+        public DbSet<OrderModel> Orders { get; set; }
     }
 }
