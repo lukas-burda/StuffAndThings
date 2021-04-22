@@ -23,6 +23,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.LastUpdate)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sku.Price)
+                </th>
                 <th></th>
             </tr>
         </thead>
@@ -37,7 +40,10 @@
                         @Html.DisplayFor(modelItem => item.LastUpdate)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id"><button class="btn btn-info">Edit</button></a> |                     
+                        @Html.DisplayFor(modelItem => item.Sku.Price)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id"><button class="btn btn-info">Edit</button></a> |
                         <a asp-action="Delete" asp-route-id="@item.Id"><button class="btn btn-danger">Delete</button></a>
                     </td>
                 </tr>

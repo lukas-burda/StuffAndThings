@@ -14,7 +14,7 @@ namespace StuffAndThings.Controllers
         public IActionResult Index()
         {
             DBContext _context = new DBContext();
-            List<SkuStocksModel> stocks = _context.Stocks.ToList();
+            List<SkuStocksModel> stocks = _context.Stocks.Include(x => x.Sku).Include(x => x.Seller).ToList();
             return View(stocks);
         }
 

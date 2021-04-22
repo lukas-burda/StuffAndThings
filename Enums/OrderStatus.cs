@@ -13,6 +13,7 @@ namespace StuffAndThings.Enums
         Separation = 3,
         InDelivery = 4,
         Finalized = 5,
+        Canceled = 6,
         Error = 99
     }
 }
