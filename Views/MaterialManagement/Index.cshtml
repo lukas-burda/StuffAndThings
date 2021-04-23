@@ -18,10 +18,10 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Seller.FullName)
+                    Seller
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Sku.Name)
+                    Sku Name
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.AvailableQuantity)
@@ -52,10 +52,13 @@
                         @Html.DisplayFor(modelItem => item.Sku.Price)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Sku.Color)
+                        <div class="text-center">
+                        <p class="rounded-sm" style="background-color: @item.Sku.Color; width: 25px; height: 25px">
+                            </p>
+                        </div>
                     </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id"><button class="btn btn-info">Edit</button></a> |
+                    <td class="d-flex justify-content-center">
+                        <a asp-action="Edit" asp-route-id="@item.Id"><button class="btn btn-info mr-1">Edit</button></a>
                         <a asp-action="Delete" asp-route-id="@item.Id"><button class="btn btn-danger">Delete</button></a>
                     </td>
                 </tr>
