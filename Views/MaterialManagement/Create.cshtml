@@ -14,14 +14,29 @@
             <form asp-action="Upsert">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
+                    <label asp-for="Seller.FullName" class="control-label"></label>
+                    <input asp-for="Seller.FullName" class="form-control" />
+                    <span asp-validation-for="Seller.FullName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Sku.Name" class="control-label"></label>
+                    <input asp-for="Sku.Name" class="form-control" />
+                    <span asp-validation-for="Sku.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
                     <label asp-for="AvailableQuantity" class="control-label"></label>
                     <input asp-for="AvailableQuantity" class="form-control" />
                     <span asp-validation-for="AvailableQuantity" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="LastUpdate" class="control-label"></label>
-                    <input asp-for="LastUpdate" class="form-control" />
-                    <span asp-validation-for="LastUpdate" class="text-danger"></span>
+                    <label asp-for="Sku.Price" class="control-label"></label>
+                    <input asp-for="Sku.Price" class="form-control" />
+                    <span asp-validation-for="Sku.Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Sku.Color" class="control-label"></label>
+                    <input asp-for="Sku.Color" class="form-control" />
+                    <span asp-validation-for="Sku.Color" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-primary" />

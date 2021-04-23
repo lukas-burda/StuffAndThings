@@ -18,13 +18,19 @@
         <thead>
             <tr>
                 <th>
+                    @Html.DisplayNameFor(model => model.Seller.FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sku.Name)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.AvailableQuantity)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.LastUpdate)
+                    @Html.DisplayNameFor(model => model.Sku.Price)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Sku.Price)
+                    @Html.DisplayNameFor(model => model.Sku.Color)
                 </th>
                 <th></th>
             </tr>
@@ -34,13 +40,19 @@
             {
                 <tr>
                     <td>
+                        @Html.DisplayFor(modelItem => item.Seller.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sku.Name)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.AvailableQuantity)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastUpdate)
+                    <td id="texto">
+                        @Html.DisplayFor(modelItem => item.Sku.Price)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Sku.Price)
+                        @Html.DisplayFor(modelItem => item.Sku.Color)
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id"><button class="btn btn-info">Edit</button></a> |
