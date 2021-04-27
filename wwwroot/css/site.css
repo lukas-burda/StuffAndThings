@@ -51,6 +51,10 @@ button.accept-policy {
   font-size: 1rem;
   line-height: inherit;
 }
+.centralizar {
+    margin: 0 auto;
+    width: 50%; /* Altere para o valor da largura desejada. */
+}
 
 /* Sticky footer styles
 -------------------------------------------------- */

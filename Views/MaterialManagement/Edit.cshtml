@@ -4,86 +4,89 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1 class="text-center text-monospace">Create</h1>
-<h3 class="text-center text-monospace">SkuStocksModel</h3>
-<div class="m-5 shadow p-3 mb-5">
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Upsert">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="Id" />
-                <div class="form-group">
-                    <label asp-for="AvailableQuantity" class="control-label"></label>
-                    <input asp-for="AvailableQuantity" class="form-control" />
-                    <span asp-validation-for="AvailableQuantity" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="LastUpdate" class="control-label"></label>
-                    <input asp-for="LastUpdate" class="form-control" />
-                    <span asp-validation-for="LastUpdate" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-primary" />
-                </div>
-                <div>
-                    <label asp-for="Seller.Id" class="control-label"></label>
-                    <input asp-for="Seller.Id" class="form-control" />
-                </div>
-                <div>
-                    <label asp-for="Seller.FullName" class="control-label"></label>
-                    <input asp-for="Seller.FullName" class="form-control" />
-                </div>
-                <div>
-                    <label asp-for="Seller.CPF" class="control-label"></label>
-                    <input asp-for="Seller.CPF" class="form-control" />
-                </div>
-                <div>
-                    <label asp-for="Seller.CNPJ" class="control-label"></label>
-                    <input asp-for="Seller.CNPJ" class="form-control" />
-                </div>
-                <div>
-                    <label asp-for="Seller.Discriminator" class="control-label"></label>
-                    <input asp-for="Seller.Discriminator" class="form-control" />
-                </div>
-                <div>
-                    <label asp-for="Seller.Gender" class="control-label"></label>
-                    <input asp-for="Seller.Gender" class="form-control" />
-                </div>
-                <div>
-                    <label asp-for="Sku.Id" class="control-label"></label>
-                    <input asp-for="Sku.Id" class="form-control" />
-                </div>
-                <div>
-                    <label asp-for="Sku.Name" class="control-label"></label>
-                    <input asp-for="Sku.Name" class="form-control" />
-                </div>
-                <div>
-                    <label asp-for="Sku.Barcode" class="control-label"></label>
-                    <input asp-for="Sku.Barcode" class="form-control" />
-                </div>
-                <div>
-                    <label asp-for="Sku.Color" class="control-label"></label>
-                    <input asp-for="Sku.Color" class="form-control" />
-                </div>
-                <div>
-                    <label asp-for="Sku.Price" class="control-label"></label>
-                    <input asp-for="Sku.Price" class="form-control" />
-                </div>
-            </form>
-        </div>
-    </div>
+<h1 class="text-center text-monospace">Edit</h1>
+<div class="row">
+    <div class="shadow col-md-4 centralizar">
+        <hr/>
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Upsert">
 
-    <div>
-        <a asp-action="Index">
-            <button class="btn btn-outline-primary">
-                Back to List
-            </button>
-        </a>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="AvailableQuantity" class="control-label"></label>
+                            <input asp-for="AvailableQuantity" class="form-control" />
+                            <span asp-validation-for="AvailableQuantity" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Seller.Id" class="control-label"></label>
+                            <input asp-for="Seller.Id" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label asp-for="Seller.FullName" class="control-label"></label>
+                            <input asp-for="Seller.FullName" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Seller.CPF" class="control-label"></label>
+                            <input asp-for="Seller.CPF" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label asp-for="Seller.CNPJ" class="control-label"></label>
+                            <input asp-for="Seller.CNPJ" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Seller.Discriminator" class="control-label"></label>
+                            <input asp-for="Seller.Discriminator" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label asp-for="Seller.Gender" class="control-label"></label>
+                            <input asp-for="Seller.Gender" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Sku.Id" class="control-label"></label>
+                            <input asp-for="Sku.Id" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label asp-for="Sku.Name" class="control-label"></label>
+                            <input asp-for="Sku.Name" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Sku.Color" class="control-label"></label>
+                            <input asp-for="Sku.Color" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label asp-for="Sku.Price" class="control-label"></label>
+                            <input asp-for="Sku.Price" class="form-control" />
+                        </div>
+                        <div class="col-md-6 pt-4 mt-2">
+                            <a asp-action="Index">
+                                <button class="btn btn-outline-primary">
+                                    Back to List
+                                </button>
+                            </a>
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                        <div class="form-group col-md-6">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
