@@ -12,5 +12,10 @@ namespace StuffAndThings.Data.Entities
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public string Code { get; set; }
+        public List<SkuEntity> Skus { get; set; }
+        public ProductEntity()
+        {
+            Skus = new List<SkuEntity>();
+        }
     }
 }

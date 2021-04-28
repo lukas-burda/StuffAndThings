@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using StuffAndThings.Data.Entities;
 using StuffAndThings.Models;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,10 @@ namespace StuffAndThings.Data
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=StuffAndThings;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
-        public DbSet<ProductModel> Products { get; set; }
-        public DbSet<SkuModel> Skus { get; set; }
-        public DbSet<UserModel> Users { get; set; }
-        public DbSet<SkuStocksModel> Stocks { get; set; }
-        public DbSet<OrderModel> Orders { get; set; }
+        public DbSet<ProductEntity> Products { get; set; }
+        public DbSet<SkuEntity> Skus { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
+        public DbSet<SkuStocksEntity> Stocks { get; set; }
+        public DbSet<OrderEntity> Orders { get; set; }
     }
 }

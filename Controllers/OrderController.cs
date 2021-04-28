@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StuffAndThings.Data;
+using StuffAndThings.Data.Entities;
+using StuffAndThings.Data.Mapper;
 using StuffAndThings.Models;
 using System;
 using System.Collections.Generic;
@@ -12,8 +14,10 @@ namespace StuffAndThings.Controllers
         public IActionResult Index()
         {
             DBContext _context = new DBContext();
-            List <OrderModel> users = _context.Orders.ToList();
-            return View(users);
+            List<OrderEntity> orderBase = _context.Orders.ToList();
+            List<OrderModel> order = new List<OrderModel>();
+            foreach (var item in orderBase) order.Add(OrderMapper.Mapper(item));
+            return View(order);
         }
 
         public IActionResult Create()
@@ -25,27 +29,28 @@ namespace StuffAndThings.Controllers
         public IActionResult Edit(Guid Id)
         {
             DBContext _context = new DBContext();
-            UserModel User = _context.Users.Where(x => x.Id == Id).FirstOrDefault();
-            return View(User);
+            UserEntity userBase = _context.Users.Where(x => x.Id == Id).FirstOrDefault();
+            UserModel user = UserMapper.Mapper(userBase);
+            return View(user);
         }
 
-        public IActionResult Upsert(OrderModel order)
+        public IActionResult Upsert(OrderModel orderModel)
         {
             DBContext _context = new DBContext();
-            if (order.Id == new Guid())
+            if (orderModel.Id == new Guid())
             {
-                order.Id = Guid.NewGuid();
-                order.FriendlyCode = "S&T-" + OrderFriendlyCodeGenerator(4);
-                order.Status = Enums.OrderStatus.Created;
-                order.CreateDate = DateTime.UtcNow;
-                order.LastUpdate = DateTime.UtcNow;
-                order.SubTotal = order.Total - order.Discount;
-                _context.Orders.Add(order);
+                orderModel.Id = Guid.NewGuid();
+                orderModel.FriendlyCode = "S&T-" + OrderFriendlyCodeGenerator(4);
+                orderModel.Status = Enums.OrderStatus.Created;
+                orderModel.CreateDate = DateTime.UtcNow;
+                orderModel.LastUpdate = DateTime.UtcNow;
+                orderModel.SubTotal = orderModel.Total - orderModel.Discount;
+                _context.Orders.Add(OrderMapper.Mapper(orderModel));
             }
             else
             {
-                order.LastUpdate = DateTime.Today;
-                _context.Orders.Update(order);
+                orderModel.LastUpdate = DateTime.Today;
+                _context.Orders.Update(OrderMapper.Mapper(orderModel));
             }
             _context.SaveChanges();
             return RedirectToAction("Index");
@@ -54,7 +59,7 @@ namespace StuffAndThings.Controllers
         public IActionResult Delete(Guid Id)
         {
             DBContext _context = new DBContext();
-            UserModel User = _context.Users.Where(x => x.Id == Id).FirstOrDefault();
+            UserEntity User = _context.Users.Where(x => x.Id == Id).FirstOrDefault();
             _context.Users.Remove(User);
             _context.SaveChanges();
             return View();

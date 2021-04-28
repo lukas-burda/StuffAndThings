@@ -12,6 +12,10 @@
     <div class="col-md-10">
         <div class="col-md-5">
             <form asp-action="Upsert">
+                @foreach (var item in Model.Sellers)
+                {
+
+                }
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Seller.FullName" class="control-label"></label>

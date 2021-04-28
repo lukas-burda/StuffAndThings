@@ -19,6 +19,10 @@ namespace StuffAndThings.Models
         public UserModel Seller { get; set; }
         public List<SkuModel> Items { get; set; }
         public OrderStatus Status { get; set; } = 0;
+        public OrderModel()
+        {
+            Items = new List<SkuModel>();
+        }
 
     }
 

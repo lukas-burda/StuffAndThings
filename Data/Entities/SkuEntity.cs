@@ -12,6 +12,5 @@ namespace StuffAndThings.Data.Entities
         public string Name { get; set; }
         public string Color { get; set; }
         public double Price { get; set; }
-        public Guid ProductId { get; set; }
     }
 }

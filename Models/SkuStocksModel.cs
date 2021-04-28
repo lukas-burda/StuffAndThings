@@ -11,7 +11,14 @@ namespace StuffAndThings.Models
         public int AvailableQuantity { get; set; }
         public UserModel Seller { get; set; }
         public SkuModel Sku { get; set; }
-        public DateTime LastUpdate{ get; set; }
+        public DateTime LastUpdate { get; set; }
+        public List<SkuModel> Skus { get; set; }
+        public List<UserModel> Sellers { get; set; }
+        public SkuStocksModel()
+        {
+            Skus = new List<SkuModel>();
+            Sellers = new List<UserModel>();
+        }
     
     }
 }

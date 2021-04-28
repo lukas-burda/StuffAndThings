@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using StuffAndThings.Data;
+using StuffAndThings.Data.Mapper;
 using StuffAndThings.Models;
 
 namespace StuffAndThings.Controllers
@@ -78,12 +79,15 @@ namespace StuffAndThings.Controllers
             ss2.Sku = sku1;
             ss2.Seller = dep2;
 
-            _context.Users.Add(dep1);
-            _context.Users.Add(dep2);
-            _context.Products.Add(prod1);
-            _context.Stocks.Add(ss1);
-            _context.Stocks.Add(ss2);
-
+            _context.Users.Add(UserMapper.Mapper(dep1));
+            _context.SaveChanges();
+            _context.Users.Add(UserMapper.Mapper(dep2));
+            _context.SaveChanges();
+            _context.Products.Add(ProductMapper.Mapper(prod1));
+            _context.SaveChanges();
+            _context.Stocks.Add(StockMapper.Mapper(ss1));
+            _context.SaveChanges();
+            _context.Stocks.Add(StockMapper.Mapper(ss2));
             _context.SaveChanges();
             return RedirectToAction("Index");
         }

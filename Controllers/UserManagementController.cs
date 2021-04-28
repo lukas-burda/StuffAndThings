@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StuffAndThings.Data;
+using StuffAndThings.Data.Entities;
+using StuffAndThings.Data.Mapper;
 using StuffAndThings.Models;
 using System;
 using System.Collections.Generic;
@@ -13,7 +15,9 @@ namespace StuffAndThings.Controllers
         public IActionResult Index()
         {
             DBContext _context = new DBContext();
-            List <UserModel> users = _context.Users.ToList();
+            List<UserEntity> usersBase = _context.Users.ToList();
+            List<UserModel> users = new List<UserModel>();
+            foreach (var item in usersBase) users.Add(UserMapper.Mapper(item));
             return View(users);
         }
 
@@ -27,8 +31,9 @@ namespace StuffAndThings.Controllers
         {
 
             DBContext _context = new DBContext();
-            UserModel User = _context.Users.Where(x => x.Id == Id).FirstOrDefault();
-            return View(User);
+            UserEntity userBase = _context.Users.Where(x => x.Id == Id).FirstOrDefault();
+            UserModel user = UserMapper.Mapper(userBase);
+            return View(user);
         }
 
         public IActionResult Upsert(UserModel user)
@@ -37,11 +42,11 @@ namespace StuffAndThings.Controllers
             if (user.Id == new Guid())
             {
                 user.Id = Guid.NewGuid();
-                _context.Users.Add(user);
+                _context.Users.Add(UserMapper.Mapper(user));
             }
             else
             {
-                _context.Users.Update(user);
+                _context.Users.Update(UserMapper.Mapper(user));
             }
             _context.SaveChanges();
             return RedirectToAction("Index");
@@ -50,7 +55,7 @@ namespace StuffAndThings.Controllers
         public IActionResult Delete(Guid Id)
         {
             DBContext _context = new DBContext();
-            UserModel User = _context.Users.Where(x => x.Id == Id).FirstOrDefault();
+            UserEntity User = _context.Users.Where(x => x.Id == Id).FirstOrDefault();
             _context.Users.Remove(User);
             _context.SaveChanges();
             return RedirectToAction("Index");
