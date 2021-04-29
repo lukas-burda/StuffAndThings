@@ -15,7 +15,7 @@ namespace StuffAndThings.Data.Entities
         [ForeignKey("SkuId")]
         public SkuEntity Sku { get; set; }
         public DateTime LastUpdate { get; set; }
-        public int SellerId { get; set; }
-        public int SkuId { get; set; }
+        public Guid SellerId { get; set; }
+        public Guid SkuId { get; set; }
     }
 }
