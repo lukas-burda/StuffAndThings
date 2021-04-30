@@ -127,10 +127,10 @@ namespace StuffAndThings.Migrations
                     b.Property<DateTime>("LastUpdate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("SellerId")
+                    b.Property<Guid>("SellerId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("SkuId")
+                    b.Property<Guid>("SkuId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -190,11 +190,15 @@ namespace StuffAndThings.Migrations
                 {
                     b.HasOne("StuffAndThings.Data.Entities.UserEntity", "Seller")
                         .WithMany()
-                        .HasForeignKey("SellerId");
+                        .HasForeignKey("SellerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("StuffAndThings.Data.Entities.SkuEntity", "Sku")
                         .WithMany()
-                        .HasForeignKey("SkuId");
+                        .HasForeignKey("SkuId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

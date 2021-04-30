@@ -7,26 +7,11 @@
 <h1 class="text-center text-monospace">Create</h1>
 <h3 class="text-center text-monospace">SkuStocksModel</h3>
 
-<div class="m-5 shadow p-3 mb-5" align ="center">
+<div class="m-5 shadow p-3 mb-5" align="center">
     <hr />
     <div class="col-md-10">
         <div class="col-md-5">
             <form asp-action="Upsert">
-                @foreach (var item in Model.Sellers)
-                {
-
-                }
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Seller.FullName" class="control-label"></label>
-                    <input asp-for="Seller.FullName" class="form-control" />
-                    <span asp-validation-for="Seller.FullName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Sku.Name" class="control-label"></label>
-                    <input asp-for="Sku.Name" class="form-control" />
-                    <span asp-validation-for="Sku.Name" class="text-danger"></span>
-                </div>
                 <div class="form-group">
                     <label asp-for="AvailableQuantity" class="control-label"></label>
                     <input asp-for="AvailableQuantity" class="form-control" />
@@ -37,10 +22,15 @@
                     <input asp-for="Sku.Price" class="form-control" />
                     <span asp-validation-for="Sku.Price" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Sku.Color" class="control-label"></label>
-                    <input asp-for="Sku.Color" class="form-control" />
-                    <span asp-validation-for="Sku.Color" class="text-danger"></span>
+                <div>
+                    <div style="float: right; margin-right: -232px; margin-top: -171px;">
+                        <label class="control-label">Seller</label>
+                        <select class="custom-select" asp-for="Seller.Id" asp-items="@(new SelectList(Model.Sellers, "Id", "FullName"))"></select>
+                    </div>
+                    <div style="float: right; margin-right: -203px; margin-top: -86px;">
+                        <label class="control-label">Sku</label>
+                        <select class="custom-select" asp-for="Sku.Id" asp-items="@(new SelectList(Model.Skus, "Id", "Name"))"></select>
+                    </div>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-primary" />
@@ -61,3 +51,10 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<script>
+    function clicar() {
+        var x = document.getElementById("clicar").innerHTML;
+        console.log(x);
+    }
+</script>

@@ -46,14 +46,14 @@
                         @Html.DisplayFor(modelItem => item.Sku.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.AvailableQuantity)
+                        <p style="margin-left: 48px">@item.AvailableQuantity</p>
                     </td>
                     <td id="texto">
                         @Html.DisplayFor(modelItem => item.Sku.Price)
                     </td>
                     <td>
-                        <div class="text-center">
-                        <p class="rounded-sm" style="background-color: @item.Sku.Color; width: 25px; height: 25px">
+                        <div>
+                        <p class="rounded-sm" style="background-color: @item.Sku.Color; width: 25px; height: 25px; margin-left: 9px">
                             </p>
                         </div>
                     </td>

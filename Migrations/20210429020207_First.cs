@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StuffAndThings.Migrations
 {
-    public partial class First2 : Migration
+    public partial class First : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -99,9 +99,9 @@ namespace StuffAndThings.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     AvailableQuantity = table.Column<int>(nullable: false),
-                    SellerId = table.Column<Guid>(nullable: true),
-                    SkuId = table.Column<Guid>(nullable: true),
-                    LastUpdate = table.Column<DateTime>(nullable: false)
+                    LastUpdate = table.Column<DateTime>(nullable: false),
+                    SellerId = table.Column<Guid>(nullable: false),
+                    SkuId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -111,13 +111,13 @@ namespace StuffAndThings.Migrations
                         column: x => x.SellerId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Stocks_Skus_SkuId",
                         column: x => x.SkuId,
                         principalTable: "Skus",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
