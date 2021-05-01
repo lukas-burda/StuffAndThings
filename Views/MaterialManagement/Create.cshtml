@@ -34,17 +34,13 @@
                     <select class="custom-select" asp-for="Sku.Id" asp-items="@(new SelectList(Model.Skus, "Id", "Name"))"></select>
                 </div>
             </div>
-            <div class="pt-2 mt-2 mb-2">
+            <div class="pt-2 mt-2 mb-2 text-center">
                 <input type="submit" value="Create" class="btn btn-primary" />
                 <a class="btn btn-outline-primary " asp-action="Index">
                     Back to List
                 </a>
             </div>
         </form>
-        
-        
-
-
     </div>
 </div>
 
