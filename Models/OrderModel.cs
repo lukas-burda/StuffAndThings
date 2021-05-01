@@ -24,12 +24,14 @@ namespace StuffAndThings.Models
         public OrderType Type { get; set; } = 0;
         public List<UserModel> Buyers { get; set; }
         public List<UserModel> Sellers { get; set; }
+        public List<SkuStocksModel> StocksOrder { get; set; }
         public OrderModel()
         {
             Products = new List<ProductModel>();
             Buyers = new List<UserModel>();
             Sellers = new List<UserModel>();
             Skus = new List<SkuModel>();
+            StocksOrder = new List<SkuStocksModel>();
         }
 
     }
