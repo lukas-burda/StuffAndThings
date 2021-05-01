@@ -18,24 +18,12 @@ namespace StuffAndThings.Controllers
             DBContext _context = new DBContext();
             List<SkuStocksEntity> stocksBase = _context.Stocks.Include(x => x.Sku).Include(x => x.Seller).ToList();
             List<ProductEntity> products = _context.Products.Include(x => x.Skus).ToList();
-            var valida = false;
-            foreach (var ss in stocksBase)
+
+            foreach (var p in products)
             {
-                foreach (var p in products)
-                {
-                    foreach (var s in p.Skus)
-                    {
-                        if (s.Id == ss.Sku.Id)
-                        {
-                            ss.Sku.Name = p.Name + " " + s.Name;
-                            valida = true;
-                            break;
-                        }
-                    }
-                    if (valida)
-                        break;
-                }
+                foreach (var s in p.Skus) s.Name = p.Name + " " + s.Name;
             }
+
             List<SkuStocksModel> stocks = new List<SkuStocksModel>();
             foreach (var item in stocksBase) stocks.Add(StockMapper.Mapper(item));
             return View(stocks);
@@ -60,9 +48,6 @@ namespace StuffAndThings.Controllers
             foreach (var item in skus) stocks.Skus.Add(SkuMapper.Mapper(item));
             foreach (var item in users) stocks.Sellers.Add(UserMapper.Mapper(item));
 
-            //LogController log = new LogController();
-            //log.ModelsMovimentationLog(stocks, "Create");
-
             return View(stocks);
         }
 
@@ -83,13 +68,20 @@ namespace StuffAndThings.Controllers
         public IActionResult Upsert(SkuStocksModel stock)
         {
             DBContext _context = new DBContext();
+            LogController log = new LogController();
+            
             if (stock.Id == new Guid())
             {
+                List<SkuStocksEntity> stocks = _context.Stocks.Include(x => x.Sku).Include(x => x.Seller).ToList();
+                SkuStocksEntity existe = stocks.Where(x => x.SellerId == stock.Seller.Id && x.SkuId == stock.Sku.Id).FirstOrDefault();
+                if (existe != null)
+                {
+                    log.ModelsMovimentationLog(stock, "AddNewError");
+                    return RedirectToAction("Index");
+                }
                 stock.Id = Guid.NewGuid();
                 stock.LastUpdate = DateTime.Now;
                 _context.Stocks.Add(StockMapper.Mapper(stock));
-
-                LogController log = new LogController();
                 log.ModelsMovimentationLog(stock, "AddNew");
             }
             else
@@ -97,14 +89,12 @@ namespace StuffAndThings.Controllers
                 stock.LastUpdate = DateTime.Now;
                 _context.Stocks.Update(StockMapper.Mapper(stock));
 
-                LogController log = new LogController();
                 log.ModelsMovimentationLog(stock, "UpdateExistent");
             }
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        [HttpDelete]
         public IActionResult Delete(Guid Id)
         {
             DBContext _context = new DBContext();
