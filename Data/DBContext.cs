@@ -15,14 +15,12 @@ namespace StuffAndThings.Data
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=StuffAndThings;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
+
         public DbSet<ProductEntity> Products { get; set; }
         public DbSet<SkuEntity> Skus { get; set; }
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<SkuStocksEntity> Stocks { get; set; }
         public DbSet<OrderEntity> Orders { get; set; }
         public DbSet<LogEntity> Logs { get; set; }
-        public DbSet<StuffAndThings.Models.LogModel> LogModel { get; set; }
-        public DbSet<StuffAndThings.Models.OrderModel> OrderModel { get; set; }
-        public DbSet<StuffAndThings.Models.ProductModel> ProductModel { get; set; }
     }
 }

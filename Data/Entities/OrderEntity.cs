@@ -24,8 +24,8 @@ namespace StuffAndThings.Data.Entities
         public virtual UserEntity Buyer { get; internal set; }
         [ForeignKey("SellerId")]
         public virtual UserEntity Seller { get; set; }
-        public Guid BuyerId { get; set; }
-        public Guid SellerId { get; set; }
+        public Guid? BuyerId { get; set; }
+        public Guid? SellerId { get; set; }
 
         public OrderEntity()
         {

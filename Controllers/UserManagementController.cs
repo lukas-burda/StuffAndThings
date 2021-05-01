@@ -65,10 +65,19 @@ namespace StuffAndThings.Controllers
         public IActionResult Delete(Guid Id)
         {
             DBContext _context = new DBContext();
-            UserEntity User = _context.Users.Where(x => x.Id == Id).FirstOrDefault();
-            _context.Users.Remove(User);
-
             LogController log = new LogController();
+            OrderEntity order = _context.Orders.Where(x => x.SellerId == Id || x.BuyerId == Id).FirstOrDefault();
+            UserEntity User = _context.Users.Where(x => x.Id == Id).FirstOrDefault();
+            if (order != null)
+            {
+                log.MovimentationRegister(User, "DeletedError", Models.Enums.LogType.Users);
+
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            
+            _context.Users.Remove(User);
+            
             log.MovimentationRegister(User, "Deleted", Models.Enums.LogType.Users);
 
             _context.SaveChanges();
