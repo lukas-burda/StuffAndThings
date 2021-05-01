@@ -17,20 +17,20 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label asp-for="FullName" class="control-label"></label>
-                        <input asp-for="FullName" class="form-control" />
+                        <label class="control-label">Full Name</label>
+                        <input asp-for="FullName" class="form-control" placeholder="Digite o seu nome" />
                         <span asp-validation-for="FullName" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label asp-for="CPF" class="control-label"></label>
-                        <input asp-for="CPF" id="cpf" class="form-control" />
+                        <input asp-for="CPF" id="cpf" class="form-control" placeholder="Digite o CPF" />
                         <span asp-validation-for="CPF" class="text-danger"></span>
                     </div>
                     <div class="form-group col-md-6">
                         <label asp-for="CNPJ" class="control-label"></label>
-                        <input asp-for="CNPJ" id="cnpj" class="form-control"/>
+                        <input asp-for="CNPJ" id="cnpj" class="form-control" placeholder="Digite o CNPJ"/>
                         <span asp-validation-for="CNPJ" class="text-danger"></span>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label asp-for="Gender" class="control-label"></label>
-                        <input asp-for="Gender" class="form-control" />
+                        <input asp-for="Gender" class="form-control" placeholder="Digite o gender"/>
                         <span asp-validation-for="Gender" class="text-danger"></span>
                     </div>
                 </div>
