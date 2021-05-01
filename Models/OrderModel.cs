@@ -18,12 +18,18 @@ namespace StuffAndThings.Models
         public string Message { get; set; }
         public UserModel Buyer { get; set; }
         public UserModel Seller { get; set; }
-        public List<SkuModel> Items { get; set; }
+        public List<ProductModel> Products { get; set; }
+        public List<SkuModel> Skus { get; set; }
         public OrderStatus Status { get; set; } = 0;
         public OrderType Type { get; set; } = 0;
+        public List<UserModel> Buyers { get; set; }
+        public List<UserModel> Sellers { get; set; }
         public OrderModel()
         {
-            Items = new List<SkuModel>();
+            Products = new List<ProductModel>();
+            Buyers = new List<UserModel>();
+            Sellers = new List<UserModel>();
+            
         }
 
     }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using StuffAndThings.Data;
 using StuffAndThings.Data.Entities;
 using StuffAndThings.Data.Mapper;
@@ -30,8 +31,27 @@ namespace StuffAndThings.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            DBContext _context = new DBContext();
+            List<UserEntity> usersBase = _context.Users.ToList();
+            List<ProductEntity> productsBase = _context.Products.Include(x => x.Skus).ToList();
+            OrderModel order = new OrderModel();
+            foreach (var item in usersBase)
+            {
+                if (item.Discriminator.Equals(Models.Enums.Discriminator.Seller))
+                {
+                    order.Sellers.Add(UserMapper.Mapper(item));
+                }
+                else if (item.Discriminator.Equals(Models.Enums.Discriminator.Buyer))
+                {
+                    order.Buyers.Add(UserMapper.Mapper(item));
+                }
+            }
+            foreach (var prod in productsBase)
+            {
+                order.Products.Add(ProductMapper.Mapper(prod));
+            }
 
-            return View();
+            return View(order);
         }
 
         public IActionResult Details(Guid Id)
@@ -44,28 +64,29 @@ namespace StuffAndThings.Controllers
         }
 
         [HttpPost]
-        public IActionResult Upsert(OrderModel orderModel)
+        public IActionResult Upsert(OrderModel order)
         {
             DBContext _context = new DBContext();
-            if (orderModel.Id == new Guid())
+            if (order.Id == new Guid())
             {
-                orderModel.Id = Guid.NewGuid();
-                orderModel.FriendlyCode = "S&T-" + OrderFriendlyCodeGenerator(4);
-                orderModel.Status = Enums.OrderStatus.Created;
-                orderModel.CreateDate = DateTime.UtcNow;
-                orderModel.Total = orderModel.SubTotal - orderModel.Discount;
-                _context.Orders.Add(OrderMapper.Mapper(orderModel));
+                order.Id = Guid.NewGuid();
+                order.FriendlyCode = "S&T-" + OrderFriendlyCodeGenerator(4);
+                order.Status = Enums.OrderStatus.Created;
+                order.CreateDate = DateTime.UtcNow;
+                order.Total = order.SubTotal - order.Discount;
+
+                _context.Orders.Add(OrderMapper.Mapper(order));
 
                 LogController log = new LogController();
 
-                log.MovimentationRegister(orderModel, "Created New", orderModel.Type);
+                log.MovimentationRegister(order, "Created New", order.Type);
             }
             else
             {
-                _context.Orders.Update(OrderMapper.Mapper(orderModel));
+                _context.Orders.Update(OrderMapper.Mapper(order));
 
                 LogController log = new LogController();
-                log.MovimentationRegister(orderModel, "Update Existent", orderModel.Type);
+                log.MovimentationRegister(order, "Update Existent", order.Type);
             }
             _context.SaveChanges();
             return RedirectToAction("Index");

@@ -17,7 +17,6 @@ namespace StuffAndThings.Data.Entities
         public double SubTotal { get; set; }
         public double Discount { get; set; }
         public string Message { get; set; }
-        public List<SkuEntity> Items { get; set; }
         public OrderStatus Status { get; set; } = 0;
         public OrderType Type { get; internal set; } = 0;
         [ForeignKey("BuyerId")]
@@ -26,10 +25,17 @@ namespace StuffAndThings.Data.Entities
         public virtual UserEntity Seller { get; set; }
         public Guid? BuyerId { get; set; }
         public Guid? SellerId { get; set; }
+        public virtual List<ProductEntity> Products { get; set; }
+        public virtual List<SkuEntity> Skus { get; set; }
+        public virtual List<UserEntity> Buyers { get; set; }
+        public virtual List<UserEntity> Sellers { get; set; }
 
         public OrderEntity()
         {
-            Items = new List<SkuEntity>();
+            Skus = new List<SkuEntity>();
+            Products = new List<ProductEntity>();
+            Buyers = new List<UserEntity>();
+            Sellers = new List<UserEntity>();
         }
     }
 }

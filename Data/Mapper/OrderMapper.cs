@@ -26,7 +26,8 @@ namespace StuffAndThings.Data.Mapper
                 Total = oEntity.SubTotal,
 
             };
-            foreach (var item in oEntity.Items) oModel.Items.Add(SkuMapper.Mapper(item));
+            foreach (var prod in oEntity.Products) oModel.Products.Add(ProductMapper.Mapper(prod));
+            foreach (var sku in oEntity.Skus) oModel.Skus.Add(SkuMapper.Mapper(sku));
             return oModel;
         }
 
@@ -45,7 +46,8 @@ namespace StuffAndThings.Data.Mapper
                 SubTotal = oModel.SubTotal,
                 Total = oModel.Total
             };
-            foreach (var item in oModel.Items) oEntity.Items.Add(SkuMapper.Mapper(item));
+            foreach (var prod in oModel.Products) oEntity.Products.Add(ProductMapper.Mapper(prod));
+            foreach (var sku in oModel.Skus) oEntity.Skus.Add(SkuMapper.Mapper(sku));
             return oEntity;
         }
     }
