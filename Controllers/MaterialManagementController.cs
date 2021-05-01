@@ -47,10 +47,12 @@ namespace StuffAndThings.Controllers
             if (stock.Id == new Guid())
             {
                 stock.Id = Guid.NewGuid();
+                stock.LastUpdate = DateTime.Now;
                 _context.Stocks.Add(StockMapper.Mapper(stock));
             }
             else
             {
+                stock.LastUpdate = DateTime.Now;
                 _context.Stocks.Update(StockMapper.Mapper(stock));
             }
             _context.SaveChanges();

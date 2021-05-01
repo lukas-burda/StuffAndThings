@@ -25,8 +25,9 @@ namespace StuffAndThings.Data.Mapper
             SkuStocksEntity sEntity = new SkuStocksEntity();
             sEntity.Id = sModel.Id;
             sEntity.LastUpdate = sModel.LastUpdate;
-            sEntity.Sku = SkuMapper.Mapper(sModel.Sku);
-            sEntity.Seller = UserMapper.Mapper(sModel.Seller);
+            sEntity.AvailableQuantity = sModel.AvailableQuantity;
+            sEntity.SkuId = sModel.Sku.Id;
+            sEntity.SellerId = sModel.Seller.Id;
             return sEntity;
         }
     }
