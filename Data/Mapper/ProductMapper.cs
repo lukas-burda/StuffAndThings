@@ -11,23 +11,27 @@ namespace StuffAndThings.Data.Mapper
     {
         public static ProductEntity Mapper(ProductModel pModel)
         {
-            ProductEntity pEntity = new ProductEntity();
-            pEntity.Id = pModel.Id;
-            pEntity.Code = pModel.Code;
-            pEntity.Description = pModel.Description;
-            pEntity.ImageUrl = pModel.ImageUrl;
-            pEntity.Name = pModel.Name;
+            ProductEntity pEntity = new ProductEntity
+            {
+                Id = pModel.Id,
+                Code = pModel.Code,
+                Description = pModel.Description,
+                ImageUrl = pModel.ImageUrl,
+                Name = pModel.Name
+            };
             foreach (var item in pModel.Skus) pEntity.Skus.Add(SkuMapper.Mapper(item));
             return pEntity;
         }
         public static ProductModel Mapper(ProductEntity pEntity)
         {
-            ProductModel pModel = new ProductModel();
-            pModel.Id = pEntity.Id;
-            pModel.Code = pEntity.Code;
-            pModel.Description = pEntity.Description;
-            pModel.ImageUrl = pEntity.ImageUrl;
-            pModel.Name = pEntity.Name;
+            ProductModel pModel = new ProductModel
+            {
+                Id = pEntity.Id,
+                Code = pEntity.Code,
+                Description = pEntity.Description,
+                ImageUrl = pEntity.ImageUrl,
+                Name = pEntity.Name
+            };
             foreach (var item in pEntity.Skus) pModel.Skus.Add(SkuMapper.Mapper(item));
             return pModel;
         }

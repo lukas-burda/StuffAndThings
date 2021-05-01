@@ -11,23 +11,27 @@ namespace StuffAndThings.Data.Mapper
     {
         public static SkuStocksModel Mapper(SkuStocksEntity sEntity)
         {
-            SkuStocksModel sModel = new SkuStocksModel();
-            sModel.Id = sEntity.Id;
-            sModel.AvailableQuantity = sEntity.AvailableQuantity;
-            sModel.LastUpdate = sEntity.LastUpdate;
-            sModel.Sku = SkuMapper.Mapper(sEntity.Sku);
-            sModel.Seller = UserMapper.Mapper(sEntity.Seller);
+            SkuStocksModel sModel = new SkuStocksModel
+            {
+                Id = sEntity.Id,
+                AvailableQuantity = sEntity.AvailableQuantity,
+                LastUpdate = sEntity.LastUpdate,
+                Sku = SkuMapper.Mapper(sEntity.Sku),
+                Seller = UserMapper.Mapper(sEntity.Seller)
+            };
             return sModel;
         }
 
         public static SkuStocksEntity Mapper(SkuStocksModel sModel)
         {
-            SkuStocksEntity sEntity = new SkuStocksEntity();
-            sEntity.Id = sModel.Id;
-            sEntity.LastUpdate = sModel.LastUpdate;
-            sEntity.AvailableQuantity = sModel.AvailableQuantity;
-            sEntity.SkuId = sModel.Sku.Id;
-            sEntity.SellerId = sModel.Seller.Id;
+            SkuStocksEntity sEntity = new SkuStocksEntity
+            {
+                Id = sModel.Id,
+                LastUpdate = sModel.LastUpdate,
+                AvailableQuantity = sModel.AvailableQuantity,
+                SkuId = sModel.Sku.Id,
+                SellerId = sModel.Seller.Id
+            };
             return sEntity;
         }
     }

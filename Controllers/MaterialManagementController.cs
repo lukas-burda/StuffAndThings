@@ -12,6 +12,7 @@ namespace StuffAndThings.Controllers
 {
     public class MaterialManagementController : Controller
     {
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -58,9 +59,7 @@ namespace StuffAndThings.Controllers
             SkuStocksEntity stocksBase = _context.Stocks.Include(x => x.Sku).Include(x => x.Seller).Where(x => x.Id == Id).SingleOrDefault();
             SkuStocksModel stock = StockMapper.Mapper(stocksBase);
 
-            LogController log = new LogController();
-            log.ModelsMovimentationLog(stock, "Edit");
-
+                
             return View(stock);
         }
 
@@ -76,20 +75,21 @@ namespace StuffAndThings.Controllers
                 SkuStocksEntity existe = stocks.Where(x => x.SellerId == stock.Seller.Id && x.SkuId == stock.Sku.Id).FirstOrDefault();
                 if (existe != null)
                 {
-                    log.ModelsMovimentationLog(stock, "AddNewError");
+                    log.MovimentationRegister(stock, "AddNewError", Models.Enums.LogType.Stocks);
                     return RedirectToAction("Index");
                 }
                 stock.Id = Guid.NewGuid();
                 stock.LastUpdate = DateTime.Now;
+                log.MovimentationRegister(stock, "AddNew", Models.Enums.LogType.Stocks);
                 _context.Stocks.Add(StockMapper.Mapper(stock));
-                log.ModelsMovimentationLog(stock, "AddNew");
+                
             }
             else
             {
                 stock.LastUpdate = DateTime.Now;
                 _context.Stocks.Update(StockMapper.Mapper(stock));
 
-                log.ModelsMovimentationLog(stock, "UpdateExistent");
+                log.MovimentationRegister(stock, "UpdateExistent", Models.Enums.LogType.Stocks);
             }
             _context.SaveChanges();
             return RedirectToAction("Index");
@@ -100,11 +100,11 @@ namespace StuffAndThings.Controllers
             DBContext _context = new DBContext();
             SkuStocksEntity stock = _context.Stocks.Where(x => x.Id == Id).FirstOrDefault();
             _context.Stocks.Remove(stock);
-            _context.SaveChanges();
-
 
             LogController log = new LogController();
-            log.ModelsMovimentationLog(stock, "Delete");
+            log.MovimentationRegister(stock, "Delete", Models.Enums.LogType.Stocks);
+
+            _context.SaveChanges();
 
             return RedirectToAction("Index");
         }

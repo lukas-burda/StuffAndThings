@@ -11,8 +11,9 @@ namespace StuffAndThings.Models.Enums
        Stocks = 1,
        Skus = 2,
        Products = 3,
-       Orders = 4,
-       PurchaseOrders = 5, 
+       SaleOrders = 4,
+       PurchaseOrders = 5,
+       Users = 6,
        Other = 99
 
     }

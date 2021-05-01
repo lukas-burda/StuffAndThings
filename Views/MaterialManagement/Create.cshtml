@@ -33,13 +33,18 @@
                     <label class="control-label">Sku</label>
                     <select class="custom-select" asp-for="Sku.Id" asp-items="@(new SelectList(Model.Skus, "Id", "Name"))"></select>
                 </div>
-                <div class="ml-3 mb-3 mt-3">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                    <a asp-action="Index"><button class="btn btn-outline-primary">Back to List</button></a>
-                </div>
             </div>
-
+            <div class="pt-2 mt-2 mb-2">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a class="btn btn-outline-primary " asp-action="Index">
+                    Back to List
+                </a>
+            </div>
         </form>
+        
+        
+
+
     </div>
 </div>
 

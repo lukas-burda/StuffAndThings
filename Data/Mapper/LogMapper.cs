@@ -11,24 +11,28 @@ namespace StuffAndThings.Data.Mapper
     {
         public static LogModel Mapper(LogEntity logEntity)
         {
-            LogModel logModel = new LogModel();
-            logModel.Id = logEntity.Id;
-            logModel.Date = logEntity.Date;
-            logModel.Type = logEntity.Type;
-            logModel.Action = logEntity.Action;
-            logModel.JsonObject = logEntity.JsonObject;
+            LogModel logModel = new LogModel
+            {
+                Id = logEntity.Id,
+                Date = logEntity.Date,
+                Type = logEntity.Type,
+                Action = logEntity.Action,
+                JsonObject = logEntity.JsonObject
+            };
 
             return logModel;
         }
 
         public static LogEntity Mapper(LogModel logModel)
         {
-            LogEntity logEntity = new LogEntity();
-            logEntity.Id = logModel.Id;
-            logEntity.Date = logModel.Date;
-            logEntity.Type = logModel.Type;
-            logEntity.Action = logModel.Action;
-            logEntity.JsonObject = logModel.JsonObject;
+            LogEntity logEntity = new LogEntity
+            {
+                Id = logModel.Id,
+                Date = logModel.Date,
+                Type = logModel.Type,
+                Action = logModel.Action,
+                JsonObject = logModel.JsonObject
+            };
 
             return logEntity;
         }

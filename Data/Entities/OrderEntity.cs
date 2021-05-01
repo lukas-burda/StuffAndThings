@@ -1,4 +1,5 @@
 ﻿using StuffAndThings.Enums;
+using StuffAndThings.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,11 @@ namespace StuffAndThings.Data.Entities
         public double SubTotal { get; set; }
         public double Discount { get; set; }
         public string Message { get; set; }
-        public UserEntity Seller { get; set; }
+        public UserEntity OrderPerson { get; set; }
         public List<SkuEntity> Items { get; set; }
-        public OrderStatus Status { get; set; }
+        public OrderStatus Status { get; set; } = 0;
+        public OrderType Type { get; internal set; } = 0;
+
         public OrderEntity()
         {
             Items = new List<SkuEntity>();

@@ -11,25 +11,29 @@ namespace StuffAndThings.Data.Mapper
     {
         public static UserEntity Mapper(UserModel uModel)
         {
-            UserEntity uEntity = new UserEntity();
-            uEntity.CNPJ = uModel.CNPJ;
-            uEntity.CPF = uModel.CPF;
-            uEntity.Discriminator = uModel.Discriminator;
-            uEntity.FullName = uModel.FullName;
-            uEntity.Gender = uModel.Gender;
-            uEntity.Id = uModel.Id;
+            UserEntity uEntity = new UserEntity
+            {
+                CNPJ = uModel.CNPJ,
+                CPF = uModel.CPF,
+                Discriminator = uModel.Discriminator,
+                FullName = uModel.FullName,
+                Gender = uModel.Gender,
+                Id = uModel.Id
+            };
             return uEntity;
         }
 
         public static UserModel Mapper(UserEntity uEntity)
         {
-            UserModel uModel = new UserModel();
-            uModel.Id = uEntity.Id;
-            uModel.Gender = uEntity.Gender;
-            uModel.FullName = uEntity.FullName;
-            uModel.Discriminator = uEntity.Discriminator;
-            uModel.CPF = uEntity.CPF;
-            uModel.CNPJ = uEntity.CNPJ;
+            UserModel uModel = new UserModel
+            {
+                Id = uEntity.Id,
+                Gender = uEntity.Gender,
+                FullName = uEntity.FullName,
+                Discriminator = uEntity.Discriminator,
+                CPF = uEntity.CPF,
+                CNPJ = uEntity.CNPJ
+            };
             return uModel;
         }
     }

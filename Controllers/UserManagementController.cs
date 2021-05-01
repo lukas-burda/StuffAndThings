@@ -47,10 +47,17 @@ namespace StuffAndThings.Controllers
             {
                 user.Id = Guid.NewGuid();
                 _context.Users.Add(UserMapper.Mapper(user));
+
+                LogController log = new LogController();
+                log.MovimentationRegister(user, "Created New", Models.Enums.LogType.Users);
             }
             else
             {
                 _context.Users.Update(UserMapper.Mapper(user));
+
+                LogController log = new LogController();
+                log.MovimentationRegister(user, "Update Existent", Models.Enums.LogType.Users);
+
             }
             _context.SaveChanges();
             return RedirectToAction("Index");
@@ -60,6 +67,10 @@ namespace StuffAndThings.Controllers
             DBContext _context = new DBContext();
             UserEntity User = _context.Users.Where(x => x.Id == Id).FirstOrDefault();
             _context.Users.Remove(User);
+
+            LogController log = new LogController();
+            log.MovimentationRegister(User, "Deleted", Models.Enums.LogType.Users);
+
             _context.SaveChanges();
             return RedirectToAction("Index");
         } 

@@ -11,14 +11,20 @@ namespace StuffAndThings.Controllers
 {
     public class OrderController : Controller
     {
+
         [HttpGet]
         public IActionResult Index()
         {
             DBContext _context = new DBContext();
-            List<OrderEntity> orderBase = _context.Orders.ToList();
-            List<OrderModel> order = new List<OrderModel>();
-            foreach (var item in orderBase) order.Add(OrderMapper.Mapper(item));
-            return View(order);
+            List<OrderEntity> ordersBase = _context.Orders.ToList();
+            List<OrderModel> orders = new List<OrderModel>();
+
+            foreach (var order in ordersBase)
+            {
+                orders.Add(OrderMapper.Mapper(order));
+            }
+
+            return View(orders);
         }
 
         [HttpGet]
@@ -28,13 +34,13 @@ namespace StuffAndThings.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult Edit(Guid Id)
+        public IActionResult Details(Guid Id)
         {
             DBContext _context = new DBContext();
-            UserEntity userBase = _context.Users.Where(x => x.Id == Id).FirstOrDefault();
-            UserModel user = UserMapper.Mapper(userBase);
-            return View(user);
+            OrderEntity orderBase = _context.Orders.SingleOrDefault();
+            OrderModel order = OrderMapper.Mapper(orderBase);
+
+            return View(order);
         }
 
         [HttpPost]
@@ -50,22 +56,21 @@ namespace StuffAndThings.Controllers
                 orderModel.LastUpdate = DateTime.UtcNow;
                 orderModel.SubTotal = orderModel.Total - orderModel.Discount;
                 _context.Orders.Add(OrderMapper.Mapper(orderModel));
+
+                LogController log = new LogController();
+
+                log.MovimentationRegister(orderModel, "Created New", orderModel.Type);
             }
             else
             {
                 orderModel.LastUpdate = DateTime.Today;
                 _context.Orders.Update(OrderMapper.Mapper(orderModel));
+
+                LogController log = new LogController();
+                log.MovimentationRegister(orderModel, "Update Existent", orderModel.Type);
             }
             _context.SaveChanges();
             return RedirectToAction("Index");
-        }
-        public IActionResult Delete(Guid Id)
-        {
-            DBContext _context = new DBContext();
-            UserEntity User = _context.Users.Where(x => x.Id == Id).FirstOrDefault();
-            _context.Users.Remove(User);
-            _context.SaveChanges();
-            return View();
         }
 
         private static Random FriendlyCode = new Random();

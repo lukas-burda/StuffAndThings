@@ -14,6 +14,9 @@ namespace StuffAndThings.Enums
         InDelivery = 4,
         Finalized = 5,
         Canceled = 6,
-        Error = 99
+        Accepted = 7,
+        Denied = 8,
+        Error = 19,
+        Other = 99
     }
 }
