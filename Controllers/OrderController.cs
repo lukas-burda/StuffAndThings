@@ -53,8 +53,7 @@ namespace StuffAndThings.Controllers
                 orderModel.FriendlyCode = "S&T-" + OrderFriendlyCodeGenerator(4);
                 orderModel.Status = Enums.OrderStatus.Created;
                 orderModel.CreateDate = DateTime.UtcNow;
-                orderModel.LastUpdate = DateTime.UtcNow;
-                orderModel.SubTotal = orderModel.Total - orderModel.Discount;
+                orderModel.Total = orderModel.SubTotal - orderModel.Discount;
                 _context.Orders.Add(OrderMapper.Mapper(orderModel));
 
                 LogController log = new LogController();
@@ -63,7 +62,6 @@ namespace StuffAndThings.Controllers
             }
             else
             {
-                orderModel.LastUpdate = DateTime.Today;
                 _context.Orders.Update(OrderMapper.Mapper(orderModel));
 
                 LogController log = new LogController();
