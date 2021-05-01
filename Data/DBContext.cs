@@ -23,5 +23,6 @@ namespace StuffAndThings.Data
         public DbSet<LogEntity> Logs { get; set; }
         public DbSet<StuffAndThings.Models.LogModel> LogModel { get; set; }
         public DbSet<StuffAndThings.Models.OrderModel> OrderModel { get; set; }
+        public DbSet<StuffAndThings.Models.ProductModel> ProductModel { get; set; }
     }
 }
