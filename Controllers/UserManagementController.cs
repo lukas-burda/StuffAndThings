@@ -55,8 +55,6 @@ namespace StuffAndThings.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
-
-        [HttpDelete]
         public IActionResult Delete(Guid Id)
         {
             DBContext _context = new DBContext();
