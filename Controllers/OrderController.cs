@@ -48,7 +48,11 @@ namespace StuffAndThings.Controllers
             }
             foreach (var prod in productsBase)
             {
-                order.Products.Add(ProductMapper.Mapper(prod));
+                foreach (var s in prod.Skus)
+                {
+                    s.Name = prod.Name + " " + s.Name;
+                    order.Skus.Add(SkuMapper.Mapper(s));
+                }
             }
 
             return View(order);

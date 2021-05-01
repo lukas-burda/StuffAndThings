@@ -29,7 +29,7 @@ namespace StuffAndThings.Models
             Products = new List<ProductModel>();
             Buyers = new List<UserModel>();
             Sellers = new List<UserModel>();
-            
+            Skus = new List<SkuModel>();
         }
 
     }
