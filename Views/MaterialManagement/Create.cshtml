@@ -1,60 +1,53 @@
 ﻿@model StuffAndThings.Models.SkuStocksModel
 
+<link href="~/css/CreateMaterial.css" rel="stylesheet" />
+
 @{
     ViewData["Title"] = "Create";
 }
 
 <h1 class="text-center text-monospace">Create</h1>
 <h3 class="text-center text-monospace">SkuStocksModel</h3>
-
-<div class="m-5 shadow p-3 mb-5" align="center">
-    <hr />
-    <div class="col-md-10">
-        <div class="col-md-5">
-            <form asp-action="Upsert">
-                <div class="form-group">
-                    <label asp-for="AvailableQuantity" class="control-label"></label>
-                    <input asp-for="AvailableQuantity" class="form-control" />
-                    <span asp-validation-for="AvailableQuantity" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Sku.Price" class="control-label"></label>
-                    <input asp-for="Sku.Price" class="form-control" />
-                    <span asp-validation-for="Sku.Price" class="text-danger"></span>
-                </div>
-                <div>
-                    <div style="float: right; margin-right: -232px; margin-top: -171px;">
-                        <label class="control-label">Seller</label>
-                        <select class="custom-select" asp-for="Seller.Id" asp-items="@(new SelectList(Model.Sellers, "Id", "FullName"))"></select>
+<div class="row d-flex justify-content-center">
+    <div class="col-md-4 m-2 shadow mb-1">
+        <form asp-action="Upsert">
+            <div class="row">
+                <div class="d-flex flex-column col-md-6">
+                    <div>
+                        <label asp-for="AvailableQuantity" class="control-label"></label>
+                        <input asp-for="AvailableQuantity" type="number" min="1" class="form-control" />
                     </div>
-                    <div style="float: right; margin-right: -203px; margin-top: -86px;">
+                <p></p>
+                </div>
+                <div class="d-flex flex-column col-md-6">
+                    <div>
+                        <div>
+                            <label class="control-label">Seller</label>
+                            <select class="custom-select" asp-for="Seller.Id" asp-items="@(new SelectList(Model.Sellers, "Id", "FullName"))"></select>
+                        </div>
+                    </div>
+                    <div>
                         <label class="control-label">Sku</label>
                         <select class="custom-select" asp-for="Sku.Id" asp-items="@(new SelectList(Model.Skus, "Id", "Name"))"></select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            </form>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+        <div>
+            <a asp-action="Index">
+                <button class="btn btn-outline-primary" style="display: inline-block">
+                    Back to List
+                </button>
+            </a>
         </div>
     </div>
-
-    <div>
-        <a asp-action="Index">
-            <button class="btn btn-outline-primary">
-                Back to List
-            </button>
-        </a>
-    </div>
 </div>
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-
-<script>
-    function clicar() {
-        var x = document.getElementById("clicar").innerHTML;
-        console.log(x);
-    }
-</script>
