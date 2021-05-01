@@ -3,6 +3,16 @@
 @{
     ViewData["Title"] = "Create";
 }
+<style>
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+        appearance: textfield;
+    }
+</style>
 
 <h1 class="text-center text-monospace">Create</h1>
 <h3 class="text-center text-monospace">SkuStocksModel</h3>
@@ -12,7 +22,7 @@
             <div class="d-flex flex-wrap justify-content-center">
                 <div class="w-75">
                     <label asp-for="AvailableQuantity" class="control-label"></label>
-                    <input asp-for="AvailableQuantity" class="form-control" />
+                    <input asp-for="AvailableQuantity" type="number" min="1" class="form-control" />
                     <span asp-validation-for="AvailableQuantity" class="text-danger"></span>
                 </div>
                 <div class="w-75">
@@ -25,7 +35,7 @@
                 </div>
                 <div class="ml-3 mb-3 mt-3">
                     <input type="submit" value="Create" class="btn btn-primary" />
-                    <button class="btn btn-outline-primary">Back to List</button></a>
+                    <button class="btn btn-outline-primary">Back to List</button>
                 </div>
             </div>
 
