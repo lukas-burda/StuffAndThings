@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StuffAndThings.Migrations
 {
-    public partial class First : Migration
+    public partial class nome : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

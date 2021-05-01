@@ -7,45 +7,57 @@
 <h1 class="text-center text-monospace">Create</h1>
 
 <h4 class="text-center text-monospace">UserModel</h4>
-<hr />
-<div class="m-5 shadow p-3 mb-5" align="center">
-    <div class="col-md-5" align="center">
+
+<div class="row d-flex justify-content-center">
+    <div class="col-md-6 m-5 shadow p-3 mb-5">
         <form asp-action="Upsert">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="FullName" class="control-label"></label>
-                <input asp-for="FullName" class="form-control" />
-                <span asp-validation-for="FullName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CPF" class="control-label"></label>
-                <input asp-for="CPF" class="form-control" />
-                <span asp-validation-for="CPF" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CNPJ" class="control-label"></label>
-                <input asp-for="CNPJ" class="form-control" />
-                <span asp-validation-for="CNPJ" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Discriminator" class="control-label"></label>
-                <input asp-for="Discriminator" class="form-control" placeholder="ex: User / Seller"/>
-                <span asp-validation-for="Discriminator" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Gender" class="control-label"></label>
-                <input asp-for="Gender" class="form-control" />
-                <span asp-validation-for="Gender" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-            <div>
-                <a asp-action="Index">
-                    <button class="btn btn-outline-primary">
-                        Back to List
-                    </button>
-                </a>
+            <div class="">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label asp-for="FullName" class="control-label"></label>
+                        <input asp-for="FullName" class="form-control" />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="CPF" class="control-label"></label>
+                        <input asp-for="CPF" class="form-control" />
+                        <span asp-validation-for="CPF" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="CNPJ" class="control-label"></label>
+                        <input asp-for="CNPJ" class="form-control" />
+                        <span asp-validation-for="CNPJ" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="Discriminator" class="control-label"></label>
+                        <input asp-for="Discriminator" class="form-control" placeholder="ex: User / Seller" />
+                        <span asp-validation-for="Discriminator" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="Gender" class="control-label"></label>
+                        <input asp-for="Gender" class="form-control" />
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group mr-1">
+                    <div class="row">
+                        <div class="col-md-6 d-flex justify-content-end">
+                            <input type="submit" value="Create" class="btn btn-primary" />                           
+                        </div>
+                        <div class="col-md-6 d-flex justify-content-start">
+                            <a asp-action="Index">
+                                <button class="btn btn-outline-primary">
+                                    Back to List
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
     </div>

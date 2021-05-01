@@ -7,45 +7,55 @@
 <h1 class="text-center text-monospace">Edit</h1>
 
 
-<h4>UserModel</h4>
-<hr />
-<div class="row m-5 shadow p-3 mb-5">
-    <div class="col-md-4">
+<h4 class="text-center">UserModel</h4>
+
+<div class="shadow col-md-3 centralizar">
+    <div class="col-md-12">
         <form asp-action="Upsert">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="FullName" class="control-label"></label>
-                <input asp-for="FullName" class="form-control" />
-                <span asp-validation-for="FullName" class="text-danger"></span>
+            <div class="row ">
+                <div class="col-md-10 centralizar ">
+                    <label asp-for="FullName" class="control-label"></label>
+                    <input asp-for="FullName" class="form-control" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="CPF" class="control-label"></label>
-                <input asp-for="CPF" class="form-control" />
-                <span asp-validation-for="CPF" class="text-danger"></span>
+            <div class="row">
+                <div class="col-md-10 centralizar">
+                    <label asp-for="CPF" class="control-label"></label>
+                    <input asp-for="CPF" class="form-control" />
+                    <span asp-validation-for="CPF" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="CNPJ" class="control-label"></label>
-                <input asp-for="CNPJ" class="form-control" />
-                <span asp-validation-for="CNPJ" class="text-danger"></span>
+            <div class="row">
+                <div class="col-md-10 centralizar">
+                    <label asp-for="CNPJ" class="control-label"></label>
+                    <input asp-for="CNPJ" class="form-control" />
+                    <span asp-validation-for="CNPJ" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Discriminator" class="control-label"></label>
-                <input asp-for="Discriminator" class="form-control" />
-                <span asp-validation-for="Discriminator" class="text-danger"></span>
+            <div class="row">
+                <div class="col-md-10 centralizar">
+                    <label asp-for="Discriminator" class="control-label"></label>
+                    <input asp-for="Discriminator" class="form-control" />
+                    <span asp-validation-for="Discriminator" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Gender" class="control-label"></label>
-                <input asp-for="Gender" class="form-control" />
-                <span asp-validation-for="Gender" class="text-danger"></span>
+            <div class="row">
+                <div class="col-md-10 centralizar">
+                    <label asp-for="Gender" class="control-label"></label>
+                    <input asp-for="Gender" class="form-control" />
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 pt-4 mt-1 mb-4 centralizar ">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <a asp-action="Index"><button class="btn btn-outline-primary">Back to List</button></a>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+
         </form>
-        <div>
-            <a asp-action="Index"><button class="btn btn-outline-primary">Back to List</button></a>
-        </div>
+
     </div>
 
 </div>
