@@ -17,11 +17,16 @@
                 </div>
                 <div class="w-75">
                     <label class="control-label">Seller</label>
-                    <input asp-for="Seller.FullName" class="form-control" disabled/>
+                    <input asp-for="Seller.FullName" class="form-control" disabled />
+                    <input asp-for="Seller.Id" hidden />
                 </div>
                 <div class="w-75">
                     <label class="control-label">Seller</label>
                     <input asp-for="Sku.Name" class="form-control" disabled />
+                    <input asp-for="Sku.Id" hidden />
+                </div>
+                <div>
+                    <input asp-for="Id" hidden />
                 </div>
             </div>
             <div class="pt-2 mt-2 mb-2 text-center">
