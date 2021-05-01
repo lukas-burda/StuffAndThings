@@ -5,7 +5,6 @@
 }
 
 <h1 class="text-center">Create</h1>
-
 <h4 class="text-center">OrderModel</h4>
 <hr />
 <div class="row">
@@ -14,22 +13,7 @@
             <div class="col-md-12 ">
                 <form asp-action="Upsert">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    @*<div class="form-group">
-                    <label asp-for="CreateDate" class="control-label"></label>
-                    <input asp-for="CreateDate" class="form-control" />
-                    <span asp-validation-for="CreateDate" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="LastUpdate" class="control-label"></label>
-                    <input asp-for="LastUpdate" class="form-control" />
-                    <span asp-validation-for="LastUpdate" class="text-danger"></span>
-                </div>*@
                     <div class="row">
-                        <div class="col-md-10 centralizar">
-                            <label asp-for="SubTotal" class="control-label"></label>
-                            <input asp-for="SubTotal" class="form-control" />
-                            <span asp-validation-for="SubTotal" class="text-danger"></span>
-                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-10 centralizar">
@@ -37,6 +21,10 @@
                             <input asp-for="Discount" class="form-control" />
                             <span asp-validation-for="Discount" class="text-danger"></span>
                         </div>
+                    </div>
+                    <div class="w-75">
+                        <label class="control-label">Seller</label>
+                        <select class="custom-select" asp-items="@(new SelectList(Model.Skus, "Id", "FullName"))"></select>
                     </div>
                     <div class="row">
                         <div class="col-md-10 centralizar">
@@ -51,15 +39,11 @@
                             <select class="form-control" asp-for="Type" asp-items="Html.GetEnumSelectList<StuffAndThings.Models.Enums.OrderType>()"></select>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 pt-2 mt-2 mb-2 d-flex justify-content-end">
-                            <input type="submit" value="Create" class="btn btn-primary" />
-                        </div>
-                        <div class="col-md-6 pt-2 mt-2 mb-2 d-flex justify-content-start">
-                            <a class="btn btn-outline-primary " asp-action="Index">
-                                Back to List
-                            </a>
-                        </div>
+                    <div class="pt-2 mt-2 mb-2 text-center">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <a class="btn btn-outline-primary " asp-action="Index">
+                            Back to List
+                        </a>
                     </div>
                 </form>
             </div>
