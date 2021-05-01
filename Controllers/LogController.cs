@@ -16,44 +16,50 @@ namespace StuffAndThings.Controllers
         public IActionResult StockPartialView()
         {
             DBContext _context = new DBContext();
-            //List<LogEntity> logsBase = _context.Logs.ToList();
             List<LogEntity> logsBase = _context.Logs.ToList();
-
             List<LogModel> logs = new List<LogModel>();
             foreach (var item in logsBase)
             {
-                //if (item.Action.Equals(Models.Enums.LogType.Stocks))
-                //{
+                if (item.Type.Equals(Models.Enums.LogType.Stocks))
+                {
                     logs.Add(LogMapper.Mapper(item));
-                //}
+                }
             }
 
             return View("StockPartialView", logs);
         }
 
-        //public IActionResult Stock()
-        //{
-        //    
-        //}
+        public IActionResult UserPartialView()
+        {
+            DBContext _context = new DBContext();
+            List<LogEntity> logsBase = _context.Logs.ToList();
+            List<LogModel> logs = new List<LogModel>();
+            foreach (var item in logsBase)
+            {
+                if (item.Type.Equals(Models.Enums.LogType.Users))
+                {
+                    logs.Add(LogMapper.Mapper(item));
+                }
+            }
 
-        //public IActionResult OrderIndex()
-        //{
-        //    DBContext _context = new DBContext();
-        //    List<LogEntity> logsBase = _context.Logs.ToList();
-        //    List<LogModel> logs = new List<LogModel>();
+            return View("UserPartialView", logs);
+        }
 
-        //    foreach (var item in logsBase)
-        //    {
-        //        if (!item.Action.Equals(Models.Enums.LogType.SaleOrders))
-        //        {
-        //            logsBase.Remove(item);
-        //        }
+        public IActionResult OrderPartialView()
+        {
+            DBContext _context = new DBContext();
+            List<LogEntity> logsBase = _context.Logs.ToList();
+            List<LogModel> logs = new List<LogModel>();
+            foreach (var item in logsBase)
+            {
+                if (item.Type.Equals(Models.Enums.LogType.SaleOrders) || item.Type.Equals(Models.Enums.LogType.PurchaseOrders))
+                {
+                    logs.Add(LogMapper.Mapper(item));
+                }
+            }
 
-        //        logs.Add(LogMapper.Mapper(item));
-        //    }
-
-        //    return View(logs);
-        //}
+            return View("OrderPartialView", logs);
+        }
 
         [HttpPost]
         public void MovimentationRegister(Object obj, string action, Models.Enums.LogType type)
