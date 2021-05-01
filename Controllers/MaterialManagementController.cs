@@ -18,14 +18,22 @@ namespace StuffAndThings.Controllers
             DBContext _context = new DBContext();
             List<SkuStocksEntity> stocksBase = _context.Stocks.Include(x => x.Sku).Include(x => x.Seller).ToList();
             List<ProductEntity> products = _context.Products.Include(x => x.Skus).ToList();
+            var valida = false;
             foreach (var ss in stocksBase)
             {
                 foreach (var p in products)
                 {
                     foreach (var s in p.Skus)
                     {
-                        if (s.Id == ss.Sku.Id) ss.Sku.Name = p.Name + " " + s.Name;
+                        if (s.Id == ss.Sku.Id)
+                        {
+                            ss.Sku.Name = p.Name + " " + s.Name;
+                            valida = true;
+                            break;
+                        }
                     }
+                    if (valida)
+                        break;
                 }
             }
             List<SkuStocksModel> stocks = new List<SkuStocksModel>();
