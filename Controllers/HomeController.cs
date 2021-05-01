@@ -21,11 +21,13 @@ namespace StuffAndThings.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
+        [HttpGet]
         public IActionResult Privacy()
         {
             return View();
@@ -37,6 +39,7 @@ namespace StuffAndThings.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        [HttpGet]
         public IActionResult Carregar()
         {
             DBContext _context = new DBContext();

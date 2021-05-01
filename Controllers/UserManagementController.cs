@@ -12,6 +12,7 @@ namespace StuffAndThings.Controllers
 {
     public class UserManagementController : Controller
     {
+        [HttpGet]
         public IActionResult Index()
         {
             DBContext _context = new DBContext();
@@ -21,12 +22,14 @@ namespace StuffAndThings.Controllers
             return View(users);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
 
             return View();
         }
 
+        [HttpGet]
         public IActionResult Edit(Guid Id)
         {
 
@@ -36,6 +39,7 @@ namespace StuffAndThings.Controllers
             return View(user);
         }
 
+        [HttpPost]
         public IActionResult Upsert(UserModel user)
         {
             DBContext _context = new DBContext();
@@ -52,6 +56,7 @@ namespace StuffAndThings.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpDelete]
         public IActionResult Delete(Guid Id)
         {
             DBContext _context = new DBContext();
