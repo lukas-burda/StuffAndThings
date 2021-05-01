@@ -11,9 +11,9 @@ namespace StuffAndThings.Data.Entities
         public Guid Id { get; set; }
         public int AvailableQuantity { get; set; }
         [ForeignKey("SellerId")]
-        public UserEntity Seller { get; set; }
+        public virtual UserEntity Seller { get; set; }
         [ForeignKey("SkuId")]
-        public SkuEntity Sku { get; set; }
+        public virtual SkuEntity Sku { get; set; }
         public DateTime LastUpdate { get; set; }
         public Guid SellerId { get; set; }
         public Guid SkuId { get; set; }
