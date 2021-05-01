@@ -11,6 +11,7 @@ namespace StuffAndThings.Controllers
 {
     public class OrderController : Controller
     {
+        [HttpGet]
         public IActionResult Index()
         {
             DBContext _context = new DBContext();
@@ -20,12 +21,14 @@ namespace StuffAndThings.Controllers
             return View(order);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
 
             return View();
         }
 
+        [HttpGet]
         public IActionResult Edit(Guid Id)
         {
             DBContext _context = new DBContext();
@@ -34,6 +37,7 @@ namespace StuffAndThings.Controllers
             return View(user);
         }
 
+        [HttpPost]
         public IActionResult Upsert(OrderModel orderModel)
         {
             DBContext _context = new DBContext();
@@ -56,6 +60,7 @@ namespace StuffAndThings.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpDelete]
         public IActionResult Delete(Guid Id)
         {
             DBContext _context = new DBContext();
