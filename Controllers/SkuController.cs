@@ -14,7 +14,11 @@ namespace StuffAndThings.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            DBContext _context = new DBContext();
+            List<SkuEntity> skusEntity = _context.Skus.ToList();
+            List<SkuModel> skus = new List<SkuModel>();
+            foreach (var item in skusEntity) skus.Add(SkuMapper.Mapper(item));
+            return View(skus);
         }
 
         public IActionResult Create()

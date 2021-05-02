@@ -22,6 +22,5 @@ namespace StuffAndThings.Data
         public DbSet<SkuStocksEntity> Stocks { get; set; }
         public DbSet<OrderEntity> Orders { get; set; }
         public DbSet<LogEntity> Logs { get; set; }
-        public DbSet<StuffAndThings.Models.SkuModel> SkuModel { get; set; }
     }
 }
