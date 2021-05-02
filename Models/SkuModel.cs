@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,8 +16,10 @@ namespace StuffAndThings.Models
         [DisplayFormat(DataFormatString = "{0:C}")]
         public double Price { get; set; }
         public Guid ProductId { get; set; }
+        [NotMapped]
         public List<ProductModel> Products { get; set; }
         
+
         public SkuModel()
         {
             Products = new List<ProductModel>();

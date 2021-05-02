@@ -4,11 +4,15 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<h1 class="text-center text-monospace">Skus</h1>
+<div class="m-5 shadow p-3 mb-5">
+    <p>
+        <a asp-action="Create">
+            <button class="btn btn-primary">
+                Create New
+            </button>
+        </a>
+    </p>
 <table class="table">
     <thead>
         <tr>
@@ -24,10 +28,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Price)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductId)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -40,20 +40,15 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Color)
+                <div>
+                    <p class="rounded-sm" style="background-color: @item.Color; width: 25px; height: 25px; margin-left: 9px; border: solid"></p>
+                </div>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+</div>
