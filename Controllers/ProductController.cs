@@ -13,6 +13,7 @@ namespace StuffAndThings.Controllers
 {
     public class ProductController : Controller
     {
+        [HttpGet]
         public IActionResult Index()
         {
             DBContext _context = new DBContext();
@@ -22,17 +23,33 @@ namespace StuffAndThings.Controllers
             return View(products);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
+        [HttpGet]
         public IActionResult Edit(Guid Id)
         {
             DBContext _context = new DBContext();
             ProductEntity productBase = _context.Products.Include(x => x.Skus).Where(x => x.Id == Id).First();
             ProductModel product = ProductMapper.Mapper(productBase);
             return View(product);
+        }
+
+        [HttpPost]
+        public IActionResult Upsert(ProductModel product)
+        {
+            DBContext _context = new DBContext();
+            LogController log = new LogController();
+
+            if (product.Id == new Guid())
+                _context.Products.Add(ProductMapper.Mapper(product));
+            else
+                _context.Products.Update(ProductMapper.Mapper(product));
+
+            return RedirectToAction("Index");
         }
     }
 }
