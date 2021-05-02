@@ -26,7 +26,7 @@ namespace StuffAndThings.Controllers
                 }
             }
 
-            return View("StockPartialView", logs);
+            return View("StockPartialView", logs.OrderByDescending(x => x.Date));
         }
 
         public IActionResult UserPartialView()
@@ -42,7 +42,7 @@ namespace StuffAndThings.Controllers
                 }
             }
 
-            return View("UserPartialView", logs);
+            return View("UserPartialView", logs.OrderByDescending(x => x.Date));
         }
 
         public IActionResult OrderPartialView()
@@ -58,7 +58,7 @@ namespace StuffAndThings.Controllers
                 }
             }
 
-            return View("OrderPartialView", logs);
+            return View("OrderPartialView", logs.OrderByDescending(x => x.Date));
         }
 
         [HttpPost]
