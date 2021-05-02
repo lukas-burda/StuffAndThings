@@ -14,5 +14,12 @@ namespace StuffAndThings.Models
         public string Color { get; set; }
         [DisplayFormat(DataFormatString = "{0:C}")]
         public double Price { get; set; }
+        public Guid ProductId { get; set; }
+        public List<ProductModel> Products { get; set; }
+        
+        public SkuModel()
+        {
+            Products = new List<ProductModel>();
+        }
     }
 }
