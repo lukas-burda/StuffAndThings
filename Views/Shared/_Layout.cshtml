@@ -11,7 +11,8 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="mr-4">
+                <a class="navbar-brand" title="Stuff & Things Home" asp-area="" asp-controller="Home" asp-action="Index" class="mr-4">
+                    <img src="~/images/logoStuffAndThings2-1.png" style="max-width:150px"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -32,12 +33,12 @@
                             </div>
                         </li>
                         @*<li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-dark text-monospace" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Orders</a>
-                                <div class="dropdown-menu">
-                                    <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="Order" asp-action="PurchaseOrderIndex">Purchase</a>
-                                    <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="Order" asp-action="SaleOrderIndex">Sale</a>
-                                </div>
-                            </li>*@
+                    <a class="nav-link dropdown-toggle text-dark text-monospace" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Orders</a>
+                    <div class="dropdown-menu">
+                        <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="Order" asp-action="PurchaseOrderIndex">Purchase</a>
+                        <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="Order" asp-action="SaleOrderIndex">Sale</a>
+                    </div>
+                </li>*@
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark text-monospace" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Catalog</a>
