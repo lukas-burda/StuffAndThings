@@ -20,7 +20,6 @@ namespace StuffAndThings.Data
         public DbSet<SkuEntity> Skus { get; set; }
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<SkuStocksEntity> Stocks { get; set; }
-        public DbSet<OrderEntity> Orders { get; set; }
         public DbSet<LogEntity> Logs { get; set; }
     }
 }

@@ -78,33 +78,5 @@ namespace StuffAndThings.Controllers
             _context.SaveChanges();
 
         }
-
-        public void MovimentationRegister(Object obj, string action, Models.Enums.OrderType type)
-        {
-            DBContext _context = new DBContext();
-            LogModel log = new LogModel();
-            log.Id = new Guid();
-            log.Date = DateTime.Now;
-            switch (type)
-            {
-                case Models.Enums.OrderType.PurchaseOrder:
-                    log.Type = Models.Enums.LogType.PurchaseOrders;
-                    break;
-                case Models.Enums.OrderType.SaleOrder:
-                    log.Type = Models.Enums.LogType.SaleOrders;
-                    break;
-                default:
-                    log.Type = Models.Enums.LogType.None;
-                    break;
-            }
-            log.Action = action;
-            log.JsonObject = JsonSerializer.Serialize(obj);
-
-            LogEntity logEntity = LogMapper.Mapper(log);
-
-            _context.Logs.Add(logEntity);
-            _context.SaveChanges();
-
-        }
     }
 }

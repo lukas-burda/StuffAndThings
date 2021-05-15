@@ -13,14 +13,39 @@ namespace StuffAndThings.Controllers
     public class UserManagementController : Controller
     {
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult SellerIndex()
         {
             DBContext _context = new DBContext();
             List<UserEntity> usersBase = _context.Users.ToList();
             List<UserModel> users = new List<UserModel>();
-            foreach (var item in usersBase) users.Add(UserMapper.Mapper(item));
-            return View(users);
+            foreach (var user in usersBase)
+            {
+                if (user.Discriminator.Equals(Models.Enums.Discriminator.Seller))
+                {
+                    users.Add(UserMapper.Mapper(user));
+                }
+
+            }
+            return View("SellerIndex", users);
         }
+
+        [HttpGet]
+        public IActionResult BuyerIndex()
+        {
+            DBContext _context = new DBContext();
+            List<UserEntity> usersBase = _context.Users.ToList();
+            List<UserModel> users = new List<UserModel>();
+            foreach (var user in usersBase)
+            {
+                if (user.Discriminator.Equals(Models.Enums.Discriminator.Buyer))
+                {
+                    users.Add(UserMapper.Mapper(user));
+                }
+
+            }
+            return View("BuyerIndex", users);
+        }
+
 
         [HttpGet]
         public IActionResult Create()
@@ -66,22 +91,14 @@ namespace StuffAndThings.Controllers
         {
             DBContext _context = new DBContext();
             LogController log = new LogController();
-            OrderEntity order = _context.Orders.Where(x => x.SellerId == Id || x.BuyerId == Id).FirstOrDefault();
             UserEntity User = _context.Users.Where(x => x.Id == Id).FirstOrDefault();
-            if (order != null)
-            {
-                log.MovimentationRegister(User, "DeletedError", Models.Enums.LogType.Users);
 
-                _context.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            
             _context.Users.Remove(User);
-            
+
             log.MovimentationRegister(User, "Deleted", Models.Enums.LogType.Users);
 
             _context.SaveChanges();
             return RedirectToAction("Index");
-        } 
+        }
     }
 }

@@ -12,34 +12,47 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="mr-4">
-                    <img src="/images/logoStuffAndThings2-1.png" width="200px" height="45px" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    @*<partial name="_LoginPartial" />*@
+                    <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="MaterialManagement" asp-action="Index">Material</a>
+                            <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="MaterialManagement" asp-action="Index">Storage</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="UserManagement" asp-action="Index">User</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark text-monospace" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Users</a>
+                            <div class="dropdown-menu">
+                                <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="UserManagement" asp-action="SellerIndex">Sellers</a>
+                                <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="UserManagement" asp-action="BuyerIndex">Buyers</a>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
+                        @*<li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark text-monospace" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Orders</a>
+                                <div class="dropdown-menu">
+                                    <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="Order" asp-action="PurchaseOrderIndex">Purchase</a>
+                                    <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="Order" asp-action="SaleOrderIndex">Sale</a>
+                                </div>
+                            </li>*@
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark text-monospace" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Catalog</a>
+                            <div class="dropdown-menu">
+                                <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
+                                <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="Sku" asp-action="Index">Sku</a>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="Sku" asp-action="Index">Sku</a>
-                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark text-monospace" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Movimentations</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item nav-link" asp-area="" asp-controller="Log" asp-action="StockPartialView">Stocks</a>
                                 <a class="dropdown-item nav-link" asp-area="" asp-controller="Log" asp-action="UserPartialView">Users</a>
-                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item nav-link" asp-area="" asp-controller="Log" asp-action="OrderPartialView">Orders</a>
                             </div>
                         </li>
                     </ul>
@@ -54,10 +67,10 @@
     </div>
 
     @*<footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - StuffAndThings - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>*@
+            <div class="container">
+                &copy; 2021 - StuffAndThings - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -1,5 +1,4 @@
-﻿using StuffAndThings.Enums;
-using StuffAndThings.Models.Enums;
+﻿using StuffAndThings.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +19,6 @@ namespace StuffAndThings.Models
         public UserModel Seller { get; set; }
         public List<ProductModel> Products { get; set; }
         public List<SkuModel> Skus { get; set; }
-        public OrderStatus Status { get; set; } = 0;
-        public OrderType Type { get; set; } = 0;
         public List<UserModel> Buyers { get; set; }
         public List<UserModel> Sellers { get; set; }
         public List<SkuStocksModel> StocksOrder { get; set; }
