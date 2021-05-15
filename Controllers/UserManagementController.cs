@@ -85,20 +85,44 @@ namespace StuffAndThings.Controllers
 
             }
             _context.SaveChanges();
-            return RedirectToAction("Index");
+
+            string returnselector = "";
+
+            if (user.Discriminator.Equals(Models.Enums.Discriminator.Buyer))
+            {
+                returnselector = "BuyerIndex";
+            }
+            else if (user.Discriminator.Equals(Models.Enums.Discriminator.Seller))
+            {
+                returnselector = "SellerIndex";
+            };
+
+            return RedirectToAction(returnselector);
         }
         public IActionResult Delete(Guid Id)
         {
             DBContext _context = new DBContext();
             LogController log = new LogController();
-            UserEntity User = _context.Users.Where(x => x.Id == Id).FirstOrDefault();
+            UserEntity user = _context.Users.Where(x => x.Id == Id).FirstOrDefault();
 
-            _context.Users.Remove(User);
+            _context.Users.Remove(user);
 
-            log.MovimentationRegister(User, "Deleted", Models.Enums.LogType.Users);
+            log.MovimentationRegister(user, "Deleted", Models.Enums.LogType.Users);
 
             _context.SaveChanges();
-            return RedirectToAction("Index");
+
+            string returnselector = "";
+
+            if (user.Discriminator.Equals(Models.Enums.Discriminator.Buyer))
+            {
+                returnselector = "BuyerIndex";
+            }
+            else if (user.Discriminator.Equals(Models.Enums.Discriminator.Seller))
+            {
+                returnselector = "SellerIndex";
+            };
+
+            return RedirectToAction(returnselector);
         }
     }
 }
