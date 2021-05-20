@@ -43,55 +43,61 @@ namespace StuffAndThings.Controllers
         public IActionResult Carregar()
         {
             DBContext _context = new DBContext();
+            ProductModel p1 = new ProductModel
+            {
+                Id = Guid.NewGuid(),
+                Code = "0001",
+                Name = "Coca-Cola",
+                Description = "Refrigerante",
+                Skus = new List<SkuModel>()
+            };
 
-            UserModel dep1 = new UserModel();
-            dep1.Id = Guid.NewGuid();
-            dep1.FullName = "Dep. Curitiba";
-            dep1.CNPJ = "72.147.938/0001-40";
+            SkuModel s1 = new SkuModel
+            {
+                Id = Guid.NewGuid(),
+                Barcode = "793001215",
+                Name = "350 ml",
+                Color = "#ff0000",
+                Price = 4.50
+            };
 
-            UserModel dep2 = new UserModel();
-            dep2.Id = Guid.NewGuid();
-            dep2.FullName = "Dep. Bahia";
-            dep2.CNPJ = "10.843.242/0001-09";
+            SkuModel s2 = new SkuModel
+            {
+                Id = Guid.NewGuid(),
+                Barcode = "793001216",
+                Name = "2 L",
+                Color = "#ff0000",
+                Price = 7.00
+            };
 
-            ProductModel prod1 = new ProductModel();
-            prod1.Id = Guid.NewGuid();
-            prod1.Name = "Coca-Cola";
-            prod1.Description = "Coca-cola é o melhor refrigerante do Brasil";
-            prod1.Code = "C0001";
-            prod1.ImageUrl = "https://static.distribuidoracaue.com.br/media/catalog/product/cache/1/thumbnail/600x800/9df78eab33525d08d6e5fb8d27136e95/r/e/refrigerante-coca-cola-2-litros.jpg";
+            p1.Skus.Add(s1);
+            p1.Skus.Add(s2);
 
-            SkuModel sku1 = new SkuModel();
-            sku1.Id = Guid.NewGuid();
-            sku1.Name = "350 ml";
-            sku1.Color = "#ff0000";
-            sku1.Barcode = "978020137962";
-            sku1.Price = 4.50;
+            _context.Products.Add(ProductMapper.Mapper(p1));
 
-            prod1.Skus.Add(sku1);
+            UserModel u = new UserModel
+            {
+                Id = Guid.NewGuid(),
+                FullName = "Shopping Palladium",
+                CNPJ = "08355847000109",
+                Discriminator = Models.Enums.Discriminator.Seller
+            };
 
-            SkuStocksModel ss1 = new SkuStocksModel();
-            ss1.Id = Guid.NewGuid();
-            ss1.AvailableQuantity = 21;
-            ss1.Sku = sku1;
-            ss1.Seller = dep1;
+            _context.Users.Add(UserMapper.Mapper(u));
 
-            SkuStocksModel ss2 = new SkuStocksModel();
-            ss2.Id = Guid.NewGuid();
-            ss2.AvailableQuantity = 57;
-            ss2.Sku = sku1;
-            ss2.Seller = dep2;
+            SkuStocksModel ss = new SkuStocksModel
+            {
+                Id = Guid.NewGuid(),
+                AvailableQuantity = 52,
+                LastUpdate = DateTime.Now,
+                Sku = s1,
+                Seller = u
+            };
 
-            _context.Users.Add(UserMapper.Mapper(dep1));
+            _context.Stocks.Add(StockMapper.Mapper(ss));
+
             _context.SaveChanges();
-            _context.Users.Add(UserMapper.Mapper(dep2));
-            _context.SaveChanges();
-            _context.Products.Add(ProductMapper.Mapper(prod1));
-            _context.SaveChanges();
-            _context.Stocks.Add(StockMapper.Mapper(ss1));
-            _context.SaveChanges();
-            _context.Stocks.Add(StockMapper.Mapper(ss2));
-            _context.SaveChanges();
+            
             return RedirectToAction("Index");
         }
     }
