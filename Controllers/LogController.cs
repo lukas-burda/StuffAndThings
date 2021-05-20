@@ -62,15 +62,17 @@ namespace StuffAndThings.Controllers
         }
 
         [HttpPost]
-        public void MovimentationRegister(Object obj, string action, Models.Enums.LogType type)
+        public void LogRegister(Object obj, string action, Models.Enums.LogType type)
         {
             DBContext _context = new DBContext();
-            LogModel log = new LogModel();
-            log.Id = new Guid();
-            log.Date = DateTime.Now;
-            log.Type = type;
-            log.Action = action;
-            log.JsonObject = JsonSerializer.Serialize(obj);
+            LogModel log = new LogModel
+            {
+                Id = new Guid(),
+                Date = DateTime.Now,
+                Type = type,
+                Action = action,
+                JsonObject = JsonSerializer.Serialize(obj)
+            };
 
             LogEntity logEntity = LogMapper.Mapper(log);
 

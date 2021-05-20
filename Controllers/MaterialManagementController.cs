@@ -75,12 +75,12 @@ namespace StuffAndThings.Controllers
                 SkuStocksEntity existe = stocks.Where(x => x.SellerId == stock.Seller.Id && x.SkuId == stock.Sku.Id).FirstOrDefault();
                 if (existe != null)
                 {
-                    log.MovimentationRegister(stock, "AddNewError", Models.Enums.LogType.Stocks);
+                    log.LogRegister(stock, "CreatedError", Models.Enums.LogType.Stocks);
                     return RedirectToAction("Index");
                 }
                 stock.Id = Guid.NewGuid();
                 stock.LastUpdate = DateTime.Now;
-                log.MovimentationRegister(stock, "AddNew", Models.Enums.LogType.Stocks);
+                log.LogRegister(stock, "Created", Models.Enums.LogType.Stocks);
                 _context.Stocks.Add(StockMapper.Mapper(stock));
                 
             }
@@ -89,7 +89,7 @@ namespace StuffAndThings.Controllers
                 stock.LastUpdate = DateTime.Now;
                 _context.Stocks.Update(StockMapper.Mapper(stock));
 
-                log.MovimentationRegister(stock, "UpdateExistent", Models.Enums.LogType.Stocks);
+                log.LogRegister(stock, "Updated", Models.Enums.LogType.Stocks);
             }
             _context.SaveChanges();
             return RedirectToAction("Index");
@@ -102,7 +102,7 @@ namespace StuffAndThings.Controllers
             _context.Stocks.Remove(stock);
 
             LogController log = new LogController();
-            log.MovimentationRegister(stock, "Delete", Models.Enums.LogType.Stocks);
+            log.LogRegister(stock, "Deleted", Models.Enums.LogType.Stocks);
 
             _context.SaveChanges();
 

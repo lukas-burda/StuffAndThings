@@ -37,6 +37,9 @@ namespace StuffAndThings.Controllers
             product.Skus.Add(SkuMapper.Mapper(sku));
             _context.Products.Update(product);
             _context.SaveChanges();
+
+            LogController logger = new LogController();
+            logger.LogRegister(sku, "Created", Models.Enums.LogType.Skus);
             return RedirectToAction("Index");
         }
     }

@@ -73,15 +73,15 @@ namespace StuffAndThings.Controllers
                 user.Id = Guid.NewGuid();
                 _context.Users.Add(UserMapper.Mapper(user));
 
-                LogController log = new LogController();
-                log.MovimentationRegister(user, "Created New", Models.Enums.LogType.Users);
+                LogController logger = new LogController();
+                logger.LogRegister(user, "Created", Models.Enums.LogType.Users);
             }
             else
             {
                 _context.Users.Update(UserMapper.Mapper(user));
 
-                LogController log = new LogController();
-                log.MovimentationRegister(user, "Update Existent", Models.Enums.LogType.Users);
+                LogController logger = new LogController();
+                logger.LogRegister(user, "Updated", Models.Enums.LogType.Users);
 
             }
             _context.SaveChanges();
@@ -102,12 +102,12 @@ namespace StuffAndThings.Controllers
         public IActionResult Delete(Guid Id)
         {
             DBContext _context = new DBContext();
-            LogController log = new LogController();
+            LogController logger = new LogController();
             UserEntity user = _context.Users.Where(x => x.Id == Id).FirstOrDefault();
 
             _context.Users.Remove(user);
 
-            log.MovimentationRegister(user, "Deleted", Models.Enums.LogType.Users);
+            logger.LogRegister(user, "Deleted", Models.Enums.LogType.Users);
 
             _context.SaveChanges();
 

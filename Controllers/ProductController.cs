@@ -42,13 +42,18 @@ namespace StuffAndThings.Controllers
         public IActionResult Upsert(ProductModel product)
         {
             DBContext _context = new DBContext();
-            LogController log = new LogController();
+            LogController logger = new LogController();
 
             if (product.Id == new Guid())
+            {
                 _context.Products.Add(ProductMapper.Mapper(product));
+                logger.LogRegister(product, "Created", Models.Enums.LogType.Products);
+            }
             else
+            {
                 _context.Products.Update(ProductMapper.Mapper(product));
-
+                logger.LogRegister(product, "Updated", Models.Enums.LogType.Products);
+            }
             return RedirectToAction("Index");
         }
     }
