@@ -30,17 +30,36 @@ namespace StuffAndThings.Controllers
             return View(sku);
         }
 
+        public IActionResult Update(Guid Id)
+        {
+            DBContext _context = new DBContext();
+            SkuModel sku = new SkuModel();
+            SkuEntity sEntity = _context.Skus.Where(x => x.Id == Id).FirstOrDefault();
+            sku = SkuMapper.Mapper(sEntity);
+            return View(sku);
+        }
+
         public IActionResult Upsert(SkuModel sku)
         {
             DBContext _context = new DBContext();
-            ProductEntity product = _context.Products.Where(x => x.Id == sku.ProductId).FirstOrDefault();
+            LogController logger = new LogController();
+            if (sku.Id == new Guid())
+            {
+                ProductEntity product = _context.Products.Where(x => x.Id == sku.ProductId).FirstOrDefault();
 
-            product.Skus.Add(SkuMapper.Mapper(sku));
-            _context.Products.Update(product);
+                product.Skus.Add(SkuMapper.Mapper(sku));
+                _context.Products.Update(product);
+                                
+                logger.LogRegister(sku, "Created", Models.Enums.LogType.Skus);
+            }
+            else
+            {
+                _context.Skus.Update(SkuMapper.Mapper(sku));
+                logger.LogRegister(sku, "Updated", Models.Enums.LogType.Skus);
+            }
+                
             _context.SaveChanges();
 
-            LogController logger = new LogController();
-            logger.LogRegister(sku, "Created", Models.Enums.LogType.Skus);
             return RedirectToAction("Index");
         }
     }
