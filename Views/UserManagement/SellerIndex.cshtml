@@ -39,6 +39,7 @@
                         @Html.DisplayFor(modelItem => item.CNPJ)
                     </td>
                     <td>
+                        <a asp-action="Index" asp-controller="MaterialManagement"><button class="btn btn-secondary">Storage</button></a>
                         <a asp-action="Delete" asp-route-id="@item.Id"><button class="btn btn-danger">Delete</button></a>
                     </td>
                 </tr>

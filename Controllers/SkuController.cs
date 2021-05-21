@@ -34,6 +34,7 @@ namespace StuffAndThings.Controllers
         {
             DBContext _context = new DBContext();
             ProductEntity product = _context.Products.Where(x => x.Id == sku.ProductId).FirstOrDefault();
+
             product.Skus.Add(SkuMapper.Mapper(sku));
             _context.Products.Update(product);
             _context.SaveChanges();
