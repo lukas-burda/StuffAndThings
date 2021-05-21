@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using StuffAndThings.Data;
+using StuffAndThings.Models;
 
 namespace StuffAndThings.Controllers
 {
@@ -12,7 +14,8 @@ namespace StuffAndThings.Controllers
         
         public IActionResult Index()
         {
-            DBContext
+            DBContext _context = new DBContext();
+            //ShowcaseModel sc = _context
             return View();
         }
 

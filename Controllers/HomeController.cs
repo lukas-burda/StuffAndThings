@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using StuffAndThings.Data;
+using StuffAndThings.Data.Entities;
 using StuffAndThings.Data.Mapper;
 using StuffAndThings.Models;
 
@@ -52,49 +53,70 @@ namespace StuffAndThings.Controllers
                 Skus = new List<SkuModel>()
             };
 
-            SkuModel s1 = new SkuModel
+            //SkuModel s1 = new SkuModel
+            //{
+            //    Id = Guid.NewGuid(),
+            //    Barcode = "793001215",
+            //    Name = "350 ml",
+            //    Color = "#ff0000",
+            //    Price = 4.50
+            //};
+
+            //SkuModel s2 = new SkuModel
+            //{
+            //    Id = Guid.NewGuid(),
+            //    Barcode = "793001216",
+            //    Name = "2 L",
+            //    Color = "#ff0000",
+            //    Price = 7.00
+            //};
+
+            //p1.Skus.Add(s1);
+            //p1.Skus.Add(s2);
+
+            //_context.Products.Add(ProductMapper.Mapper(p1));
+
+            //UserModel u = new UserModel
+            //{
+            //    Id = Guid.NewGuid(),
+            //    FullName = "Shopping Palladium",
+            //    CNPJ = "08355847000109",
+            //    Discriminator = Models.Enums.Discriminator.Seller
+            //};
+
+            //_context.Users.Add(UserMapper.Mapper(u));
+
+            //SkuStocksModel ss = new SkuStocksModel
+            //{
+            //    Id = Guid.NewGuid(),
+            //    AvailableQuantity = 52,
+            //    LastUpdate = DateTime.Now,
+            //    Sku = s1,
+            //    Seller = u
+            //};
+
+            //_context.Stocks.Add(StockMapper.Mapper(ss));
+
+            ShowcaseModel sc = new ShowcaseModel
             {
                 Id = Guid.NewGuid(),
-                Barcode = "793001215",
-                Name = "350 ml",
-                Color = "#ff0000",
-                Price = 4.50
+                Name = "Inverno",
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now,
+                LastUpdate = DateTime.Now
             };
 
-            SkuModel s2 = new SkuModel
+            ShowcaseProductsModel scp = new ShowcaseProductsModel()
             {
                 Id = Guid.NewGuid(),
-                Barcode = "793001216",
-                Name = "2 L",
-                Color = "#ff0000",
-                Price = 7.00
+                ShowCase = sc,
+                Product = p1
             };
 
-            p1.Skus.Add(s1);
-            p1.Skus.Add(s2);
+            //ShowCaseProductsMapper.Mapper(scp);
 
-            _context.Products.Add(ProductMapper.Mapper(p1));
-
-            UserModel u = new UserModel
-            {
-                Id = Guid.NewGuid(),
-                FullName = "Shopping Palladium",
-                CNPJ = "08355847000109",
-                Discriminator = Models.Enums.Discriminator.Seller
-            };
-
-            _context.Users.Add(UserMapper.Mapper(u));
-
-            SkuStocksModel ss = new SkuStocksModel
-            {
-                Id = Guid.NewGuid(),
-                AvailableQuantity = 52,
-                LastUpdate = DateTime.Now,
-                Sku = s1,
-                Seller = u
-            };
-
-            _context.Stocks.Add(StockMapper.Mapper(ss));
+            _context.ShowCases.Add(ShowCaseMapper.Mapper(sc));
+            _context.ShowCaseProducts.Add(ShowCaseProductsMapper.Mapper(scp));
 
             _context.SaveChanges();
             

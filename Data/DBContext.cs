@@ -21,5 +21,7 @@ namespace StuffAndThings.Data
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<SkuStocksEntity> Stocks { get; set; }
         public DbSet<LogEntity> Logs { get; set; }
+        public DbSet<ShowcaseEntity> ShowCases { get; set; }
+        public DbSet<ShowcaseProductsEntity> ShowCaseProducts { get; set; }
     }
 }
