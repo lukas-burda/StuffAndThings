@@ -15,11 +15,10 @@ namespace StuffAndThings.Models
         public string Color { get; set; }
         [DisplayFormat(DataFormatString = "{0:C}")]
         public double Price { get; set; }
+        public ProductModel Product { get; set; }
         public Guid ProductId { get; set; }
         [NotMapped]
         public List<ProductModel> Products { get; set; }
-        
-
         public SkuModel()
         {
             Products = new List<ProductModel>();

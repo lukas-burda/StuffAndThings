@@ -17,7 +17,8 @@ namespace StuffAndThings.Data.Mapper
                 Name = sModel.Name,
                 Price = sModel.Price,
                 Color = sModel.Color,
-                Barcode = sModel.Barcode
+                Barcode = sModel.Barcode,
+                ProductEntityId = sModel.ProductId
             };
             return sEntity;
         }
@@ -30,7 +31,8 @@ namespace StuffAndThings.Data.Mapper
                 Color = sEntity.Color,
                 Id = sEntity.Id,
                 Name = sEntity.Name,
-                Price = sEntity.Price
+                Price = sEntity.Price,
+                ProductId = sEntity.ProductEntityId
             };
             return sModel;
         }

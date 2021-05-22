@@ -1,9 +1,8 @@
-﻿@model StuffAndThings.Models.ProductModel
+﻿@model StuffAndThings.Models.SkuModel
 
 @{
     ViewData["Title"] = "Edit";
 }
-
 <h1 class="text-center text-monospace">Edit</h1>
 <div class="row d-flex justify-content-center">
     <div class="col-md-3 m-2 shadow mb-1">
@@ -11,23 +10,29 @@
             <div class="d-flex flex-wrap justify-content-center">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="w-75">
-                    <label asp-for="Name" class="control-label"></label>
+                    <label class="control-label">Name</label>
                     <input asp-for="Name" class="form-control" />
                 </div>
                 <div class="w-75">
-                    <label class="control-label">Description</label>
-                    <input asp-for="Description" class="form-control" />
+                    <label class="control-label">Color</label>
+                    <input asp-for="Color" class="form-control" />
+                    <span asp-validation-for="Color" class="text-danger"></span>
                 </div>
                 <div class="w-75">
-                    <label asp-for="ImageUrl" class="control-label"></label>
-                    <input asp-for="ImageUrl" class="form-control" />
+                    <label class="control-label">Price</label>
+                    <input asp-for="Price" class="form-control" />
                 </div>
                 <div class="w-75">
-                    <label class="control-label">Code</label>
-                    <input asp-for="Code" class="form-control" readonly/>
+                    <label class="control-label">Barcode</label>
+                    <input asp-for="Barcode" class="form-control" readonly/>
+                </div>
+                <div class="w-75">
+                    <label class="control-label">Product Name</label>
+                    <input asp-for="Product.Name" class="form-control" readonly />
+                    <input asp-for="ProductId" hidden/>
                 </div>
                 <div>
-                    <input asp-for="Id" hidden />
+                    <input asp-for="Id" hidden/>
                 </div>
             </div>
             <div class="pt-2 mt-2 mb-2 text-center">

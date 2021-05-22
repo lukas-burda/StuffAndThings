@@ -30,12 +30,14 @@ namespace StuffAndThings.Controllers
             return View(sku);
         }
 
-        public IActionResult Update(Guid Id)
+        public IActionResult Edit(Guid Id)
         {
             DBContext _context = new DBContext();
             SkuModel sku = new SkuModel();
             SkuEntity sEntity = _context.Skus.Where(x => x.Id == Id).FirstOrDefault();
             sku = SkuMapper.Mapper(sEntity);
+            sku.Product = ProductMapper.Mapper(_context.Products.Where(x => x.Id == sEntity.ProductEntityId).FirstOrDefault());
+            sku.ProductId = sku.Product.Id;
             return View(sku);
         }
 

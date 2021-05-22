@@ -54,6 +54,7 @@ namespace StuffAndThings.Controllers
                 _context.Products.Update(ProductMapper.Mapper(product));
                 logger.LogRegister(product, "Updated", Models.Enums.LogType.Products);
             }
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
     }
