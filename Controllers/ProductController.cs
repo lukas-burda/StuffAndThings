@@ -17,9 +17,8 @@ namespace StuffAndThings.Controllers
         public IActionResult Index()
         {
             DBContext _context = new DBContext();
-            List<ProductEntity> productsBase = _context.Products.Include(x => x.Skus).ToList();
-            List<ProductModel> products = new List<ProductModel>();
-            foreach (var item in productsBase) products.Add(ProductMapper.Mapper(item));
+            List<ProductModel> products = ProductMapper.Mapper(_context.Products.Include(x => x.Skus).ToList());
+
             return View(products);
         }
 
@@ -33,8 +32,7 @@ namespace StuffAndThings.Controllers
         public IActionResult Edit(Guid Id)
         {
             DBContext _context = new DBContext();
-            ProductEntity productBase = _context.Products.Include(x => x.Skus).Where(x => x.Id == Id).First();
-            ProductModel product = ProductMapper.Mapper(productBase);
+            ProductModel product = ProductMapper.Mapper(_context.Products.Include(x => x.Skus).Where(x => x.Id == Id).First());
             return View(product);
         }
 

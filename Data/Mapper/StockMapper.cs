@@ -34,5 +34,45 @@ namespace StuffAndThings.Data.Mapper
             };
             return sEntity;
         }
+
+        public static List<SkuStocksModel> Mapper(List<SkuStocksEntity> seList)
+        {
+            List<SkuStocksModel> smList = new List<SkuStocksModel>();
+            foreach (var se in seList)
+            {
+                SkuStocksModel sModel = new SkuStocksModel
+                {
+                    Id = se.Id,
+                    AvailableQuantity = se.AvailableQuantity,
+                    LastUpdate = se.LastUpdate,
+                    Sku = SkuMapper.Mapper(se.Sku),
+                    Seller = UserMapper.Mapper(se.Seller)
+                };
+
+                smList.Add(sModel);
+            }
+            
+            return smList;
+        }
+
+        public static List<SkuStocksEntity> Mapper(List<SkuStocksModel> smList)
+        {
+            List<SkuStocksEntity> seList = new List<SkuStocksEntity>();
+            foreach (var sm in smList)
+            {
+                SkuStocksEntity sEntity = new SkuStocksEntity
+                {
+                    Id = sm.Id,
+                    LastUpdate = sm.LastUpdate,
+                    AvailableQuantity = sm.AvailableQuantity,
+                    SkuId = sm.Sku.Id,
+                    SellerId = sm.Seller.Id
+                };
+
+                seList.Add(sEntity);
+            }
+            
+            return seList;
+        }
     }
 }

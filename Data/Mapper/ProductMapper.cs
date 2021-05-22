@@ -35,5 +35,46 @@ namespace StuffAndThings.Data.Mapper
             foreach (var item in pEntity.Skus) pModel.Skus.Add(SkuMapper.Mapper(item));
             return pModel;
         }
+
+        public static List<ProductEntity> Mapper(List<ProductModel> pmList)
+        {
+            List<ProductEntity> peList = new List<ProductEntity>();
+            foreach (var pm in pmList)
+            {
+                ProductEntity pEntity = new ProductEntity
+                {
+                    Id = pm.Id,
+                    Code = pm.Code,
+                    Description = pm.Description,
+                    ImageUrl = pm.ImageUrl,
+                    Name = pm.Name,
+                    Skus = SkuMapper.Mapper(pm.Skus)
+                };
+
+                peList.Add(pEntity);
+            }
+            
+            return peList;
+        }
+        public static List<ProductModel> Mapper(List<ProductEntity> peList)
+        {
+            List<ProductModel> pmList = new List<ProductModel>();
+            foreach (var pe in peList)
+            {
+                ProductModel pModel = new ProductModel
+                {
+                    Id = pe.Id,
+                    Code = pe.Code,
+                    Description = pe.Description,
+                    ImageUrl = pe.ImageUrl,
+                    Name = pe.Name,
+                    Skus = SkuMapper.Mapper(pe.Skus)
+                };
+
+                pmList.Add(pModel);
+            }
+            
+            return pmList;
+        }
     }
 }

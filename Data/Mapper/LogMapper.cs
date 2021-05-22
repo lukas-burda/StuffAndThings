@@ -36,5 +36,45 @@ namespace StuffAndThings.Data.Mapper
 
             return logEntity;
         }
+
+        public static List<LogModel> Mapper(List<LogEntity> leList)
+        {
+            List<LogModel> lmList = new List<LogModel>();
+            foreach (var le in leList)
+            {
+                LogModel logModel = new LogModel
+                {
+                    Id = le.Id,
+                    Date = le.Date,
+                    Type = le.Type,
+                    Action = le.Action,
+                    JsonObject = le.JsonObject
+                };
+
+                lmList.Add(logModel);
+            }
+            
+            return lmList;
+        }
+
+        public static List<LogEntity> Mapper(List<LogModel> lmList)
+        {
+            List<LogEntity> leList = new List<LogEntity>();
+            foreach (var lm in lmList)
+            {
+                LogEntity logEntity = new LogEntity
+                {
+                    Id = lm.Id,
+                    Date = lm.Date,
+                    Type = lm.Type,
+                    Action = lm.Action,
+                    JsonObject = lm.JsonObject
+                };
+
+                leList.Add(logEntity);
+            }
+            
+            return leList;
+        }
     }
 }

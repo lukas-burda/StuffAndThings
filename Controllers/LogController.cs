@@ -32,15 +32,7 @@ namespace StuffAndThings.Controllers
         public IActionResult UserPartialView()
         {
             DBContext _context = new DBContext();
-            List<LogEntity> logsBase = _context.Logs.ToList();
-            List<LogModel> logs = new List<LogModel>();
-            foreach (var item in logsBase)
-            {
-                if (item.Type.Equals(Models.Enums.LogType.Users))
-                {
-                    logs.Add(LogMapper.Mapper(item));
-                }
-            }
+            List<LogModel> logs = LogMapper.Mapper(_context.Logs.Where(x => x.Type == Models.Enums.LogType.Users).ToList());
 
             return View("UserPartialView", logs.OrderByDescending(x => x.Date));
         }
@@ -48,15 +40,7 @@ namespace StuffAndThings.Controllers
         public IActionResult OrderPartialView()
         {
             DBContext _context = new DBContext();
-            List<LogEntity> logsBase = _context.Logs.ToList();
-            List<LogModel> logs = new List<LogModel>();
-            foreach (var item in logsBase)
-            {
-                if (item.Type.Equals(Models.Enums.LogType.SaleOrders) || item.Type.Equals(Models.Enums.LogType.PurchaseOrders))
-                {
-                    logs.Add(LogMapper.Mapper(item));
-                }
-            }
+            List<LogModel> logs = LogMapper.Mapper(_context.Logs.Where(x => x.Type == Models.Enums.LogType.SaleOrders || x.Type == Models.Enums.LogType.PurchaseOrders).ToList());
 
             return View("OrderPartialView", logs.OrderByDescending(x => x.Date));
         }

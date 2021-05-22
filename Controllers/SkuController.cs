@@ -15,9 +15,7 @@ namespace StuffAndThings.Controllers
         public IActionResult Index()
         {
             DBContext _context = new DBContext();
-            List<SkuEntity> skusEntity = _context.Skus.ToList();
-            List<SkuModel> skus = new List<SkuModel>();
-            foreach (var item in skusEntity) skus.Add(SkuMapper.Mapper(item));
+            List<SkuModel> skus = SkuMapper.Mapper(_context.Skus.ToList());
             return View(skus);
         }
 
@@ -25,8 +23,7 @@ namespace StuffAndThings.Controllers
         {
             DBContext _context = new DBContext();
             SkuModel sku = new SkuModel();
-            List<ProductEntity> pEntity = _context.Products.ToList();
-            foreach (var item in pEntity) sku.Products.Add(ProductMapper.Mapper(item));
+            sku.Products = ProductMapper.Mapper(_context.Products.ToList());
             return View(sku);
         }
 
@@ -34,9 +31,8 @@ namespace StuffAndThings.Controllers
         {
             DBContext _context = new DBContext();
             SkuModel sku = new SkuModel();
-            SkuEntity sEntity = _context.Skus.Where(x => x.Id == Id).FirstOrDefault();
-            sku = SkuMapper.Mapper(sEntity);
-            sku.Product = ProductMapper.Mapper(_context.Products.Where(x => x.Id == sEntity.ProductEntityId).FirstOrDefault());
+            sku = SkuMapper.Mapper(_context.Skus.Where(x => x.Id == Id).FirstOrDefault());
+            sku.Product = ProductMapper.Mapper(_context.Products.Where(x => x.Id == sku.ProductId).FirstOrDefault());
             sku.ProductId = sku.Product.Id;
             return View(sku);
         }

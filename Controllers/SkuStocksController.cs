@@ -17,7 +17,7 @@ namespace StuffAndThings.Controllers
         public IActionResult Index(Guid Id)
         {
             DBContext _context = new DBContext();
-            List<SkuStocksEntity> stocksBase = _context.Stocks.Include(x => x.Sku).Include(x => x.Seller).Where(x => x.SellerId == Id).ToList();
+            List<SkuStocksModel> stocks = StockMapper.Mapper(_context.Stocks.Include(x => x.Sku).Include(x => x.Seller).Where(x => x.SellerId == Id).ToList());
             List<ProductEntity> products = _context.Products.Include(x => x.Skus).ToList();
 
             foreach (var p in products)
@@ -28,12 +28,6 @@ namespace StuffAndThings.Controllers
                 }
             }
 
-            List<SkuStocksModel> stocks = new List<SkuStocksModel>();
-            
-            foreach (var item in stocksBase)
-            {
-                stocks.Add(StockMapper.Mapper(item));
-            }
             return View(stocks);
         }
 
@@ -52,9 +46,8 @@ namespace StuffAndThings.Controllers
                     skus.Add(s);
                 }
             }
-            List<UserEntity> users = _context.Users.Where(x => x.Id == Id).ToList();
-            foreach (var item in skus) stocks.Skus.Add(SkuMapper.Mapper(item));
-            foreach (var item in users) stocks.Sellers.Add(UserMapper.Mapper(item));
+            stocks.Sellers = UserMapper.Mapper(_context.Users.Where(x => x.Id == Id).ToList());
+            stocks.Skus = SkuMapper.Mapper(skus);
 
             return View(stocks);
         }
@@ -63,8 +56,7 @@ namespace StuffAndThings.Controllers
         public IActionResult Edit(Guid Id)
         {
             DBContext _context = new DBContext();
-            SkuStocksEntity stocksBase = _context.Stocks.Include(x => x.Sku).Include(x => x.Seller).Where(x => x.Id == Id).SingleOrDefault();
-            SkuStocksModel stock = StockMapper.Mapper(stocksBase);
+            SkuStocksModel stock = StockMapper.Mapper(_context.Stocks.Include(x => x.Sku).Include(x => x.Seller).Where(x => x.Id == Id).SingleOrDefault());
 
 
             return View(stock);
