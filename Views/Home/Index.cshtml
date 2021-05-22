@@ -6,79 +6,105 @@
 
 @{ ViewData["Title"] = "Home Page"; }
 <div>
-    <div class="text-center container-fluid">
-
-
+    <div class="text-center">
         <div class="m-5 shadow p-3 mb-5 d-inline-block" style="max-width: 40%">
             <p>
                 <a class="align-items-center  bg-white rounded" style="text-shadow: 2px 2px #ff0000" href="https://github.com/lukasferreira/StuffAndThings">
                     <img src="~/images/logoStuffAndThings1-1.jpg" />
-                    <img class="card-img" src="~/images/requisitos.jpeg" />
+                </a>
+                <a href="https://drive.google.com/file/d/1gmFWwxn4a0zOWIEpgy0eyljc7Kml7_Pq/view?usp=sharing">
+                    <button class="btn btn-danger">
+                       Diagrama do Projeto
+                    </button>
                 </a>
             </p>
         </div>
-        <div class="m-5 shadow p-3 mb-5 d-inline-block">
-            <a href="https://drive.google.com/file/d/1gmFWwxn4a0zOWIEpgy0eyljc7Kml7_Pq/view?usp=sharing">
-                <button class="btn btn-danger">
-                    Acesse o Diagrama do Projeto
-                </button>
-            </a>
-        </div>
-
     </div>
-    @*<div class="m-5 shadow p-3 mb-5 bg-white rounded">
-                <h1 class="text-monospace">WE ALREADY DID</h1>
+    <div class="container-fluid">
+        <div style="margin: 5em;">
+            <h3><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong><strong>M&oacute;dulo de Usu&aacute;rios</strong></strong></strong></span></h3>
 
+            <hr>
+            <h3><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong><strong>M&oacute;dulo de Gest&atilde;o de materiais</strong></strong></strong></span></h3>
+            <ul>
+                <li>
+                    <span style="font-family: Arial, Helvetica, sans-serif;">
+                        <strong>
+                            <strong>
+                                <div>Dados a serem a considerados:</div>
+                                <ul>
+                                    <li>
+                                        <div>C&oacute;digo interno (&eacute; um c&oacute;digo espec&iacute;fico dentro da empresa usu&aacute;ria)</div>
+                                    </li>
+                                    <li>
+                                        <div>C&oacute;digo externo (c&oacute;digo definido pelo fabricante)</div>
+                                    </li>
+                                    <li>
+                                        <div>Descri&ccedil;&atilde;o do produto</div>
+                                    </li>
+                                    <li>
+                                        <div>Nome (curto)</div>
+                                    </li>
+                                    <li>
+                                        <div>Custo m&eacute;dio</div>
+                                    </li>
+                                    <li>
+                                        <div>Validade&nbsp;</div>
+                                    </li>
+                                    <li>
+                                        <div>Unidade</div>
+                                    </li>
+                                    <li>
+                                        <div>Quantidade</div>
+                                    </li>
+                                    <li>
+                                        <div>Pre&ccedil;o de lista (pre&ccedil;o de venda padr&atilde;o) &eacute; flex&iacute;vel</div>
+                                    </li>
+                                </ul>
+                            </strong>
+                        </strong>
+                    </span>
+                </li>
+            </ul>
+            <hr>
+            <h3><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong><strong><strong><strong>M&oacute;dulo vendas</strong></strong></strong></strong></strong></span></h3>
+            <ul>
+                <li><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong>Informa&ccedil;&atilde;o relevante</strong></strong></span></li>
+                <li><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong>Campanha definida manualmente: exibir produtos em &aacute;rea nobre do display conforme regras subjetivas</strong></strong></span></li>
+                <li><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong>Recomenda&ccedil;&atilde;o : &Aacute;rea nobre onde h&aacute; estrat&eacute;gia up-selling (aumento do ticket)</strong></strong></span></li>
+                <li><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong>Display: demais itens de acordo com a pesquisa do cliente</strong></strong></span></li>
+                <li><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong>Cesta de compras</strong></strong></span></li>
+                <li><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong>Lista de itens adicionados pelo cliente</strong></strong></span></li>
+                <li><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong>Retirar os itens ap&oacute;s a confirma&ccedil;&atilde;o da compra</strong></strong></span></li>
+                <li><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong>Picking: O cliente mostrou interesse = reservar (sa&iacute;da l&oacute;gica do produto)</strong></strong></span></li>
+                <li><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong>Pode ocorrer cancelamento = retornar para o estoque</strong></strong></span></li>
+                <li><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong>Pode ocorrer abandono = retornar para os estoque, mas requer uma regra de neg&oacute;cios, definida no comercial</strong></strong></span></li>
+                <li><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong>Checkout: Fechamento &ndash; Confirma&ccedil;&atilde;o/Pagamento da compra</strong></strong></span></li>
+                <li><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong>Tipo de pagamento= flexibilidade para diferentes tipos</strong></strong></span></li>
+                <li><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong>Processamento dos tipos de <strong style='font-weight: 700; color: rgb(0, 0, 0); font-family: "Times New Roman"; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;'><strong style="font-weight: 700;">pagamento</strong></strong> = consumir servi&ccedil;os</strong></strong></span></li>
+                <li><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong>Remessa: Ap&oacute;s confirma&ccedil;&atilde;o da venda; gera movimenta&ccedil;&atilde;o de estoque</strong></strong></span></li>
+            </ul>
+            <hr>
+            <ul>
+                <li>
+                    <h3><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong><strong>M&oacute;dulo de contas</strong></strong></strong></span></h3>
+                    <ul>
+                        <li>
+                            <h3><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong><strong>A pagar</strong></strong></strong></span></h3>
+                        </li>
+                        <li>
+                            <h3><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong><strong>A receber</strong></strong></strong><br></span></h3>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <hr>
+            <ul>
+                <li>
+                    <h3><span style="font-family: Arial, Helvetica, sans-serif;"><strong><strong><strong>Integra&ccedil;&atilde;o Cont&aacute;bil</strong></strong></strong></span></h3>
 
-                <div class="container align-items-center">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="main-timeline8">
-                                    <div class="timeline">
-                                        <span class="timeline-icon"></span>
-                                        <span class="year">04/04/2021</span>
-                                        <div class="timeline-content">
-                                            <h3 class="title">Model: User</h3>
-                                            <p class="description">
-                                                login and register setup.
-                                                Users can create an account and login with a user name and password.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="timeline">
-                                        <span class="timeline-icon"></span>
-                                        <span class="year">16/04/2021</span>
-                                        <div class="timeline-content">
-                                            <h3 class="title">Model: Material Management</h3>
-                                            <p class="description">
-                                                PurchaseOrder, storage and transactions proccess logging.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="timeline">
-                                            <span class="timeline-icon"></span>
-                                            <span class="year">23/04/2021</span>
-                                            <div class="timeline-content">
-                                                <h3 class="title">Model: Sales</h3>
-                                                <p class="description">
-                                                    Order, reserve, confirm, credit analysis and checkout.
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="timeline">
-                                            <span class="timeline-icon"></span>
-                                            <span class="year">30/04/2021</span>
-                                            <div class="timeline-content">
-                                                <h3 class="title">Model: Bills</h3>
-                                                <p class="description">
-                                                    Accounts payable and receivable.
-                                                </p>
-                                            </div>
-                                        </div>
-                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-        </div>*@
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>

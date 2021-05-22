@@ -99,7 +99,7 @@ namespace StuffAndThings.Controllers
                 log.LogRegister(stock, "Updated", Models.Enums.LogType.Stocks);
             }
             _context.SaveChanges();
-            return RedirectToAction("Index", stock.Seller.Id);
+            return RedirectToAction("Index", new { id = stock.Seller.Id });
         }
 
         public IActionResult Delete(Guid Id)
