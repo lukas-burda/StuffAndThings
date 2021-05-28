@@ -2,22 +2,50 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="~/lib/jquery/dist/jquery-3.6.0.min.js"></script>
 <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+<link href="~/css/index.css" rel="stylesheet" />
+@model IEnumerable<StuffAndThings.Models.ShowcaseModel>
 
 
 @{ ViewData["Title"] = "Home Page"; }
-<div>
-    <div class="text-center">
-        <div class="m-5 shadow p-3 mb-5 d-inline-block" style="max-width: 100%">
-            <p>
-                <a class="align-items-center  bg-white rounded" style="text-shadow: 2px 2px #ff0000" href="https://github.com/lukasferreira/StuffAndThings">
-                    <img src="~/images/logoStuffAndThings1-1.jpg" />
-                </a>
-                <a href="https://drive.google.com/file/d/1gmFWwxn4a0zOWIEpgy0eyljc7Kml7_Pq/view?usp=sharing">
-                    <button class="btn btn-danger">
-                       Diagrama do Projeto
-                    </button>
-                </a>
-            </p>
+
+@{
+    @foreach (var showcase in Model)
+    {
+        <div class="container mydiv">
+            <div class="row">
+                @foreach (var productshowcase in showcase.ShowcaseProducts)
+                {
+
+                    <div class="col-md-4">
+                        <!-- bbb_deals -->
+                        <div class="bbb_deals">
+                            <div class="bbb_deals_slider_container">
+                                <div class=" bbb_deals_item">
+                                    <div class="bbb_deals_image"><img src="@productshowcase.Product.ImageUrl" alt=""></div>
+                                    <div class="bbb_deals_content">
+                                        <div class="bbb_deals_info_line d-flex flex-row justify-content-start">
+                                            <div class="bbb_deals_item_price_a ml-auto"><strike>de R$ 50,00</strike></div>
+                                        </div>
+                                        <div class="bbb_deals_info_line d-flex flex-row justify-content-start">
+                                            <div class="bbb_deals_item_name">@productshowcase.Product.Name</div>
+                                            <div class="bbb_deals_item_price ml-auto">por R$ 9,90</div>
+                                        </div>
+                                        <div class="available">
+                                            <div class="available_line d-flex flex-row justify-content-start">
+                                                <div class="sold_stars ml-auto"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
+                                            </div>
+                                            <div class="available_bar"><span style="width:17%"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
         </div>
-    </div>
-</div>
+    }
+
+}
+
