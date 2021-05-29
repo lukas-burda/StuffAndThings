@@ -106,7 +106,7 @@ div {
     padding-left: 25px;
     padding-right: 25px;
     padding-bottom: 34px;
-    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 5px 3px 3px 3px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     margin-top: 0px
 }

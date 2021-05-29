@@ -13,7 +13,7 @@
     {
         <div class="container mydiv">
             <div class="row">
-                @foreach (var productshowcase in showcase.ShowcaseProducts)
+                @foreach (var productshowcase in showcase.ShowcaseSkus)
                 {
 
                     <div class="col-md-4">
@@ -21,13 +21,13 @@
                         <div class="bbb_deals">
                             <div class="bbb_deals_slider_container">
                                 <div class=" bbb_deals_item">
-                                    <div class="bbb_deals_image"><img src="@productshowcase.Product.ImageUrl" alt=""></div>
+                                    <div class="bbb_deals_image"><img src="@productshowcase.Sku.ImageUrl" alt=""></div>
                                     <div class="bbb_deals_content">
                                         <div class="bbb_deals_info_line d-flex flex-row justify-content-start">
                                             <div class="bbb_deals_item_price_a ml-auto"><strike>de R$ 50,00</strike></div>
                                         </div>
                                         <div class="bbb_deals_info_line d-flex flex-row justify-content-start">
-                                            <div class="bbb_deals_item_name">@productshowcase.Product.Name</div>
+                                            <div class="bbb_deals_item_name">@productshowcase.Sku.Name</div>
                                             <div class="bbb_deals_item_price ml-auto">por R$ 9,90</div>
                                         </div>
                                         <div class="available">
@@ -40,8 +40,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
+                    </div>                    
+                    
                 }
             </div>
         </div>
