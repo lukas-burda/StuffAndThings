@@ -16,7 +16,14 @@ namespace StuffAndThings.Controllers
         {
             DBContext _context = new DBContext();
             List<ShowcaseModel> showcases = ShowCaseMapper.Mapper(_context.ShowCases.ToList());
-            showcases.ForEach(x => x.ShowcaseProducts = ShowCaseProductsMapper.Mapper(_context.ShowCaseProducts.Where(y => y.ShowCaseId == x.Id).Include(x => x.Product).ToList()));
+            foreach (var item in showcases)
+            {
+                item.ShowcaseSkus = ShowcaseSkusMapper.Mapper(_context.ShowCaseProducts.Where(y => y.ShowCaseId == item.Id).Include(x => x.Sku).ToList());
+                foreach (var sku in item.ShowcaseSkus)
+                {
+                    sku.Sku.Product = ProductMapper.Mapper(_context.Products.Where(x => x.Id == sku.Sku.ProductId).FirstOrDefault());
+                }
+            }
 
             return showcases;
         }

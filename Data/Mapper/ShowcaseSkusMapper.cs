@@ -7,41 +7,41 @@ using System.Threading.Tasks;
 
 namespace StuffAndThings.Data.Mapper
 {
-    public class ShowCaseProductsMapper
+    public class ShowcaseSkusMapper
     {
-        public static ShowcaseProductsModel Mapper(ShowcaseProductsEntity sce)
+        public static ShowcaseSkusModel Mapper(ShowcaseSkusEntity sce)
         {
-            ShowcaseProductsModel scm = new ShowcaseProductsModel
+            ShowcaseSkusModel scm = new ShowcaseSkusModel
             {
                 Id = sce.Id,
-                Product = ProductMapper.Mapper(sce.Product),
+                Sku = SkuMapper.Mapper(sce.Sku),
                 ShowCase = ShowCaseMapper.Mapper(sce.ShowCase)
             };
 
             return scm;
         }
 
-        public static ShowcaseProductsEntity Mapper(ShowcaseProductsModel scm)
+        public static ShowcaseSkusEntity Mapper(ShowcaseSkusModel scm)
         {
-            ShowcaseProductsEntity sce = new ShowcaseProductsEntity
+            ShowcaseSkusEntity sce = new ShowcaseSkusEntity
             {
                 Id = scm.Id,
-                ProductId = scm.Product.Id,
+                SkuId = scm.Sku.Id,
                 ShowCaseId = scm.ShowCase.Id
             };
 
             return sce;
         }
 
-        public static List<ShowcaseProductsModel> Mapper(List<ShowcaseProductsEntity> sceList)
+        public static List<ShowcaseSkusModel> Mapper(List<ShowcaseSkusEntity> sceList)
         {
-            List<ShowcaseProductsModel> scmList = new List<ShowcaseProductsModel>();
+            List<ShowcaseSkusModel> scmList = new List<ShowcaseSkusModel>();
             foreach (var sce in sceList)
             {
-                ShowcaseProductsModel scm = new ShowcaseProductsModel
+                ShowcaseSkusModel scm = new ShowcaseSkusModel
                 {
                     Id = sce.Id,
-                    Product = ProductMapper.Mapper(sce.Product),
+                    Sku = SkuMapper.Mapper(sce.Sku),
                     ShowCase = ShowCaseMapper.Mapper(sce.ShowCase)
                 };
 
@@ -51,15 +51,15 @@ namespace StuffAndThings.Data.Mapper
             return scmList;
         }
 
-        public static List<ShowcaseProductsEntity> Mapper(List<ShowcaseProductsModel> scmList)
+        public static List<ShowcaseSkusEntity> Mapper(List<ShowcaseSkusModel> scmList)
         {
-            List<ShowcaseProductsEntity> sceList = new List<ShowcaseProductsEntity>();
+            List<ShowcaseSkusEntity> sceList = new List<ShowcaseSkusEntity>();
             foreach (var scm in scmList)
             {
-                ShowcaseProductsEntity sce = new ShowcaseProductsEntity
+                ShowcaseSkusEntity sce = new ShowcaseSkusEntity
                 {
                     Id = scm.Id,
-                    ProductId = scm.Product.Id,
+                    SkuId = scm.Sku.Id,
                     ShowCaseId = scm.ShowCase.Id
                 };
 

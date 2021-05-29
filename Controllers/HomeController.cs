@@ -51,52 +51,78 @@ namespace StuffAndThings.Controllers
                 Code = "0001",
                 Name = "Coca-Cola",
                 Description = "Refrigerante",
+                ImageUrl = "https://i.imgur.com/ps6alt2.jpg",
                 Skus = new List<SkuModel>()
             };
 
-            //SkuModel s1 = new SkuModel
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Barcode = "793001215",
-            //    Name = "350 ml",
-            //    Color = "#ff0000",
-            //    Price = 4.50
-            //};
+            SkuModel s1 = new SkuModel
+            {
+                Id = Guid.NewGuid(),
+                Barcode = "793001215",
+                Name = "350 ml",
+                Color = "#ff0000",
+                Price = 4.50
+            };
 
-            //SkuModel s2 = new SkuModel
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Barcode = "793001216",
-            //    Name = "2 L",
-            //    Color = "#ff0000",
-            //    Price = 7.00
-            //};
+            SkuModel s2 = new SkuModel
+            {
+                Id = Guid.NewGuid(),
+                Barcode = "793001216",
+                Name = "2 L",
+                Color = "#ff0000",
+                ImageUrl = "https://i.imgur.com/ps6alt2.jpg",
+                Price = 7.00
+            };
 
-            //p1.Skus.Add(s1);
-            //p1.Skus.Add(s2);
+            p1.Skus.Add(s1);
+            p1.Skus.Add(s2);
 
-            //_context.Products.Add(ProductMapper.Mapper(p1));
+            _context.Products.Add(ProductMapper.Mapper(p1));
 
-            //UserModel u = new UserModel
-            //{
-            //    Id = Guid.NewGuid(),
-            //    FullName = "Shopping Palladium",
-            //    CNPJ = "08355847000109",
-            //    Discriminator = Models.Enums.Discriminator.Seller
-            //};
+            ProductModel p2 = new ProductModel
+            {
+                Id = Guid.NewGuid(),
+                Name = "Fanta Laranja",
+                Code = "0002",
+                Description = "Refri de laranja",
+                ImageUrl = "https://i.imgur.com/cxKXQ0k.png",
+                Skus = new List<SkuModel>()
+            };
 
-            //_context.Users.Add(UserMapper.Mapper(u));
+            SkuModel s3 = new SkuModel
+            {
+                Id = Guid.NewGuid(),
+                Name = "350 ml",
+                Barcode = "79300251362",
+                Price = 4.50,
+                Color = "#f24f00",
+                ImageUrl = "https://i.imgur.com/cxKXQ0k.png"
+            };
 
-            //SkuStocksModel ss = new SkuStocksModel
-            //{
-            //    Id = Guid.NewGuid(),
-            //    AvailableQuantity = 52,
-            //    LastUpdate = DateTime.Now,
-            //    Sku = s1,
-            //    Seller = u
-            //};
+            p2.Skus.Add(s3);
 
-            //_context.Stocks.Add(StockMapper.Mapper(ss));
+            _context.Products.Add(ProductMapper.Mapper(p2));
+
+            UserModel u = new UserModel
+            {
+                Id = Guid.NewGuid(),
+                FullName = "Shopping Palladium",
+                CNPJ = "08355847000109",
+                Discriminator = Models.Enums.Discriminator.Seller
+            };
+
+            _context.Users.Add(UserMapper.Mapper(u));
+
+            SkuStocksModel ss = new SkuStocksModel
+            {
+                Id = Guid.NewGuid(),
+                AvailableQuantity = 52,
+                LastUpdate = DateTime.Now,
+                Sku = s1,
+                Seller = u
+            };
+
+            _context.Stocks.Add(StockMapper.Mapper(ss));
 
             ShowcaseModel sc = new ShowcaseModel
             {
@@ -107,19 +133,26 @@ namespace StuffAndThings.Controllers
                 LastUpdate = DateTime.Now
             };
 
-            ShowcaseProductsModel scp = new ShowcaseProductsModel()
+            ShowcaseSkusModel scp1 = new ShowcaseSkusModel()
             {
                 Id = Guid.NewGuid(),
                 ShowCase = sc,
-                Product = p1
+                Sku = s2
             };
 
-            ShowCaseProductsMapper.Mapper(scp);
+            ShowcaseSkusModel scp2 = new ShowcaseSkusModel()
+            {
+                Id = Guid.NewGuid(),
+                ShowCase = sc,
+                Sku = s3
+            };
 
-            _context.Products.Add(ProductMapper.Mapper(p1));
+            ShowcaseSkusMapper.Mapper(scp1);
+            ShowcaseSkusMapper.Mapper(scp2);
 
             _context.ShowCases.Add(ShowCaseMapper.Mapper(sc));
-            _context.ShowCaseProducts.Add(ShowCaseProductsMapper.Mapper(scp));
+            _context.ShowCaseProducts.Add(ShowcaseSkusMapper.Mapper(scp1));
+            _context.ShowCaseProducts.Add(ShowcaseSkusMapper.Mapper(scp2));
 
             _context.SaveChanges();
             

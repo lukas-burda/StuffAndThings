@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace StuffAndThings.Data.Entities
 {
-    public class ShowcaseProductsEntity
+    public class ShowcaseSkusEntity
     {
         public Guid Id { get; set; }
-        [ForeignKey("ProductId")]
-        public virtual ProductEntity Product { get; set; }
+        [ForeignKey("SkuId")]
+        public virtual SkuEntity Sku { get; set; }
         [ForeignKey("ShowCaseId")]
         public virtual ShowcaseEntity ShowCase { get; set; }
-        public Guid ProductId { get; set; }
+        public Guid SkuId { get; set; }
         public Guid ShowCaseId { get; set; }
     }
 }

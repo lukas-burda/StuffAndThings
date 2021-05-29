@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace StuffAndThings.Models
 {
-    public class ShowcaseProductsModel
+    public class ShowcaseSkusModel
     {
         public Guid Id { get; set; }
-        public ProductModel Product { get; set; }
+        public SkuModel Sku { get; set; }
         public ShowcaseModel ShowCase { get; set; }
     }
 }

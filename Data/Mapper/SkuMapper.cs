@@ -18,7 +18,8 @@ namespace StuffAndThings.Data.Mapper
                 Price = sModel.Price,
                 Color = sModel.Color,
                 Barcode = sModel.Barcode,
-                ProductEntityId = sModel.ProductId
+                ProductEntityId = sModel.ProductId,
+                ImageUrl = sModel.ImageUrl
             };
             return sEntity;
         }
@@ -32,7 +33,8 @@ namespace StuffAndThings.Data.Mapper
                 Id = sEntity.Id,
                 Name = sEntity.Name,
                 Price = sEntity.Price,
-                ProductId = sEntity.ProductEntityId
+                ProductId = sEntity.ProductEntityId,
+                ImageUrl = sEntity.ImageUrl
             };
             return sModel;
         }
@@ -49,7 +51,8 @@ namespace StuffAndThings.Data.Mapper
                     Price = sm.Price,
                     Color = sm.Color,
                     Barcode = sm.Barcode,
-                    ProductEntityId = sm.ProductId
+                    ProductEntityId = sm.ProductId,
+                    ImageUrl = sm.ImageUrl
                 };
 
                 seList.Add(sEntity);
@@ -70,7 +73,8 @@ namespace StuffAndThings.Data.Mapper
                     Id = se.Id,
                     Name = se.Name,
                     Price = se.Price,
-                    ProductId = se.ProductEntityId
+                    ProductId = se.ProductEntityId,
+                    ImageUrl = se.ImageUrl
                 };
                 smList.Add(sModel);
             }

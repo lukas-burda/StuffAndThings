@@ -12,6 +12,7 @@ namespace StuffAndThings.Models
         public Guid Id { get; set; }
         public string Barcode { get; set; }
         public string Name { get; set; }
+        public string ImageUrl { get; set; }
         public string Color { get; set; }
         [DisplayFormat(DataFormatString = "{0:C}")]
         public double Price { get; set; }

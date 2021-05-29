@@ -12,11 +12,5 @@ namespace StuffAndThings.Data.Entities
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime LastUpdate { get; set; }
-        //public virtual List<ProductEntity> Products { get; set; }
-
-        //public ShowcaseEntity()
-        //{
-        //    Products = new List<ProductEntity>();
-        //}
     }
 }
