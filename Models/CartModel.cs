@@ -8,7 +8,6 @@ namespace StuffAndThings.Models
     public class CartModel
     {
         public Guid Id { get; set; }
-        public List<ProductModel> Products { get; set; }
         public List<SkuModel> Skus { get; set; }
         public UserModel Buyer { get; set; }
         public UserModel Seller { get; set; }
@@ -17,5 +16,10 @@ namespace StuffAndThings.Models
         public double DiscountValue { get; set; }
         public double FreightValue { get; set; }
         public DateTime CreatedDate { get; set; }
+
+        public CartModel()
+        {
+            Skus = new List<SkuModel>();
+        }
     }
 }
