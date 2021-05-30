@@ -5,47 +5,50 @@
 <link href="~/css/index.css" rel="stylesheet" />
 @model IEnumerable<StuffAndThings.Models.ShowcaseModel>
 
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white" ">
+            <h1 class="display-4 fw-bolder"> Stuff & Things</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Found stuffs were made exclusive for you.</p>
+        </div>
+    </div>
+</header>
 
 @{ ViewData["Title"] = "Home Page"; }
 
 @{
     @foreach (var showcase in Model)
     {
-        <div class="container mydiv">
-            <div class="row">
-                @foreach (var productshowcase in showcase.ShowcaseSkus)
-                {
+        <!-- Section-->
+        <section class="py-5">
 
-                    <div class="col-md-4">
-                        <!-- bbb_deals -->
-                        <div class="bbb_deals">
-                            <div class="bbb_deals_slider_container">
-                                <div class=" bbb_deals_item">
-                                    <div class="bbb_deals_image"><img src="@productshowcase.Sku.ImageUrl" alt=""></div>
-                                    <div class="bbb_deals_content">
-                                        <div class="bbb_deals_info_line d-flex flex-row justify-content-start">
-                                            <div class="bbb_deals_item_price_a ml-auto"><strike>de R$ 50,00</strike></div>
-                                        </div>
-                                        <div class="bbb_deals_info_line d-flex flex-row justify-content-start">
-                                            <div class="bbb_deals_item_name">@productshowcase.Sku.Name</div>
-                                            <div class="bbb_deals_item_price ml-auto">por R$ 9,90</div>
-                                        </div>
-                                        <div class="available">
-                                            <div class="available_line d-flex flex-row justify-content-start">
-                                                <div class="sold_stars ml-auto"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-                                            </div>
-                                            <div class="available_bar"><span style="width:17%"></span></div>
-                                        </div>
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+                    @foreach (var productshowcase in showcase.ShowcaseSkus)
+                    {
+                        <div class="col mb-5">
+                            <div class="card h-100">
+                                <!-- Product image-->
+                                <img class="card-img-top mt-4" src="@productshowcase.Sku.ImageUrl" alt="..." />
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h3 class="fw-bolder">@productshowcase.Sku.Name</h3>
+                                        <!-- Product price-->
+                                        <h4>@productshowcase.Sku.Price BRL</h4>
                                     </div>
+                                </div>
+                                <!-- Product actions-->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to Cart</a></div>
                                 </div>
                             </div>
                         </div>
-                    </div>                    
-                    
-                }
-            </div>
-        </div>
+                    }
+        </section>
     }
-
 }
 
