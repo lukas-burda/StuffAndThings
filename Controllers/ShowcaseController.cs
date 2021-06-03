@@ -32,7 +32,7 @@ namespace StuffAndThings.Controllers
         public static List<ShowcaseModel> GetAllShowcases()
         {
             DBContext _context = new DBContext();
-            List<ShowcaseModel> showcases = ShowCaseMapper.Mapper(_context.Showcases.ToList());
+            List<ShowcaseModel> showcases = ShowcaseMapper.Mapper(_context.Showcases.ToList());
             foreach (var item in showcases)
             {
                 item.ShowcaseSkus = ShowcaseSkusMapper.Mapper(_context.ShowcaseSkus.Where(y => y.ShowCaseId == item.Id).Include(x => x.Sku).ToList());
@@ -54,7 +54,7 @@ namespace StuffAndThings.Controllers
             if (sc.Id == new Guid())
             {
                 sc.Id = Guid.NewGuid();
-                _context.Showcases.Add(ShowCaseMapper.Mapper(sc));
+                _context.Showcases.Add(ShowcaseMapper.Mapper(sc));
 
                 foreach (var scs in sc.ShowcaseSkus)
                 {
