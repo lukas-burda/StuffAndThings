@@ -150,7 +150,7 @@ namespace StuffAndThings.Controllers
             ShowcaseSkusMapper.Mapper(scp1);
             ShowcaseSkusMapper.Mapper(scp2);
 
-            _context.Showcases.Add(ShowcaseMapper.Mapper(sc));
+            _context.Showcases.Add(ShowCaseMapper.Mapper(sc));
             _context.ShowcaseSkus.Add(ShowcaseSkusMapper.Mapper(scp1));
             _context.ShowcaseSkus.Add(ShowcaseSkusMapper.Mapper(scp2));
 

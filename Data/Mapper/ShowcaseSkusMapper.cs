@@ -15,7 +15,7 @@ namespace StuffAndThings.Data.Mapper
             {
                 Id = sce.Id,
                 Sku = SkuMapper.Mapper(sce.Sku),
-                ShowCase = ShowcaseMapper.Mapper(sce.ShowCase)
+                ShowCase = ShowCaseMapper.Mapper(sce.ShowCase)
             };
 
             return scm;
@@ -42,7 +42,7 @@ namespace StuffAndThings.Data.Mapper
                 {
                     Id = sce.Id,
                     Sku = SkuMapper.Mapper(sce.Sku),
-                    ShowCase = ShowcaseMapper.Mapper(sce.ShowCase)
+                    ShowCase = ShowCaseMapper.Mapper(sce.ShowCase)
                 };
 
                 scmList.Add(scm);
