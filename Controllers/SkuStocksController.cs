@@ -12,13 +12,12 @@ namespace StuffAndThings.Controllers
 {
     public class SkuStocksController : Controller
     {
-
+        #region GET
         [HttpGet]
         public IActionResult Index(Guid Id)
         {
-            DBContext _context = new DBContext();
-            List<SkuStocksModel> stocks = StockMapper.Mapper(_context.Stocks.Include(x => x.Sku).Include(x => x.Seller).Where(x => x.SellerId == Id).ToList());
-            List<ProductEntity> products = _context.Products.Include(x => x.Skus).ToList();
+            List<SkuStocksModel> stocks = GetAllStocksBySeller(Id);
+            List<ProductModel> products = ProductController.GetAllProducts();
 
             foreach (var p in products)
             {                
@@ -34,10 +33,9 @@ namespace StuffAndThings.Controllers
         [HttpGet]
         public IActionResult Create(Guid Id)
         {
-            DBContext _context = new DBContext();
             SkuStocksModel stocks = new SkuStocksModel();
-            List<ProductEntity> products = _context.Products.Include(x => x.Skus).ToList();
-            List<SkuEntity> skus = new List<SkuEntity>();
+            List<ProductModel> products = ProductController.GetAllProducts();
+            List<SkuModel> skus = new List<SkuModel>();
             foreach (var p in products)
             {
                 foreach (var s in p.Skus)
@@ -46,8 +44,8 @@ namespace StuffAndThings.Controllers
                     skus.Add(s);
                 }
             }
-            stocks.Sellers = UserMapper.Mapper(_context.Users.Where(x => x.Id == Id).ToList());
-            stocks.Skus = SkuMapper.Mapper(skus);
+            stocks.Sellers = UserManagementController.GetAllSellers();
+            stocks.Skus = skus;
 
             return View(stocks);
         }
@@ -55,13 +53,36 @@ namespace StuffAndThings.Controllers
         [HttpGet]
         public IActionResult Edit(Guid Id)
         {
-            DBContext _context = new DBContext();
-            SkuStocksModel stock = StockMapper.Mapper(_context.Stocks.Include(x => x.Sku).Include(x => x.Seller).Where(x => x.Id == Id).SingleOrDefault());
-
-
+            SkuStocksModel stock = GetStockById(Id);
             return View(stock);
         }
 
+        [HttpGet]
+        public static SkuStocksModel GetStockById(Guid Id)
+        {
+            DBContext _context = new DBContext();
+            SkuStocksModel stock = StockMapper.Mapper(_context.Stocks.Include(x => x.Sku).Include(x => x.Seller).Where(x => x.Id == Id).SingleOrDefault());
+            return stock;
+        }
+
+        [HttpGet]
+        public static List<SkuStocksModel> GetAllStocks()
+        {
+            DBContext _context = new DBContext();
+            List<SkuStocksModel> stocks = StockMapper.Mapper(_context.Stocks.Include(x => x.Sku).Include(x => x.Seller).ToList());
+            return stocks;
+        }
+
+        [HttpGet]
+        public static List<SkuStocksModel> GetAllStocksBySeller(Guid SellerId)
+        {
+            DBContext _context = new DBContext();
+            List<SkuStocksModel> stocks = StockMapper.Mapper(_context.Stocks.Include(x => x.Sku).Include(x => x.Seller).Where(x => x.SellerId == SellerId).ToList());
+            return stocks;
+        }
+        #endregion
+
+        #region POST
         [HttpPost]
         public IActionResult Upsert(SkuStocksModel stock)
         {
@@ -70,8 +91,8 @@ namespace StuffAndThings.Controllers
 
             if (stock.Id == new Guid())
             {
-                List<SkuStocksEntity> stocks = _context.Stocks.Include(x => x.Sku).Include(x => x.Seller).ToList();
-                SkuStocksEntity existe = stocks.Where(x => x.SellerId == stock.Seller.Id && x.SkuId == stock.Sku.Id).FirstOrDefault();
+                List<SkuStocksModel> stocks = GetAllStocks();
+                SkuStocksModel existe = stocks.Where(x => x.Seller.Id == stock.Seller.Id && x.Sku.Id == stock.Sku.Id).FirstOrDefault();
                 if (existe != null)
                 {
                     log.LogRegister(stock, "CreatedError", Models.Enums.LogType.Stocks);
@@ -97,8 +118,8 @@ namespace StuffAndThings.Controllers
         public IActionResult Delete(Guid Id)
         {
             DBContext _context = new DBContext();
-            SkuStocksEntity stock = _context.Stocks.Where(x => x.Id == Id).FirstOrDefault();
-            _context.Stocks.Remove(stock);
+            SkuStocksModel stock = GetStockById(Id);
+            _context.Stocks.Remove(StockMapper.Mapper(stock));
 
             LogController log = new LogController();
             log.LogRegister(stock, "Deleted", Models.Enums.LogType.Stocks);
@@ -107,5 +128,6 @@ namespace StuffAndThings.Controllers
 
             return RedirectToAction("Index");
         }
+        #endregion
     }
 }

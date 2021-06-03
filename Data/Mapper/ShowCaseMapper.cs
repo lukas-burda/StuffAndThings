@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StuffAndThings.Data.Mapper
 {
-    public class ShowCaseMapper
+    public class ShowcaseMapper
     {
         public static ShowcaseEntity Mapper(ShowcaseModel scm)
         {

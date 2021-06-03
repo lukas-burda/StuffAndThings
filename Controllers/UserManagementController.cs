@@ -12,58 +12,57 @@ namespace StuffAndThings.Controllers
 {
     public class UserManagementController : Controller
     {
+        #region GET
         [HttpGet]
         public IActionResult SellerIndex()
         {
-            DBContext _context = new DBContext();
-            List<UserEntity> usersBase = _context.Users.ToList();
-            List<UserModel> users = new List<UserModel>();
-            foreach (var user in usersBase)
-            {
-                if (user.Discriminator.Equals(Models.Enums.Discriminator.Seller))
-                {
-                    users.Add(UserMapper.Mapper(user));
-                }
-
-            }
+            List<UserModel> users = GetAllSellers();
             return View("SellerIndex", users);
         }
 
         [HttpGet]
         public IActionResult BuyerIndex()
         {
-            DBContext _context = new DBContext();
-            List<UserEntity> usersBase = _context.Users.ToList();
-            List<UserModel> users = new List<UserModel>();
-            foreach (var user in usersBase)
-            {
-                if (user.Discriminator.Equals(Models.Enums.Discriminator.Buyer))
-                {
-                    users.Add(UserMapper.Mapper(user));
-                }
-
-            }
+            List<UserModel> users = GetAllBuyers();
             return View("BuyerIndex", users);
         }
-
 
         [HttpGet]
         public IActionResult Create()
         {
-
             return View();
         }
 
         [HttpGet]
         public IActionResult Edit(Guid Id)
         {
-
-            DBContext _context = new DBContext();
-            UserEntity userBase = _context.Users.Where(x => x.Id == Id).FirstOrDefault();
-            UserModel user = UserMapper.Mapper(userBase);
+            UserModel user = GetSellerById(Id);
             return View(user);
         }
 
+        public static List<UserModel> GetAllSellers()
+        {
+            DBContext _context = new DBContext();
+            List<UserModel> users = UserMapper.Mapper(_context.Users.Where(x => x.Discriminator == Models.Enums.Discriminator.Seller).ToList());
+            return users;
+        }
+
+        public static UserModel GetSellerById(Guid Id)
+        {
+            DBContext _context = new DBContext();
+            UserModel user = UserMapper.Mapper(_context.Users.Where(x => x.Id == Id).FirstOrDefault());
+            return user;
+        }
+
+        public static List<UserModel> GetAllBuyers()
+        {
+            DBContext _context = new DBContext();
+            List<UserModel> users = UserMapper.Mapper(_context.Users.Where(x => x.Discriminator == Models.Enums.Discriminator.Buyer).ToList());
+            return users;
+        }
+        #endregion
+
+        #region POST
         [HttpPost]
         public IActionResult Upsert(UserModel user)
         {
@@ -124,5 +123,6 @@ namespace StuffAndThings.Controllers
 
             return RedirectToAction(returnselector);
         }
+        #endregion
     }
 }

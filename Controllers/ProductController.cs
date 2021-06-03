@@ -13,11 +13,11 @@ namespace StuffAndThings.Controllers
 {
     public class ProductController : Controller
     {
+        #region GET
         [HttpGet]
         public IActionResult Index()
         {
-            DBContext _context = new DBContext();
-            List<ProductModel> products = ProductMapper.Mapper(_context.Products.Include(x => x.Skus).ToList());
+            List<ProductModel> products = GetAllProducts();
 
             return View(products);
         }
@@ -31,11 +31,26 @@ namespace StuffAndThings.Controllers
         [HttpGet]
         public IActionResult Edit(Guid Id)
         {
-            DBContext _context = new DBContext();
-            ProductModel product = ProductMapper.Mapper(_context.Products.Include(x => x.Skus).Where(x => x.Id == Id).First());
+            ProductModel product = GetProductById(Id);
             return View(product);
         }
 
+        public static List<ProductModel> GetAllProducts()
+        {
+            DBContext _context = new DBContext();
+            List<ProductModel> products = ProductMapper.Mapper(_context.Products.Include(x => x.Skus).ToList());
+            return products;
+        }
+
+        public static ProductModel GetProductById(Guid Id)
+        {
+            DBContext _context = new DBContext();
+            ProductModel product = ProductMapper.Mapper(_context.Products.Include(x => x.Skus).FirstOrDefault());
+            return product;
+        }
+        #endregion
+
+        #region POST
         [HttpPost]
         public IActionResult Upsert(ProductModel product)
         {
@@ -55,5 +70,6 @@ namespace StuffAndThings.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+        #endregion
     }
 }

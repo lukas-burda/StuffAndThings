@@ -12,41 +12,54 @@ namespace StuffAndThings.Controllers
 {
     public class SkuController : Controller
     {
+        #region GET
         public IActionResult Index()
         {
-            DBContext _context = new DBContext();
-            List<SkuModel> skus = SkuMapper.Mapper(_context.Skus.ToList());
+            List<SkuModel> skus = GetAllSkus();
             return View(skus);
         }
 
         public IActionResult Create()
         {
-            DBContext _context = new DBContext();
             SkuModel sku = new SkuModel();
-            sku.Products = ProductMapper.Mapper(_context.Products.ToList());
+            sku.Products = ProductController.GetAllProducts();
             return View(sku);
         }
 
         public IActionResult Edit(Guid Id)
         {
-            DBContext _context = new DBContext();
-            SkuModel sku = new SkuModel();
-            sku = SkuMapper.Mapper(_context.Skus.Where(x => x.Id == Id).FirstOrDefault());
-            sku.Product = ProductMapper.Mapper(_context.Products.Where(x => x.Id == sku.ProductId).FirstOrDefault());
+            SkuModel sku = GetSkuById(Id);
+            sku.Product = ProductController.GetProductById(sku.ProductId);
             sku.ProductId = sku.Product.Id;
             return View(sku);
         }
 
+        public static List<SkuModel> GetAllSkus()
+        {
+            DBContext _context = new DBContext();
+            List<SkuModel> skus = SkuMapper.Mapper(_context.Skus.ToList());
+            return skus;
+        }
+
+        public static SkuModel GetSkuById(Guid Id)
+        {
+            DBContext _context = new DBContext();
+            SkuModel sku = SkuMapper.Mapper(_context.Skus.Where(x => x.Id == Id).FirstOrDefault());
+            return sku;
+        }
+        #endregion
+
+        #region POST
         public IActionResult Upsert(SkuModel sku)
         {
             DBContext _context = new DBContext();
             LogController logger = new LogController();
             if (sku.Id == new Guid())
             {
-                ProductEntity product = _context.Products.Where(x => x.Id == sku.ProductId).FirstOrDefault();
+                ProductModel product = ProductController.GetProductById(sku.ProductId);
 
-                product.Skus.Add(SkuMapper.Mapper(sku));
-                _context.Products.Update(product);
+                product.Skus.Add(sku);
+                _context.Products.Update(ProductMapper.Mapper(product));
                                 
                 logger.LogRegister(sku, "Created", Models.Enums.LogType.Skus);
             }
@@ -60,5 +73,6 @@ namespace StuffAndThings.Controllers
 
             return RedirectToAction("Index");
         }
+        #endregion
     }
 }
