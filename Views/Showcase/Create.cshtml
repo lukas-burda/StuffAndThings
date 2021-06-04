@@ -1,0 +1,53 @@
+﻿@model StuffAndThings.Models.ShowcaseModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!-- ESSA TELA NÃO TÁ PRONTA-->
+<h1 class="text-center text-monospace">Create</h1>
+<h4 class="text-center text-monospace">Showcase</h4>
+<hr />
+<div class="row d-flex justify-content-center">
+    <div class="col-md-3 m-2 shadow mb-1">
+        <form asp-action="Upsert">
+            <div class="d-flex flex-wrap justify-content-center">
+                <div class="w-75">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="w-75">
+                    <label class="control-label">Product</label>
+                    <select class="custom-select" asp-for="Id" asp-items="@(new SelectList(Model.Products, "Id", "Name"))"></select>
+                </div>
+                <div class="w-75">
+                    <label class="control-label">Skus</label>
+                    <select class="custom-select" asp-for="Id" asp-items="@(new SelectList(Model.ShowcaseSkus, "Id", "Name"))"></select>
+                </div>
+                <div class="w-75">
+                    <label asp-for="StartDate" class="control-label"></label>
+                    <input asp-for="StartDate" class="form-control" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <div class="w-75">
+                    <label asp-for="EndDate" class="control-label"></label>
+                    <input asp-for="EndDate" class="form-control" />
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="pt-2 mt-2 mb-2 text-center">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a class="btn btn-outline-primary " asp-action="">
+                    Back to List
+                </a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
