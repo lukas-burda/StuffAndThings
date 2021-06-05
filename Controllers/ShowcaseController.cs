@@ -24,7 +24,7 @@ namespace StuffAndThings.Controllers
         public IActionResult Create()
         {
             ShowcaseModel sc = new ShowcaseModel();
-            sc.Products = ProductController.GetAllProducts();
+            sc.Skus = SkuController.GetAllSkus();
             return View(sc);
         }
 
@@ -44,26 +44,49 @@ namespace StuffAndThings.Controllers
 
             return showcases;
         }
+
+        [HttpGet]
+        public static List<ShowcaseModel> GetAllAvailableShowcases()
+        {
+            DBContext _context = new DBContext();
+            List<ShowcaseModel> showcases = ShowcaseMapper.Mapper(_context.Showcases.Where(x => x.StartDate <= DateTime.Now && x.EndDate >= DateTime.Now).ToList());
+            foreach (var item in showcases)
+            {
+                item.ShowcaseSkus = ShowcaseSkusMapper.Mapper(_context.ShowcaseSkus.Where(y => y.ShowCaseId == item.Id).Include(x => x.Sku).ToList());
+                foreach (var sku in item.ShowcaseSkus)
+                {
+                    sku.Sku.Product = ProductMapper.Mapper(_context.Products.Where(x => x.Id == sku.Sku.ProductId).FirstOrDefault());
+                }
+            }
+
+            return showcases;
+        }
         #endregion
 
         #region POST
         [HttpPost]
         public IActionResult Upsert(ShowcaseModel sc)
         {
+
+            var SkuCodes = sc.ShowCaseSkuCodes.Split("\r\n");
             DBContext _context = new DBContext();
             if (sc.Id == new Guid())
             {
                 sc.Id = Guid.NewGuid();
                 _context.Showcases.Add(ShowcaseMapper.Mapper(sc));
 
-                foreach (var scs in sc.ShowcaseSkus)
+                foreach (var item in SkuCodes)
                 {
-                    scs.ShowCase.Id = sc.Id;
+                    ShowcaseSkusModel scs = new ShowcaseSkusModel();
+                    scs.ShowCase = sc;
+                    scs.Sku = SkuMapper.Mapper(_context.Skus.Where(x => x.Barcode == item).FirstOrDefault());
                     _context.ShowcaseSkus.Add(ShowcaseSkusMapper.Mapper(scs));
+
                 }
+
                 _context.SaveChanges();
             }
-            return null;
+            return RedirectToAction("Index");
         }
         #endregion
 
