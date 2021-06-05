@@ -1,7 +1,5 @@
-﻿@*<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">*@
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+﻿<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="~/lib/jquery/dist/jquery-3.6.0.min.js"></script>
-<script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 <link href="~/css/site.css" rel="stylesheet" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
@@ -9,38 +7,18 @@
 
 
 @{ ViewData["Title"] = "Home Page"; }
-<style>
-    .carousel-item {
-        height: 32rem;
-        background: #777;
-        color: black;
-        position: relative;
-        background-position: center;
-        background-size: cover;
-    }
-
-    .mainCorouselContainer {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding-bottom: 50px;
-    }
-</style>
 
 <!-- Header-->
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white" ">
+        <div class="text-center text-white">
             <h1 class="display-4 fw-bolder"> Stuff & Things</h1>
             <p class="lead fw-normal text-white-50 mb-0">Find stuffs were made exclusive for you.</p>
         </div>
     </div>
 </header>
-<br />
 @{
 
-    <!-- EXEMPLO DE UM CARROSSEL, ARRUMEM O TAMANHO DAS IMAGENS, NÃO TENHO PHOTOSHOP rs -->
     <div id="bannerCarousel" class="carousel" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#bannerCarousel" data-slide-to="0" class="active"></li>
@@ -49,21 +27,21 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active" style="background-image: url(https://i.imgur.com/Cr2Hb3A.jpg)">
-                <div class="mainCorouselContainer">
-                    <h1>Example Headline</h1>
-                    <p>TextoTextoTextoTextoTextoTextoTextoTextoTextoTextoTexto</p>
+                <div class="mainCarouselContainer">
+                    <h1>Headline</h1>
+                    <p>Texto</p>
                 </div>
             </div>
             <div class="carousel-item" style="background-image: url(https://images.unsplash.com/photo-1596803244535-925769f389fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80)">
-                <div class="mainCorouselContainer">
-                    <h1>Example Headline</h1>
-                    <p>TextoTextoTextoTextoTextoTextoTextoTextoTextoTextoTexto</p>
+                <div class="mainCarouselContainer">
+                    <h1>Headline</h1>
+                    <p>Texto</p>
                 </div>
             </div>
             <div class="carousel-item" style="background-image: url(https://i.imgur.com/j0TP1VY.jpg)">
-                <div class="mainCorouselContainer">
-                    <h1>Example Headline</h1>
-                    <p>TextoTextoTextoTextoTextoTextoTextoTextoTextoTextoTexto</p>
+                <div class="mainCarouselContainer">
+                    <h1>Headline</h1>
+                    <p>Texto</p>
                 </div>
             </div>
         </div>
