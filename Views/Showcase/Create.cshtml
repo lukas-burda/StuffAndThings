@@ -4,7 +4,6 @@
     ViewData["Title"] = "Create";
 }
 
-<!-- ESSA TELA NÃO TÁ PRONTA-->
 <h1 class="text-center text-monospace">Create</h1>
 <h4 class="text-center text-monospace">Showcase</h4>
 <hr />
@@ -17,15 +16,6 @@
                     <input asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
-
-                <div class="w-75">
-                    <label class="control-label">Product</label>
-                    <select class="custom-select" asp-for="Id" asp-items="@(new SelectList(Model.Products, "Id", "Name"))"></select>
-                </div>
-                <div class="w-75">
-                    <label class="control-label">Skus</label>
-                    <select class="custom-select" asp-for="Id" asp-items="@(new SelectList(Model.ShowcaseSkus, "Id", "Name"))"></select>
-                </div>
                 <div class="w-75">
                     <label asp-for="StartDate" class="control-label"></label>
                     <input asp-for="StartDate" class="form-control" />
@@ -36,10 +26,13 @@
                     <input asp-for="EndDate" class="form-control" />
                     <span asp-validation-for="EndDate" class="text-danger"></span>
                 </div>
+                <div class="w-75">
+                    <textarea asp-for="ShowCaseSkuCodes"></textarea>
+                </div>
             </div>
             <div class="pt-2 mt-2 mb-2 text-center">
                 <input type="submit" value="Create" class="btn btn-primary" />
-                <a class="btn btn-outline-primary " asp-action="">
+                <a class="btn btn-outline-primary" asp-action="">
                     Back to List
                 </a>
             </div>
