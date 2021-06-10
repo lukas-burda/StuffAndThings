@@ -23,7 +23,7 @@
                     Full Name
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.CNPJ)
+                    @Html.DisplayNameFor(model => model.Document)
                 </th>
                 <th></th>
             </tr>
@@ -36,7 +36,7 @@
                         @Html.DisplayFor(modelItem => item.FullName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.CNPJ)
+                        @Html.DisplayFor(modelItem => item.Document)
                     </td>
                     <td>
                         <a asp-action="Index" asp-controller="SkuStocks" asp-route-id="@item.Id"><button class="btn btn-secondary">Storage</button></a>

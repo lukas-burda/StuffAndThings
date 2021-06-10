@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using StuffAndThings.Data;
+using StuffAndThings.Models.Enums;
 
 namespace StuffAndThings.Areas.Identity.Pages.Account
 {
@@ -60,6 +62,12 @@ namespace StuffAndThings.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            public string Document { get; set; }
+
+            public string FullName { get; set; }
+
+            public Discriminator Discriminator { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -78,6 +86,16 @@ namespace StuffAndThings.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
+
+                    DBContext _context = new DBContext();
+                    _context.Users.Add(new Data.Entities.UserEntity{
+                        Id = Guid.Parse(user.Id),
+                        FullName = Input.FullName,
+                        Document = Input.Document,
+                        Discriminator = Input.Discriminator
+                    });
+                    _context.SaveChanges();
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

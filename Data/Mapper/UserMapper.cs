@@ -13,11 +13,9 @@ namespace StuffAndThings.Data.Mapper
         {
             UserEntity uEntity = new UserEntity
             {
-                CNPJ = uModel.CNPJ,
-                CPF = uModel.CPF,
+                Document = uModel.Document,
                 Discriminator = uModel.Discriminator,
                 FullName = uModel.FullName,
-                Gender = uModel.Gender,
                 Id = uModel.Id
             };
             return uEntity;
@@ -28,11 +26,9 @@ namespace StuffAndThings.Data.Mapper
             UserModel uModel = new UserModel
             {
                 Id = uEntity.Id,
-                Gender = uEntity.Gender,
+                Document = uEntity.Document,
                 FullName = uEntity.FullName,
                 Discriminator = uEntity.Discriminator,
-                CPF = uEntity.CPF,
-                CNPJ = uEntity.CNPJ
             };
             return uModel;
         }
@@ -44,11 +40,9 @@ namespace StuffAndThings.Data.Mapper
             {
                 UserEntity uEntity = new UserEntity
                 {
-                    CNPJ = um.CNPJ,
-                    CPF = um.CPF,
+                    Document = um.Document,
                     Discriminator = um.Discriminator,
                     FullName = um.FullName,
-                    Gender = um.Gender,
                     Id = um.Id
                 };
 
@@ -66,11 +60,9 @@ namespace StuffAndThings.Data.Mapper
                 UserModel uModel = new UserModel
                 {
                     Id = ue.Id,
-                    Gender = ue.Gender,
                     FullName = ue.FullName,
                     Discriminator = ue.Discriminator,
-                    CPF = ue.CPF,
-                    CNPJ = ue.CNPJ
+                    Document = ue.Document,
                 };
 
                 umList.Add(uModel);

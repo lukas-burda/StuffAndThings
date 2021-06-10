@@ -107,7 +107,7 @@ namespace StuffAndThings.Controllers
             {
                 Id = Guid.NewGuid(),
                 FullName = "Shopping Palladium",
-                CNPJ = "08355847000109",
+                Document = "08355847000109",
                 Discriminator = Models.Enums.Discriminator.Seller
             };
 

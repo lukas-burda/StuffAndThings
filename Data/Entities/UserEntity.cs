@@ -10,9 +10,7 @@ namespace StuffAndThings.Data.Entities
     {
         public Guid Id { get; set; }
         public string FullName { get; set; }
-        public string CPF { get; set; }
-        public string CNPJ { get; set; }
+        public string Document { get; set; }
         public Discriminator Discriminator { get; set; }
-        public string Gender { get; set; }
     }
 }

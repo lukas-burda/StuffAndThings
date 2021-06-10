@@ -1,4 +1,5 @@
-﻿using StuffAndThings.Models.Enums;
+﻿using Microsoft.AspNetCore.Identity;
+using StuffAndThings.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,7 @@ namespace StuffAndThings.Models
     {
         public Guid Id { get; set; }
         public string FullName { get; set; }
-        public string CPF { get; set; }
-        public string CNPJ { get; set; }
+        public string Document { get; set; }
         public Discriminator Discriminator { get; set; }
-        public string Gender { get; set; }
     }
 }

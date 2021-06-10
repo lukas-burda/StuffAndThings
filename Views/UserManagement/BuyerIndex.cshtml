@@ -23,10 +23,7 @@
                     Full Name
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.CPF)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Gender)
+                    @Html.DisplayNameFor(model => model.Document)
                 </th>
                 <th></th>
             </tr>
@@ -39,10 +36,7 @@
                         @Html.DisplayFor(modelItem => item.FullName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.CPF)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Gender)
+                        @Html.DisplayFor(modelItem => item.Document)
                     </td>
                     <td>
                         <a asp-action="Delete" asp-route-id="@item.Id"><button class="btn btn-danger">Delete</button></a>
