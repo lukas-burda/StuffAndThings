@@ -151,8 +151,8 @@ namespace StuffAndThings.Controllers
             ShowcaseItemsMapper.Mapper(scp2);
 
             _context.Showcases.Add(ShowcaseMapper.Mapper(sc));
-            _context.ShowcaseSkus.Add(ShowcaseItemsMapper.Mapper(scp1));
-            _context.ShowcaseSkus.Add(ShowcaseItemsMapper.Mapper(scp2));
+            _context.ShowcaseItems.Add(ShowcaseItemsMapper.Mapper(scp1));
+            _context.ShowcaseItems.Add(ShowcaseItemsMapper.Mapper(scp2));
 
             _context.SaveChanges();
             

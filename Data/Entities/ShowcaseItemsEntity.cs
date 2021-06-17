@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StuffAndThings.Data.Entities
 {
-    public class ShowcaseSkusEntity
+    public class ShowcaseItemsEntity
     {
         public Guid Id { get; set; }
         [ForeignKey("SkuId")]

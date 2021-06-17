@@ -35,7 +35,7 @@ namespace StuffAndThings.Controllers
             List<ShowcaseModel> showcases = ShowcaseMapper.Mapper(_context.Showcases.ToList());
             foreach (var item in showcases)
             {
-                item.ShowcaseItems = ShowcaseItemsMapper.Mapper(_context.ShowcaseSkus.Where(y => y.ShowCaseId == item.Id).Include(x => x.Sku).ToList());
+                item.ShowcaseItems = ShowcaseItemsMapper.Mapper(_context.ShowcaseItems.Where(y => y.ShowCaseId == item.Id).Include(x => x.Sku).ToList());
                 foreach (var sku in item.ShowcaseItems)
                 {
                     sku.Sku.Product = ProductMapper.Mapper(_context.Products.Where(x => x.Id == sku.Sku.ProductId).FirstOrDefault());
@@ -52,7 +52,7 @@ namespace StuffAndThings.Controllers
             List<ShowcaseModel> showcases = ShowcaseMapper.Mapper(_context.Showcases.Where(x => x.StartDate <= DateTime.Now && x.EndDate >= DateTime.Now).ToList());
             foreach (var item in showcases)
             {
-                item.ShowcaseItems = ShowcaseItemsMapper.Mapper(_context.ShowcaseSkus.Where(y => y.ShowCaseId == item.Id).Include(x => x.Sku).ToList());
+                item.ShowcaseItems = ShowcaseItemsMapper.Mapper(_context.ShowcaseItems.Where(y => y.ShowCaseId == item.Id).Include(x => x.Sku).ToList());
                 foreach (var sku in item.ShowcaseItems)
                 {
                     sku.Sku.Product = ProductMapper.Mapper(_context.Products.Where(x => x.Id == sku.Sku.ProductId).FirstOrDefault());
@@ -80,7 +80,7 @@ namespace StuffAndThings.Controllers
                     ShowcaseItemsModel scs = new ShowcaseItemsModel();
                     scs.ShowCase = sc;
                     scs.Sku = SkuMapper.Mapper(_context.Skus.Where(x => x.Barcode == item).FirstOrDefault());
-                    _context.ShowcaseSkus.Add(ShowcaseItemsMapper.Mapper(scs));
+                    _context.ShowcaseItems.Add(ShowcaseItemsMapper.Mapper(scs));
 
                 }
 

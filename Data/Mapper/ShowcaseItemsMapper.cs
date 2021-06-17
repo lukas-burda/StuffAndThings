@@ -9,7 +9,7 @@ namespace StuffAndThings.Data.Mapper
 {
     public class ShowcaseItemsMapper
     {
-        public static ShowcaseItemsModel Mapper(ShowcaseSkusEntity sce)
+        public static ShowcaseItemsModel Mapper(ShowcaseItemsEntity sce)
         {
             ShowcaseItemsModel scm = new ShowcaseItemsModel
             {
@@ -21,9 +21,9 @@ namespace StuffAndThings.Data.Mapper
             return scm;
         }
 
-        public static ShowcaseSkusEntity Mapper(ShowcaseItemsModel scm)
+        public static ShowcaseItemsEntity Mapper(ShowcaseItemsModel scm)
         {
-            ShowcaseSkusEntity sce = new ShowcaseSkusEntity
+            ShowcaseItemsEntity sce = new ShowcaseItemsEntity
             {
                 Id = scm.Id,
                 SkuId = scm.Sku.Id,
@@ -33,7 +33,7 @@ namespace StuffAndThings.Data.Mapper
             return sce;
         }
 
-        public static List<ShowcaseItemsModel> Mapper(List<ShowcaseSkusEntity> sceList)
+        public static List<ShowcaseItemsModel> Mapper(List<ShowcaseItemsEntity> sceList)
         {
             List<ShowcaseItemsModel> scmList = new List<ShowcaseItemsModel>();
             foreach (var sce in sceList)
@@ -51,12 +51,12 @@ namespace StuffAndThings.Data.Mapper
             return scmList;
         }
 
-        public static List<ShowcaseSkusEntity> Mapper(List<ShowcaseItemsModel> scmList)
+        public static List<ShowcaseItemsEntity> Mapper(List<ShowcaseItemsModel> scmList)
         {
-            List<ShowcaseSkusEntity> sceList = new List<ShowcaseSkusEntity>();
+            List<ShowcaseItemsEntity> sceList = new List<ShowcaseItemsEntity>();
             foreach (var scm in scmList)
             {
-                ShowcaseSkusEntity sce = new ShowcaseSkusEntity
+                ShowcaseItemsEntity sce = new ShowcaseItemsEntity
                 {
                     Id = scm.Id,
                     SkuId = scm.Sku.Id,
