@@ -8,11 +8,11 @@
 
 <div class="m-5 shadow p-3 mb-5">
     <p>
-            <a asp-action="Create" asp-route-id="@Model.First().Seller.Id">
-                <button class="btn btn-primary">
-                    Create New
-                </button>
-            </a>
+        <a asp-action="Create" asp-route-id="@Model.First().Seller.Id">
+            <button class="btn btn-primary">
+                Create New
+            </button>
+        </a>
     </p>
     <table class="table">
         <thead>
@@ -53,7 +53,7 @@
                     </td>
                     <td>
                         <div>
-                        <p class="rounded-sm" style="background-color: @item.Sku.Color; width: 25px; height: 25px; margin-left: 9px; border: solid"></p>
+                            <p class="rounded-sm" style="background-color: @item.Sku.Color; width: 25px; height: 25px; margin-left: 9px; border: solid"></p>
                         </div>
                     </td>
                     <td class="d-flex justify-content-center">
