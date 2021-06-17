@@ -35,8 +35,8 @@ namespace StuffAndThings.Controllers
             List<ShowcaseModel> showcases = ShowcaseMapper.Mapper(_context.Showcases.ToList());
             foreach (var item in showcases)
             {
-                item.ShowcaseSkus = ShowcaseSkusMapper.Mapper(_context.ShowcaseSkus.Where(y => y.ShowCaseId == item.Id).Include(x => x.Sku).ToList());
-                foreach (var sku in item.ShowcaseSkus)
+                item.ShowcaseItems = ShowcaseItemsMapper.Mapper(_context.ShowcaseSkus.Where(y => y.ShowCaseId == item.Id).Include(x => x.Sku).ToList());
+                foreach (var sku in item.ShowcaseItems)
                 {
                     sku.Sku.Product = ProductMapper.Mapper(_context.Products.Where(x => x.Id == sku.Sku.ProductId).FirstOrDefault());
                 }
@@ -52,8 +52,8 @@ namespace StuffAndThings.Controllers
             List<ShowcaseModel> showcases = ShowcaseMapper.Mapper(_context.Showcases.Where(x => x.StartDate <= DateTime.Now && x.EndDate >= DateTime.Now).ToList());
             foreach (var item in showcases)
             {
-                item.ShowcaseSkus = ShowcaseSkusMapper.Mapper(_context.ShowcaseSkus.Where(y => y.ShowCaseId == item.Id).Include(x => x.Sku).ToList());
-                foreach (var sku in item.ShowcaseSkus)
+                item.ShowcaseItems = ShowcaseItemsMapper.Mapper(_context.ShowcaseSkus.Where(y => y.ShowCaseId == item.Id).Include(x => x.Sku).ToList());
+                foreach (var sku in item.ShowcaseItems)
                 {
                     sku.Sku.Product = ProductMapper.Mapper(_context.Products.Where(x => x.Id == sku.Sku.ProductId).FirstOrDefault());
                 }
@@ -68,7 +68,7 @@ namespace StuffAndThings.Controllers
         public IActionResult Upsert(ShowcaseModel sc)
         {
 
-            var SkuCodes = sc.ShowCaseSkuCodes.Split("\r\n");
+            var SkuCodes = sc.ShowCaseItemCodes.Split("\r\n");
             DBContext _context = new DBContext();
             if (sc.Id == new Guid())
             {
@@ -77,10 +77,10 @@ namespace StuffAndThings.Controllers
 
                 foreach (var item in SkuCodes)
                 {
-                    ShowcaseSkusModel scs = new ShowcaseSkusModel();
+                    ShowcaseItemsModel scs = new ShowcaseItemsModel();
                     scs.ShowCase = sc;
                     scs.Sku = SkuMapper.Mapper(_context.Skus.Where(x => x.Barcode == item).FirstOrDefault());
-                    _context.ShowcaseSkus.Add(ShowcaseSkusMapper.Mapper(scs));
+                    _context.ShowcaseSkus.Add(ShowcaseItemsMapper.Mapper(scs));
 
                 }
 

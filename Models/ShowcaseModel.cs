@@ -11,13 +11,13 @@ namespace StuffAndThings.Models
         public string Name { get; set; }
         public DateTime StartDate{ get; set; }
         public DateTime EndDate { get; set; }
-        public List<ShowcaseSkusModel> ShowcaseSkus { get; set; }
-        public virtual string ShowCaseSkuCodes { get; set; }
+        public List<ShowcaseItemsModel> ShowcaseItems { get; set; }
+        public virtual string ShowCaseItemCodes { get; set; }
         public virtual List<SkuModel> Skus { get; set; }
         public DateTime LastUpdate { get; set; }
         public ShowcaseModel()
         {
-            ShowcaseSkus = new List<ShowcaseSkusModel>();
+            ShowcaseItems = new List<ShowcaseItemsModel>();
             Skus = new List<SkuModel>();
         }
     }
