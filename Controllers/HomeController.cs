@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -153,6 +154,26 @@ namespace StuffAndThings.Controllers
             _context.Showcases.Add(ShowcaseMapper.Mapper(sc));
             _context.ShowcaseItems.Add(ShowcaseItemsMapper.Mapper(scp1));
             _context.ShowcaseItems.Add(ShowcaseItemsMapper.Mapper(scp2));
+
+            OrderModel order = new OrderModel
+            {
+                Id = Guid.NewGuid(),
+                CreateDate = DateTime.Now,
+                Discount = 0,
+                SubTotal = 0,
+                Total = 0,
+                FriendlyCode = "LUKAS",
+                Buyer = new UserModel
+                {
+                    Id = Guid.Parse(this.User.FindFirstValue(ClaimTypes.NameIdentifier)),
+                },
+                Seller = new UserModel
+                {
+                    Id = u.Id,
+                }
+            };
+
+            _context.Order.Add(OrderMapper.Mapper(order));
 
             _context.SaveChanges();
             
