@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 
 namespace StuffAndThings.Models.Enums
 {
-    public enum PaymentMethod
+    public enum DiscriminatorEnum
     {
-        OnPickUp = 0,
-        Pix = 1,
-        CreditCard = 2,
-        BankSlip = 3
+       Seller = 0,
+       Buyer = 1
+
     }
 }

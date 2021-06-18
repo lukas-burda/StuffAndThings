@@ -19,16 +19,24 @@ namespace StuffAndThings.Controllers
             List<SkuStocksModel> stocks = GetAllStocksBySeller(Id);
             List<ProductModel> products = ProductController.GetAllProducts();
 
-            foreach (var p in products)
-            {                
-                foreach (var s in p.Skus)
+            if (stocks.Count <= 0)
+            {
+                return RedirectToAction("ErrorMessage", "Home", new { message = "This seller haven't any products." });
+            }
+            else
+            {
+                foreach (var p in products)
                 {
-                    s.Name = p.Name + " " + s.Name;
+                    foreach (var s in p.Skus)
+                    {
+                        s.Name = p.Name + " " + s.Name;
+                    }
                 }
             }
 
             return View(stocks);
         }
+
 
         [HttpGet]
         public IActionResult Create(Guid Id)
@@ -95,12 +103,12 @@ namespace StuffAndThings.Controllers
                 SkuStocksModel existe = stocks.Where(x => x.Seller.Id == stock.Seller.Id && x.Sku.Id == stock.Sku.Id).FirstOrDefault();
                 if (existe != null)
                 {
-                    log.LogRegister(stock, "CreatedError", Models.Enums.LogType.Stocks);
+                    log.LogRegister(stock, "CreatedError", Models.Enums.LogTypeEnum.Stocks);
                     return RedirectToAction("Index", stock.Seller.Id);
                 }
                 stock.Id = Guid.NewGuid();
                 stock.LastUpdate = DateTime.Now;
-                log.LogRegister(stock, "Created", Models.Enums.LogType.Stocks);
+                log.LogRegister(stock, "Created", Models.Enums.LogTypeEnum.Stocks);
                 _context.Stocks.Add(StockMapper.Mapper(stock));
 
             }
@@ -109,7 +117,7 @@ namespace StuffAndThings.Controllers
                 stock.LastUpdate = DateTime.Now;
                 _context.Stocks.Update(StockMapper.Mapper(stock));
 
-                log.LogRegister(stock, "Updated", Models.Enums.LogType.Stocks);
+                log.LogRegister(stock, "Updated", Models.Enums.LogTypeEnum.Stocks);
             }
             _context.SaveChanges();
             return RedirectToAction("Index", new { id = stock.Seller.Id });
@@ -122,7 +130,7 @@ namespace StuffAndThings.Controllers
             _context.Stocks.Remove(StockMapper.Mapper(stock));
 
             LogController log = new LogController();
-            log.LogRegister(stock, "Deleted", Models.Enums.LogType.Stocks);
+            log.LogRegister(stock, "Deleted", Models.Enums.LogTypeEnum.Stocks);
 
             _context.SaveChanges();
 

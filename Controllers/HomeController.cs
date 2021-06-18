@@ -42,6 +42,11 @@ namespace StuffAndThings.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        public IActionResult ErrorMessage(string message)
+        {
+            return View( "Error", new ErrorViewModel { Message = message, RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
         [HttpGet]
         public IActionResult Carregar()
         {
@@ -109,7 +114,7 @@ namespace StuffAndThings.Controllers
                 Id = Guid.NewGuid(),
                 FullName = "Shopping Palladium",
                 Document = "08355847000109",
-                Discriminator = Models.Enums.Discriminator.Seller
+                Discriminator = Models.Enums.DiscriminatorEnum.Seller
             };
 
             _context.Users.Add(UserMapper.Mapper(u));

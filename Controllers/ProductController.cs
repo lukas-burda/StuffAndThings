@@ -60,12 +60,12 @@ namespace StuffAndThings.Controllers
             if (product.Id == new Guid())
             {
                 _context.Products.Add(ProductMapper.Mapper(product));
-                logger.LogRegister(product, "Created", Models.Enums.LogType.Products);
+                logger.LogRegister(product, "Created", Models.Enums.LogTypeEnum.Products);
             }
             else
             {
                 _context.Products.Update(ProductMapper.Mapper(product));
-                logger.LogRegister(product, "Updated", Models.Enums.LogType.Products);
+                logger.LogRegister(product, "Updated", Models.Enums.LogTypeEnum.Products);
             }
             _context.SaveChanges();
             return RedirectToAction("Index");

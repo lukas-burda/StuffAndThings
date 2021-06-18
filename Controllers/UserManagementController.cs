@@ -43,7 +43,7 @@ namespace StuffAndThings.Controllers
         public static List<UserModel> GetAllSellers()
         {
             DBContext _context = new DBContext();
-            List<UserModel> users = UserMapper.Mapper(_context.Users.Where(x => x.Discriminator == Models.Enums.Discriminator.Seller).ToList());
+            List<UserModel> users = UserMapper.Mapper(_context.Users.Where(x => x.Discriminator == Models.Enums.DiscriminatorEnum.Seller).ToList());
             return users;
         }
 
@@ -57,7 +57,7 @@ namespace StuffAndThings.Controllers
         public static List<UserModel> GetAllBuyers()
         {
             DBContext _context = new DBContext();
-            List<UserModel> users = UserMapper.Mapper(_context.Users.Where(x => x.Discriminator == Models.Enums.Discriminator.Buyer).ToList());
+            List<UserModel> users = UserMapper.Mapper(_context.Users.Where(x => x.Discriminator == Models.Enums.DiscriminatorEnum.Buyer).ToList());
             return users;
         }
         #endregion
@@ -73,25 +73,25 @@ namespace StuffAndThings.Controllers
                 _context.Users.Add(UserMapper.Mapper(user));
 
                 LogController logger = new LogController();
-                logger.LogRegister(user, "Created", Models.Enums.LogType.Users);
+                logger.LogRegister(user, "Created", Models.Enums.LogTypeEnum.Users);
             }
             else
             {
                 _context.Users.Update(UserMapper.Mapper(user));
 
                 LogController logger = new LogController();
-                logger.LogRegister(user, "Updated", Models.Enums.LogType.Users);
+                logger.LogRegister(user, "Updated", Models.Enums.LogTypeEnum.Users);
 
             }
             _context.SaveChanges();
 
             string returnselector = "";
 
-            if (user.Discriminator.Equals(Models.Enums.Discriminator.Buyer))
+            if (user.Discriminator.Equals(Models.Enums.DiscriminatorEnum.Buyer))
             {
                 returnselector = "BuyerIndex";
             }
-            else if (user.Discriminator.Equals(Models.Enums.Discriminator.Seller))
+            else if (user.Discriminator.Equals(Models.Enums.DiscriminatorEnum.Seller))
             {
                 returnselector = "SellerIndex";
             };
@@ -106,17 +106,17 @@ namespace StuffAndThings.Controllers
 
             _context.Users.Remove(user);
 
-            logger.LogRegister(user, "Deleted", Models.Enums.LogType.Users);
+            logger.LogRegister(user, "Deleted", Models.Enums.LogTypeEnum.Users);
 
             _context.SaveChanges();
 
             string returnselector = "";
 
-            if (user.Discriminator.Equals(Models.Enums.Discriminator.Buyer))
+            if (user.Discriminator.Equals(Models.Enums.DiscriminatorEnum.Buyer))
             {
                 returnselector = "BuyerIndex";
             }
-            else if (user.Discriminator.Equals(Models.Enums.Discriminator.Seller))
+            else if (user.Discriminator.Equals(Models.Enums.DiscriminatorEnum.Seller))
             {
                 returnselector = "SellerIndex";
             };

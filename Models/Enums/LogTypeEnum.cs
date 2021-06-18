@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StuffAndThings.Models.Enums
 {
-    public enum LogType
+    public enum LogTypeEnum
     {
        None = 0,
        Stocks = 1,

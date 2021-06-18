@@ -12,6 +12,6 @@ namespace StuffAndThings.Models
         public DateTime Date { get; set; }
         public string JsonObject { get; set; }
         public string Action { get; set; }
-        public LogType Type { get; set; }
+        public LogTypeEnum Type { get; set; }
     }
 }

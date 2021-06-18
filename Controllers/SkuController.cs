@@ -61,12 +61,12 @@ namespace StuffAndThings.Controllers
                 product.Skus.Add(sku);
                 _context.Products.Update(ProductMapper.Mapper(product));
                                 
-                logger.LogRegister(sku, "Created", Models.Enums.LogType.Skus);
+                logger.LogRegister(sku, "Created", Models.Enums.LogTypeEnum.Skus);
             }
             else
             {
                 _context.Skus.Update(SkuMapper.Mapper(sku));
-                logger.LogRegister(sku, "Updated", Models.Enums.LogType.Skus);
+                logger.LogRegister(sku, "Updated", Models.Enums.LogTypeEnum.Skus);
             }
                 
             _context.SaveChanges();

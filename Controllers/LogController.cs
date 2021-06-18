@@ -20,7 +20,7 @@ namespace StuffAndThings.Controllers
             List<LogModel> logs = new List<LogModel>();
             foreach (var item in logsBase)
             {
-                if (item.Type.Equals(Models.Enums.LogType.Stocks))
+                if (item.Type.Equals(Models.Enums.LogTypeEnum.Stocks))
                 {
                     logs.Add(LogMapper.Mapper(item));
                 }
@@ -32,7 +32,7 @@ namespace StuffAndThings.Controllers
         public IActionResult UserPartialView()
         {
             DBContext _context = new DBContext();
-            List<LogModel> logs = LogMapper.Mapper(_context.Logs.Where(x => x.Type == Models.Enums.LogType.Users).ToList());
+            List<LogModel> logs = LogMapper.Mapper(_context.Logs.Where(x => x.Type == Models.Enums.LogTypeEnum.Users).ToList());
 
             return View("UserPartialView", logs.OrderByDescending(x => x.Date));
         }
@@ -40,13 +40,13 @@ namespace StuffAndThings.Controllers
         public IActionResult OrderPartialView()
         {
             DBContext _context = new DBContext();
-            List<LogModel> logs = LogMapper.Mapper(_context.Logs.Where(x => x.Type == Models.Enums.LogType.SaleOrders || x.Type == Models.Enums.LogType.PurchaseOrders).ToList());
+            List<LogModel> logs = LogMapper.Mapper(_context.Logs.Where(x => x.Type == Models.Enums.LogTypeEnum.SaleOrders || x.Type == Models.Enums.LogTypeEnum.PurchaseOrders).ToList());
 
             return View("OrderPartialView", logs.OrderByDescending(x => x.Date));
         }
 
         [HttpPost]
-        public void LogRegister(Object obj, string action, Models.Enums.LogType type)
+        public void LogRegister(Object obj, string action, Models.Enums.LogTypeEnum type)
         {
             DBContext _context = new DBContext();
             LogModel log = new LogModel

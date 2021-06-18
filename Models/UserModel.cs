@@ -12,6 +12,6 @@ namespace StuffAndThings.Models
         public Guid Id { get; set; }
         public string FullName { get; set; }
         public string Document { get; set; }
-        public Discriminator Discriminator { get; set; }
+        public DiscriminatorEnum Discriminator { get; set; }
     }
 }
