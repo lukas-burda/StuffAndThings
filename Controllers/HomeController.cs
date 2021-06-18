@@ -133,26 +133,26 @@ namespace StuffAndThings.Controllers
                 LastUpdate = DateTime.Now
             };
 
-            ShowcaseSkusModel scp1 = new ShowcaseSkusModel()
+            ShowcaseItemsModel scp1 = new ShowcaseItemsModel()
             {
                 Id = Guid.NewGuid(),
                 ShowCase = sc,
                 Sku = s2
             };
 
-            ShowcaseSkusModel scp2 = new ShowcaseSkusModel()
+            ShowcaseItemsModel scp2 = new ShowcaseItemsModel()
             {
                 Id = Guid.NewGuid(),
                 ShowCase = sc,
                 Sku = s3
             };
 
-            ShowcaseSkusMapper.Mapper(scp1);
-            ShowcaseSkusMapper.Mapper(scp2);
+            ShowcaseItemsMapper.Mapper(scp1);
+            ShowcaseItemsMapper.Mapper(scp2);
 
             _context.Showcases.Add(ShowcaseMapper.Mapper(sc));
-            _context.ShowcaseSkus.Add(ShowcaseSkusMapper.Mapper(scp1));
-            _context.ShowcaseSkus.Add(ShowcaseSkusMapper.Mapper(scp2));
+            _context.ShowcaseItems.Add(ShowcaseItemsMapper.Mapper(scp1));
+            _context.ShowcaseItems.Add(ShowcaseItemsMapper.Mapper(scp2));
 
             _context.SaveChanges();
             

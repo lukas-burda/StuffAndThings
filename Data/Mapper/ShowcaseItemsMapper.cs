@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace StuffAndThings.Data.Mapper
 {
-    public class ShowcaseSkusMapper
+    public class ShowcaseItemsMapper
     {
-        public static ShowcaseSkusModel Mapper(ShowcaseSkusEntity sce)
+        public static ShowcaseItemsModel Mapper(ShowcaseItemsEntity sce)
         {
-            ShowcaseSkusModel scm = new ShowcaseSkusModel
+            ShowcaseItemsModel scm = new ShowcaseItemsModel
             {
                 Id = sce.Id,
                 Sku = SkuMapper.Mapper(sce.Sku),
@@ -21,9 +21,9 @@ namespace StuffAndThings.Data.Mapper
             return scm;
         }
 
-        public static ShowcaseSkusEntity Mapper(ShowcaseSkusModel scm)
+        public static ShowcaseItemsEntity Mapper(ShowcaseItemsModel scm)
         {
-            ShowcaseSkusEntity sce = new ShowcaseSkusEntity
+            ShowcaseItemsEntity sce = new ShowcaseItemsEntity
             {
                 Id = scm.Id,
                 SkuId = scm.Sku.Id,
@@ -33,12 +33,12 @@ namespace StuffAndThings.Data.Mapper
             return sce;
         }
 
-        public static List<ShowcaseSkusModel> Mapper(List<ShowcaseSkusEntity> sceList)
+        public static List<ShowcaseItemsModel> Mapper(List<ShowcaseItemsEntity> sceList)
         {
-            List<ShowcaseSkusModel> scmList = new List<ShowcaseSkusModel>();
+            List<ShowcaseItemsModel> scmList = new List<ShowcaseItemsModel>();
             foreach (var sce in sceList)
             {
-                ShowcaseSkusModel scm = new ShowcaseSkusModel
+                ShowcaseItemsModel scm = new ShowcaseItemsModel
                 {
                     Id = sce.Id,
                     Sku = SkuMapper.Mapper(sce.Sku),
@@ -51,12 +51,12 @@ namespace StuffAndThings.Data.Mapper
             return scmList;
         }
 
-        public static List<ShowcaseSkusEntity> Mapper(List<ShowcaseSkusModel> scmList)
+        public static List<ShowcaseItemsEntity> Mapper(List<ShowcaseItemsModel> scmList)
         {
-            List<ShowcaseSkusEntity> sceList = new List<ShowcaseSkusEntity>();
+            List<ShowcaseItemsEntity> sceList = new List<ShowcaseItemsEntity>();
             foreach (var scm in scmList)
             {
-                ShowcaseSkusEntity sce = new ShowcaseSkusEntity
+                ShowcaseItemsEntity sce = new ShowcaseItemsEntity
                 {
                     Id = scm.Id,
                     SkuId = scm.Sku.Id,

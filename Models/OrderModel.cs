@@ -14,21 +14,14 @@ namespace StuffAndThings.Models
         public double Total { get; set; } = 0;
         public double SubTotal { get; set; } = 0;
         public double Discount { get; set; } = 0;
-        public string Message { get; set; }
-        public UserModel Buyer { get; set; }
-        public UserModel Seller { get; set; }
-        public List<ProductModel> Products { get; set; }
-        public List<SkuModel> Skus { get; set; }
-        public List<UserModel> Buyers { get; set; }
-        public List<UserModel> Sellers { get; set; }
-        public List<SkuStocksModel> StocksOrder { get; set; }
+        public virtual UserModel Buyer { get; set; }
+        public virtual UserModel Seller { get; set; }
+        public virtual List<UserModel> Buyers { get; set; }
+        public List<OrderItemsModel> OrderItems { get; set; }
         public OrderModel()
         {
-            Products = new List<ProductModel>();
             Buyers = new List<UserModel>();
-            Sellers = new List<UserModel>();
-            Skus = new List<SkuModel>();
-            StocksOrder = new List<SkuStocksModel>();
+            OrderItems = new List<OrderItemsModel>();
         }
 
     }
