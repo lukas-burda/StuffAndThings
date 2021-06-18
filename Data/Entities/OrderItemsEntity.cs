@@ -11,7 +11,7 @@ namespace StuffAndThings.Data.Entities
         public Guid Id { get; set; }
         [ForeignKey("SkuId")]
         public virtual SkuEntity Sku { get; set; }
-        [ForeignKey("ShowCaseId")]
+        [ForeignKey("SellerId")]
         public virtual UserEntity Seller { get; set; }
         [ForeignKey("OrderId")]
         public virtual OrderEntity Order { get; set; }

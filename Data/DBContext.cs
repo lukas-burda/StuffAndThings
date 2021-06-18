@@ -23,5 +23,7 @@ namespace StuffAndThings.Data
         public DbSet<LogEntity> Logs { get; set; }
         public DbSet<ShowcaseEntity> Showcases { get; set; }
         public DbSet<ShowcaseItemsEntity> ShowcaseItems { get; set; }
+        public DbSet<OrderEntity> Order { get; set; }
+        public DbSet<OrderItemsEntity> OrderItems { get; set; }
     }
 }
