@@ -9,10 +9,6 @@
 @{ ViewData["Title"] = "Home Page"; }
 
 <style>
-    .largura-90 {
-        width: 95%;
-    }
-
     .carousel-item {
         height: 32rem;
         position: relative;
@@ -24,7 +20,7 @@
 </style>
 
 <!-- Header-->
-<header class="bg-dark py-5 ml-5 mr-5">
+<header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder"> Stuff & Things</h1>
@@ -34,8 +30,8 @@
 </header>
 @{
     <section id="bannerCarousel" class="carousel" data-ride="carousel">
-        <div class="d-flex justify-content-center">
-            <div class=" largura-90">
+        <div>
+            <div>
                 <ol class="carousel-indicators">
                     <li data-target="#bannerCarousel" data-slide-to="0" class="active"></li>
                     <li data-target="#bannerCarousel" data-slide-to="1"></li>
@@ -61,12 +57,13 @@
         </div>
     </section>
     <!-- Product section-->
-    <section class="py-3">
+    <section class="py-5">
         <div class="container px-4 px-lg-5 my-5">
 
             <div class="row gx-4 gx-lg-5 align-items-center">
-                <div class="col-md-6"><img class="card-img-top mb-2 mb-md-0" src="https://i.imgur.com/lFlul3s.jpg" alt="..." /></div>
+                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://i.imgur.com/lFlul3s.jpg" alt="..." /></div>
                 <div class="col-md-6">
+                    <div class="small mb-1">SKU: BST-498</div>
                     <h1 class="display-5 fw-bolder">Shop item template</h1>
                     <div class="fs-5 mb-5">
                         <span class="text-decoration-line-through">$45.00</span>
@@ -74,7 +71,7 @@
                     </div>
                     <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
                     <div class="d-flex">
-                        <input class="form-control text-center me-3" id="inputQuantity" type="number" value="1" style="max-width: 6rem" min="1" />
+                        <input class="form-control text-center me-3" id="inputQuantity" type="number" value="1" style="max-width: 3rem" />
                         <button class="btn btn-outline-dark flex-shrink-0" type="button">
                             <i class="bi-cart-fill me-1"></i>
                             Add to cart
@@ -85,8 +82,43 @@
         </div>
     </section>
 
+    @foreach (var showcase in Model)
+    {
+        <!-- Section-->
+        <section class="py-5">
+
+            <div class="container px-4 px-lg-5 mt-5">
+
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+                    @foreach (var productshowcase in showcase.ShowcaseSkus)
+                    {
+                        <div class="col mb-5">
+                            <div class="card h-100">
+                                <!-- Product image-->
+                                <img class="card-img-top mt-4" src="@productshowcase.Sku.ImageUrl" alt="..." />
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h3 class="fw-bolder">@productshowcase.Sku.Name</h3>
+                                        <!-- Product price-->
+                                        <h4>@productshowcase.Sku.Price BRL</h4>
+                                    </div>
+                                </div>
+                                <!-- Product actions-->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to Cart</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    }
     <section class="py-5 bg-light">
-        <div class="container px-4 px-lg-5 mt-2">
+        <div class="container px-4 px-lg-5 mt-5">
             <h2 class="fw-bolder mb-4">Related products</h2>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 @foreach (var showcase in Model)
@@ -109,9 +141,7 @@
                                 <!-- Product actions-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                     <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to Cart</a></div>
                                 </div>
-
                             </div>
                         </div>
                     }
