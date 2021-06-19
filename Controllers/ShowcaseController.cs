@@ -29,6 +29,13 @@ namespace StuffAndThings.Controllers
         }
 
         [HttpGet]
+        public IActionResult Edit(Guid id)
+        {
+            ShowcaseModel sc = GetShowcaseById(id);
+            return View(sc);
+        }
+
+        [HttpGet]
         public static List<ShowcaseModel> GetAllShowcases()
         {
             DBContext _context = new DBContext();
@@ -43,6 +50,15 @@ namespace StuffAndThings.Controllers
             }
 
             return showcases;
+        }
+
+        [HttpGet]
+        public static ShowcaseModel GetShowcaseById(Guid showcaseId)
+        {
+            DBContext _context = new DBContext();
+            ShowcaseModel showcase = ShowcaseMapper.Mapper(_context.Showcases.Where(x => x.Id == showcaseId).FirstOrDefault());
+            showcase.ShowcaseItems = ShowcaseItemsMapper.Mapper(_context.ShowcaseItems.Where(x => x.ShowCaseId == showcaseId).Include(x => x.Sku).Include(x => x.ShowCase).ToList());
+            return showcase;
         }
 
         [HttpGet]

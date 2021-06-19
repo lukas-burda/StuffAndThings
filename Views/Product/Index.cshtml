@@ -7,51 +7,52 @@
 <!-- EXEMPLO DE TALVEZ DEIXAR AS TELAS COM ESSA COR PARA O TÍTULO-->
 <header class="bg-dark py-2">
     <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white" ">
+        <div class="text-center text-white">
             <h1 class="display-4 fw-bolder"> Products </h1>
         </div>
     </div>
 </header>
 <div class="m-5 shadow p-3 mb-5">
-    @*<p>
+    <p>
         <a asp-action="Create">
             <button class="btn btn-primary">
-                Create New
+                Create new
             </button>
         </a>
-    </p>*@  
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Code)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Code)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id"><button class="btn btn-info mr-1">Edit</button></a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Code)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Code)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id"><button class="btn btn-info mr-1">Edit</button></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

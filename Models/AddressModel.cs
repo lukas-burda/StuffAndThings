@@ -8,6 +8,11 @@ namespace StuffAndThings.Models
     public class AddressModel
     {
         public string Country { get; set; }
-        /*Aqui haverá Enums e o resto do address*/
+        public string State { get; set; }
+        public string Neighborhood { get; set; }
+        public string Street { get; set; }
+        public string Number { get; set; }
+        public string Complement { get; set; }
+        public string CEP { get; set; }
     }
 }
