@@ -6,13 +6,12 @@
 @if (Model.ShowRequestId)
 {
 <div class="text-center text-danger mt-lg-auto">
-    <h2>Sorry, we have a exception...</h2>
-    <h3>
+    <h3 class="m-lg-5">
         <strong>@Model.Message</strong>
     </h3>
 </div>
 <div class="text-center">
-    <a asp-action="SellerIndex" asp-controller="UserManagement"><button class="btn btn-outline-primary">Return</button></a>
+    <a asp-action="@Model.ViewToGo" asp-controller="UserManagement"><button class="btn btn-outline-primary">Return</button></a>
 </div>
 }
 

@@ -35,6 +35,26 @@ namespace StuffAndThings.Controllers
             return View(product);
         }
 
+        public IActionResult DeleteProductById(Guid Id)
+        {
+            try
+            {
+                DBContext _context = new DBContext();
+                LogController log = new LogController();
+                ProductEntity productEnitity = _context.Products.Where(x => x.Id == Id).FirstOrDefault();
+                log.LogRegister(productEnitity, "Deleted", Models.Enums.LogTypeEnum.Products);
+                _context.Remove(productEnitity);
+                _context.SaveChanges();
+                return RedirectToAction("SucessMessage", "Home", new { message = "Product have been deleted.|Index" });
+            }
+            catch (Exception)
+            {
+
+                return RedirectToAction("ErrorMessage", "Home", new { message = "Product have not been deleted.|Index" });
+            }
+
+        }
+
         public static List<ProductModel> GetAllProducts()
         {
             DBContext _context = new DBContext();

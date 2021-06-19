@@ -1,0 +1,16 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Sucess";
+}
+
+@if (Model.ShowRequestId)
+{
+    <div class="text-center text-success mt-lg-auto">
+        <h3 class="m-lg-5">
+            <strong>@Model.Message</strong>
+        </h3>
+    </div>
+    <div class="text-center">
+        <a asp-action="@Model.ViewToGo"><button class="btn btn-outline-primary">Return</button></a>
+    </div>
+}

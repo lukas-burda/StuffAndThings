@@ -34,6 +34,26 @@ namespace StuffAndThings.Controllers
             return View(sku);
         }
 
+        public IActionResult DeleteSkuById(Guid Id)
+        {
+            try
+            {
+                DBContext _context = new DBContext();
+                LogController log = new LogController();
+                SkuEntity skuEntity = _context.Skus.Where(x => x.Id == Id).FirstOrDefault();
+                log.LogRegister(skuEntity, "Deleted", Models.Enums.LogTypeEnum.Skus);
+                _context.Remove(skuEntity);
+                _context.SaveChanges();
+                return RedirectToAction("SucessMessage", "Home", new { message = "Sku have been deleted.|Index" });
+            }
+            catch (Exception)
+            {
+
+                return RedirectToAction("ErrorMessage", "Home", new { message = "Sku have not been deleted.|Index" });
+            }
+
+        }
+
         public static List<SkuModel> GetAllSkus()
         {
             DBContext _context = new DBContext();

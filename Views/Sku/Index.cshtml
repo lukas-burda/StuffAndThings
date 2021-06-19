@@ -56,6 +56,7 @@
             </td>
             <td class="d-flex justify-content-center">
                 <a asp-action="Edit" asp-route-id="@item.Id"><button class="btn btn-info mr-1">Edit</button></a>
+                <a asp-action="DeleteSkuById" asp-route-id="@item.Id"><button class="btn btn-danger mr-1">Delete</button></a>
             </td>
         </tr>
 }

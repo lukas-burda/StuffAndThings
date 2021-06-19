@@ -44,8 +44,37 @@ namespace StuffAndThings.Controllers
 
         public IActionResult ErrorMessage(string message)
         {
-            String[] splitedMessage = message.Split("|");
-            return View( "Error", new ErrorViewModel { Message = splitedMessage[0], ViewToGo = splitedMessage[1], RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            try
+            {
+                String[] splitedMessage = message.Split("|");
+                return View("Error", new ErrorViewModel { Message = splitedMessage[0], ViewToGo = splitedMessage[1], RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            }
+            catch (Exception)
+            {
+
+                return View("Index");
+            }
+
+        }
+
+        public IActionResult Sucess()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult SucessMessage(string message)
+        {
+            try
+            {
+                String[] splitedMessage = message.Split("|");
+                return View("Sucess", new ErrorViewModel { Message = splitedMessage[0], ViewToGo = splitedMessage[1], RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            }
+            catch (Exception)
+            {
+
+                return View("Index");
+            }
+            
         }
 
         [HttpGet]

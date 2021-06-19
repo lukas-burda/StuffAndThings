@@ -13,20 +13,22 @@ namespace StuffAndThings.Controllers
 {
     public class LogController : Controller
     {
-        public IActionResult StockPartialView()
+        public IActionResult CatalogPartialView()
         {
             DBContext _context = new DBContext();
             List<LogEntity> logsBase = _context.Logs.ToList();
             List<LogModel> logs = new List<LogModel>();
             foreach (var item in logsBase)
             {
-                if (item.Type.Equals(Models.Enums.LogTypeEnum.Stocks))
+                if (item.Type.Equals(Models.Enums.LogTypeEnum.Stocks) ||
+                    item.Type.Equals(Models.Enums.LogTypeEnum.Products) ||
+                    item.Type.Equals(Models.Enums.LogTypeEnum.Skus))
                 {
                     logs.Add(LogMapper.Mapper(item));
                 }
             }
 
-            return View("StockPartialView", logs.OrderByDescending(x => x.Date));
+            return View("CatalogPartialView", logs.OrderByDescending(x => x.Date));
         }
 
         public IActionResult UserPartialView()
