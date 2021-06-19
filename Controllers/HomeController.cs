@@ -44,7 +44,8 @@ namespace StuffAndThings.Controllers
 
         public IActionResult ErrorMessage(string message)
         {
-            return View( "Error", new ErrorViewModel { Message = message, RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            String[] splitedMessage = message.Split("|");
+            return View( "Error", new ErrorViewModel { Message = splitedMessage[0], ViewToGo = splitedMessage[1], RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
         [HttpGet]

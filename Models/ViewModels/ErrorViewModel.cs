@@ -8,6 +8,8 @@ namespace StuffAndThings.Models
 
         public string Message { get; set; }
 
+        public string ViewToGo { get; set; }
+
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
     }

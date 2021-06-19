@@ -21,7 +21,7 @@ namespace StuffAndThings.Controllers
 
             if (stocks.Count <= 0)
             {
-                return RedirectToAction("ErrorMessage", "Home", new { message = "This seller haven't any products." });
+                return RedirectToAction("ErrorMessage", "Home", new { message = "This seller haven't any products.|SellerIndex" });
             }
             else
             {
