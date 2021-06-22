@@ -18,7 +18,7 @@ namespace StuffAndThings.Controllers
             return View();
         }
 
-        public IActionResult AddItemToCart(Guid Id)
+        public async Task<string> AddItemToCart(string skuId)
         {
             DBContext _context = new DBContext();
 
@@ -30,15 +30,16 @@ namespace StuffAndThings.Controllers
                 OrderItemsModel item = new OrderItemsModel();
                 item.Id = Guid.NewGuid();
                 item.Seller = order.Seller;
-                item.Sku = SkuMapper.Mapper(_context.Skus.Where(x => x.Id == Id).FirstOrDefault());
+                item.Sku = SkuMapper.Mapper(_context.Skus.Where(x => x.Id == Guid.Parse(skuId)).FirstOrDefault());
                 item.Order = order;
 
                 _context.OrderItems.Add(OrderItemsMapper.Mapper(item));
                 _context.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return "OK";
+                //return RedirectToAction("Finalize", "Order");
             }
             else
-                return null;
+                return "FAIL";
         }
     }
 }
