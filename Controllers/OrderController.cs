@@ -20,26 +20,54 @@ namespace StuffAndThings.Controllers
 
         public async Task<string> AddItemToCart(string skuId)
         {
-            DBContext _context = new DBContext();
-
             var buyer = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (buyer != null)
             {
-                OrderModel order = OrderMapper.Mapper(_context.Order.Include(x => x.Buyer).Include(x => x.Seller).Where(x => x.BuyerId == Guid.Parse(buyer)).FirstOrDefault());
-                OrderItemsModel item = new OrderItemsModel();
-                item.Id = Guid.NewGuid();
-                item.Seller = order.Seller;
-                item.Sku = SkuMapper.Mapper(_context.Skus.Where(x => x.Id == Guid.Parse(skuId)).FirstOrDefault());
-                item.Order = order;
+                DBContext _context = new DBContext();
 
-                _context.OrderItems.Add(OrderItemsMapper.Mapper(item));
-                _context.SaveChanges();
-                return "OK";
-                //return RedirectToAction("Finalize", "Order");
+                OrderModel order = OrderMapper.Mapper(_context.Order.Include(x => x.Buyer).Include(x => x.Seller).Where(x => x.BuyerId == Guid.Parse(buyer)).FirstOrDefault());
+
+                SkuStocksModel stock = StockMapper.Mapper(_context.Stocks.Where(x => x.SellerId == order.Seller.Id && x.Sku.Id == Guid.Parse(skuId)).FirstOrDefault());
+
+                if (stock != null)
+                {
+                    OrderItemsModel item = new OrderItemsModel();
+                    item.Id = Guid.NewGuid();
+                    item.Seller = order.Seller;
+                    item.Sku = SkuMapper.Mapper(_context.Skus.Where(x => x.Id == Guid.Parse(skuId)).FirstOrDefault());
+                    item.Order = order;
+
+                    stock.AvailableQuantity -= 1;
+
+                    _context.OrderItems.Add(OrderItemsMapper.Mapper(item));
+                    _context.Stocks.Update(StockMapper.Mapper(stock));
+                    _context.SaveChanges();
+                    return "OK";
+                }
+                return "ESSE PRODUTO NÃO TEM ESTOQUE PARA O LOJISTA SELECIONADO";
             }
             else
                 return "FAIL";
+        }
+
+        public async Task<string> RemoveItemToCart(string skuId)
+        {
+            var buyer = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (buyer != null)
+            {
+                DBContext _context = new DBContext();
+
+                OrderModel order = OrderMapper.Mapper(_context.Order.Include(x => x.Buyer).Include(x => x.Seller).Where(x => x.BuyerId == Guid.Parse(buyer)).FirstOrDefault());
+
+                OrderItemsModel orderItems = OrderItemsMapper.Mapper(_context.OrderItems.Where(x => x.OrderId == order.Id && x.SkuId == Guid.Parse(skuId)).FirstOrDefault());
+
+                _context.OrderItems.Remove(OrderItemsMapper.Mapper(orderItems));
+                _context.SaveChanges();
+                return "OK";
+            }
+            return "FAIL";
         }
     }
 }
