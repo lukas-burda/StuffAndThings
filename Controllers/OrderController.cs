@@ -13,9 +13,22 @@ namespace StuffAndThings.Controllers
 {
     public class OrderController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Finalize()
         {
-            return View("Finalize");
+            var buyer = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (buyer != null)
+            {
+                DBContext _context = new DBContext();
+                OrderModel order = OrderMapper.Mapper(_context.Order.Include(x => x.Buyer).Include(x => x.Seller).Where(x => x.BuyerId == Guid.Parse(buyer)).FirstOrDefault());
+
+                if (order != null)
+                {
+                    order.OrderItems = OrderItemsMapper.Mapper(_context.OrderItems.Include(x => x.Seller).Include(x => x.Sku).Include(x => x.Order).Where(x => x.OrderId == order.Id).ToList());
+                    return View(order);
+                }
+            }
+            return View();
         }
 
         public async Task<int> CountItems()
