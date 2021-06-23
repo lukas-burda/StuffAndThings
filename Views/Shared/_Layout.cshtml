@@ -14,8 +14,8 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" title="Stuff & Things Home" asp-area="" asp-controller="Home" asp-action="Index" class="mr-4">
+            <div class="container-fluid">
+                <a class="navbar-brand position-sticky ml-0" title="Stuff & Things Home" asp-area="" asp-controller="Home" asp-action="Index" class="mr-4">
                     <img src="~/images/logoStuffAndThings2-1.png" style="max-width:150px" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -24,43 +24,50 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
-                    <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
-                            <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                        </button>
-                    </form>
+                        <a asp-action="Index" asp-controller="Order">
+                            <button class="btn btn-outline-dark" type="submit">
+                                <i class="bi-cart-fill me-1"></i>
+                                Cart
+                                <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            </button>
+                        </a>
                     @if (SignInManager.IsSignedIn(User))
                     {
-                        <ul class="navbar-nav flex-grow-1">
+                <ul class="navbar-nav flex-grow-1">
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-dark text-monospace" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Users</a>
-                                <div class="dropdown-menu">
-                                    <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="UserManagement" asp-action="SellerIndex">Sellers</a>
-                                    <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="UserManagement" asp-action="BuyerIndex">Buyers</a>
-                                </div>
-                            </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark text-monospace" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Users</a>
+                        <div class="dropdown-menu">
+                            <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="UserManagement" asp-action="SellerIndex">Sellers</a>
+                            <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="UserManagement" asp-action="BuyerIndex">Buyers</a>
+                        </div>
+                    </li>
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-dark text-monospace" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Catalog</a>
-                                <div class="dropdown-menu">
-                                    <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
-                                    <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="Sku" asp-action="Index">Sku</a>
-                                    <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="ShowCase" asp-action="Index">Showcase</a>
-                                </div>
-                            </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark text-monospace" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Catalog</a>
+                        <div class="dropdown-menu">
+                            <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
+                            <a class="nav-link text-dark text-monospace" asp-area="" asp-controller="Sku" asp-action="Index">Sku</a>
+                        </div>
+                    </li>
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-dark text-monospace" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Movimentations</a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item nav-link" asp-area="" asp-controller="Log" asp-action="CatalogPartialView">Catalog</a>
-                                    <a class="dropdown-item nav-link" asp-area="" asp-controller="Log" asp-action="UserPartialView">Users</a>
-                                    <a class="dropdown-item nav-link" asp-area="" asp-controller="Log" asp-action="OrderPartialView">Orders</a>
-                                </div>
-                            </li>
-                        </ul>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark text-monospace" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Movimentations</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item nav-link" asp-area="" asp-controller="Log" asp-action="CatalogPartialView">Catalog</a>
+                            <a class="dropdown-item nav-link" asp-area="" asp-controller="Log" asp-action="UserPartialView">Users</a>
+                            <a class="dropdown-item nav-link" asp-area="" asp-controller="Log" asp-action="OrderPartialView">Orders</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-dark text-monospace"
+                           role="button" aria-haspopup="true" aria-expanded="false" 
+                           asp-area="" asp-controller="Showcase" asp-action="Index">
+                            Showcases
+                        </a>
+                    </li>
+                </ul>
                     }
                 </div>
             </div>

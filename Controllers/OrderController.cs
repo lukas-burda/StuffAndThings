@@ -15,7 +15,7 @@ namespace StuffAndThings.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return View("Finalize");
         }
 
         public async Task<string> AddItemToCart(string skuId)
