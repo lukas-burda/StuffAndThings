@@ -18,6 +18,23 @@ namespace StuffAndThings.Controllers
             return View("Finalize");
         }
 
+        public async Task<int> CountItems()
+        {
+            var buyer = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (buyer != null)
+            {
+                DBContext _context = new DBContext();
+
+                Guid orderId = _context.Order.Include(x => x.Buyer).Include(x => x.Seller).Where(x => x.BuyerId == Guid.Parse(buyer)).Select(x => x.Id).FirstOrDefault();
+
+                int orderItemsCount = _context.OrderItems.Include(x => x.Order).Include(x => x.Seller).Include(x => x.Sku).Where(x => x.OrderId == orderId).Count();
+
+                return orderItemsCount;
+            }
+            return 0;
+        }
+
         public async Task<string> AddItemToCart(string skuId)
         {
             var buyer = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
