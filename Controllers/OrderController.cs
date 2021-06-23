@@ -13,6 +13,12 @@ namespace StuffAndThings.Controllers
 {
     public class OrderController : Controller
     {
+        public IActionResult Index()
+        {
+            OrderModel order = new OrderModel();
+            return View("Finalize2", order);
+        }
+
         public IActionResult Finalize()
         {
             var buyer = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -25,6 +31,10 @@ namespace StuffAndThings.Controllers
                 if (order != null)
                 {
                     order.OrderItems = OrderItemsMapper.Mapper(_context.OrderItems.Include(x => x.Seller).Include(x => x.Sku).Include(x => x.Order).Where(x => x.OrderId == order.Id).ToList());
+                    foreach (var item in order.OrderItems)
+                    {
+                        item.Sku.Product = ProductController.GetProductById(item.Sku.ProductId);
+                    }
                     return View(order);
                 }
             }
