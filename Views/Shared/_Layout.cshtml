@@ -28,7 +28,7 @@
                             <button class="btn btn-outline-dark" type="submit">
                                 <i class="bi-cart-fill me-1"></i>
                                 Cart
-                                <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                                <span id="countItems" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                             </button>
                         </a>
                     @if (SignInManager.IsSignedIn(User))
@@ -90,3 +90,14 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "/Order/CountItems",
+        }).done(function (count) {
+            $("#countItems").html(count);
+        });
+    });
+</script>
