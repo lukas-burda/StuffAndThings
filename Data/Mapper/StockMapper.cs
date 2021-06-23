@@ -11,68 +11,83 @@ namespace StuffAndThings.Data.Mapper
     {
         public static SkuStocksModel Mapper(SkuStocksEntity sEntity)
         {
-            SkuStocksModel sModel = new SkuStocksModel
+            if (sEntity != null)
             {
-                Id = sEntity.Id,
-                AvailableQuantity = sEntity.AvailableQuantity,
-                LastUpdate = sEntity.LastUpdate,
-                Sku = SkuMapper.Mapper(sEntity.Sku),
-                Seller = UserMapper.Mapper(sEntity.Seller)
-            };
-            return sModel;
+                SkuStocksModel sModel = new SkuStocksModel
+                {
+                    Id = sEntity.Id,
+                    AvailableQuantity = sEntity.AvailableQuantity,
+                    LastUpdate = sEntity.LastUpdate,
+                    Sku = SkuMapper.Mapper(sEntity.Sku),
+                    Seller = UserMapper.Mapper(sEntity.Seller)
+                };
+                return sModel;
+            }
+            return null;
         }
 
         public static SkuStocksEntity Mapper(SkuStocksModel sModel)
         {
-            SkuStocksEntity sEntity = new SkuStocksEntity
+            if (sModel != null)
             {
-                Id = sModel.Id,
-                LastUpdate = sModel.LastUpdate,
-                AvailableQuantity = sModel.AvailableQuantity,
-                SkuId = sModel.Sku.Id,
-                SellerId = sModel.Seller.Id
-            };
-            return sEntity;
+                SkuStocksEntity sEntity = new SkuStocksEntity
+                {
+                    Id = sModel.Id,
+                    LastUpdate = sModel.LastUpdate,
+                    AvailableQuantity = sModel.AvailableQuantity,
+                    SkuId = sModel.Sku.Id,
+                    SellerId = sModel.Seller.Id
+                };
+                return sEntity;
+            }
+            return null;
         }
 
         public static List<SkuStocksModel> Mapper(List<SkuStocksEntity> seList)
         {
-            List<SkuStocksModel> smList = new List<SkuStocksModel>();
-            foreach (var se in seList)
+            if (seList != null)
             {
-                SkuStocksModel sModel = new SkuStocksModel
+                List<SkuStocksModel> smList = new List<SkuStocksModel>();
+                foreach (var se in seList)
                 {
-                    Id = se.Id,
-                    AvailableQuantity = se.AvailableQuantity,
-                    LastUpdate = se.LastUpdate,
-                    Sku = SkuMapper.Mapper(se.Sku),
-                    Seller = UserMapper.Mapper(se.Seller)
-                };
+                    SkuStocksModel sModel = new SkuStocksModel
+                    {
+                        Id = se.Id,
+                        AvailableQuantity = se.AvailableQuantity,
+                        LastUpdate = se.LastUpdate,
+                        Sku = SkuMapper.Mapper(se.Sku),
+                        Seller = UserMapper.Mapper(se.Seller)
+                    };
 
-                smList.Add(sModel);
+                    smList.Add(sModel);
+                }
+                return smList;
             }
-            
-            return smList;
+            return null;
         }
 
         public static List<SkuStocksEntity> Mapper(List<SkuStocksModel> smList)
         {
-            List<SkuStocksEntity> seList = new List<SkuStocksEntity>();
-            foreach (var sm in smList)
+            if (smList != null)
             {
-                SkuStocksEntity sEntity = new SkuStocksEntity
+                List<SkuStocksEntity> seList = new List<SkuStocksEntity>();
+                foreach (var sm in smList)
                 {
-                    Id = sm.Id,
-                    LastUpdate = sm.LastUpdate,
-                    AvailableQuantity = sm.AvailableQuantity,
-                    SkuId = sm.Sku.Id,
-                    SellerId = sm.Seller.Id
-                };
+                    SkuStocksEntity sEntity = new SkuStocksEntity
+                    {
+                        Id = sm.Id,
+                        LastUpdate = sm.LastUpdate,
+                        AvailableQuantity = sm.AvailableQuantity,
+                        SkuId = sm.Sku.Id,
+                        SellerId = sm.Seller.Id
+                    };
 
-                seList.Add(sEntity);
+                    seList.Add(sEntity);
+                }
+
+                return seList;
             }
-            
-            return seList;
+            return null;
         }
     }
 }
