@@ -28,7 +28,7 @@ namespace StuffAndThings.Controllers
 
                 OrderModel order = OrderMapper.Mapper(_context.Order.Include(x => x.Buyer).Include(x => x.Seller).Where(x => x.BuyerId == Guid.Parse(buyer)).FirstOrDefault());
 
-                SkuStocksModel stock = StockMapper.Mapper(_context.Stocks.Where(x => x.SellerId == order.Seller.Id && x.Sku.Id == Guid.Parse(skuId)).FirstOrDefault());
+                SkuStocksModel stock = StockMapper.Mapper(_context.Stocks.Include(x => x.Seller).Include(x => x.Sku).Where(x => x.SellerId == order.Seller.Id && x.Sku.Id == Guid.Parse(skuId)).FirstOrDefault());
 
                 if (stock != null)
                 {
@@ -41,7 +41,6 @@ namespace StuffAndThings.Controllers
                     stock.AvailableQuantity -= 1;
 
                     _context.OrderItems.Add(OrderItemsMapper.Mapper(item));
-                    _context.Stocks.Update(StockMapper.Mapper(stock));
                     _context.SaveChanges();
                     return "OK";
                 }
