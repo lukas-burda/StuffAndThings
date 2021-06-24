@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StuffAndThings.Data;
+using StuffAndThings.Data.Entities;
 using StuffAndThings.Data.Mapper;
 using StuffAndThings.Models;
 
@@ -72,15 +73,42 @@ namespace StuffAndThings.Controllers
 
                 if (stock != null)
                 {
-                    OrderItemsModel item = new OrderItemsModel();
-                    item.Id = Guid.NewGuid();
-                    item.Seller = order.Seller;
-                    item.Sku = SkuMapper.Mapper(_context.Skus.Where(x => x.Id == Guid.Parse(skuId)).FirstOrDefault());
-                    item.Order = order;
+                    OrderItemsModel item = OrderItemsMapper.Mapper(_context.OrderItems.Include(x => x.Sku).Include(x => x.Seller).Include(x => x.Order).Where(x => x.SkuId == Guid.Parse(skuId) && x.OrderId == order.Id).FirstOrDefault());
 
-                    stock.AvailableQuantity -= 1;
+                    if (item == null)
+                    {
+                        item = new OrderItemsModel();
+                        item.Id = Guid.NewGuid();
+                        item.Seller = order.Seller;
+                        item.Sku = stock.Sku;
+                        item.Order = order;
+                        item.Quantity = 1;
+                        _context.Add(OrderItemsMapper.Mapper(item));
 
-                    _context.OrderItems.Add(OrderItemsMapper.Mapper(item));
+                        var currentOrder = _context.Order.Find(order.Id);
+                        currentOrder.SubTotal += item.Sku.Price;
+                        currentOrder.Total += item.Sku.Price;
+
+                        _context.Update(currentOrder);
+                    }
+                    else
+                    {
+                        var currentItem = _context.OrderItems.Find(item.Id);
+                        currentItem.Id = item.Id;
+                        currentItem.OrderId = order.Id;
+                        currentItem.Quantity += 1;
+                        currentItem.SellerId = order.Seller.Id;
+                        currentItem.SkuId = stock.Sku.Id;
+
+                        _context.Update(currentItem);
+
+                        var currentOrder = _context.Order.Find(order.Id);
+                        currentOrder.SubTotal += item.Sku.Price;
+                        currentOrder.Total += item.Sku.Price;
+
+                        _context.Update(currentOrder);
+                    }
+
                     _context.SaveChanges();
                     return "OK";
                 }
