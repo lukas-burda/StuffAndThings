@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="StuffAndThings.Models.ErrorViewModel">
+    <Position X="63" Y="25.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAIAAQAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\ErrorViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Models.AddressModel">
+    <Position X="72.25" Y="27.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAABEAAAAAIAAIAAAAAAAIABAAAAAA=</HashCode>
+      <FileName>Models\AddressModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Models.LogModel">
+    <Position X="58.25" Y="25.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAgCAAAAAAAAAAAAAAAAAAAAAAAAAAABAQAAAAAAAAQ=</HashCode>
+      <FileName>Models\LogModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Models.OrderItemsModel">
+    <Position X="28.5" Y="28.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAECAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAgAAACAA=</HashCode>
+      <FileName>Models\OrderItemsModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Models.OrderModel">
+    <Position X="28" Y="25.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAQAAAEAAAAAgAAQAAAAAAAAQAAAAgABAAAACAA=</HashCode>
+      <FileName>Models\OrderModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Models.ProductModel">
+    <Position X="47.75" Y="25.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACQAAAAAAgAAAAAAAgAAQAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Models\ProductModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Models.ShowcaseItemsModel">
+    <Position X="35.25" Y="28.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAgAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Models\ShowcaseItemsModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Models.ShowcaseModel">
+    <Position X="34.75" Y="25.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAACQwAABAAAAAAAAAAEAAIAA=</HashCode>
+      <FileName>Models\ShowcaseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Models.SkuModel">
+    <Position X="53" Y="25.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>EAACQAAAAQEAAAAAAAAAAAQAAAAAAAAAAAAAgAAAAAQ=</HashCode>
+      <FileName>Models\SkuModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Models.SkuStocksModel">
+    <Position X="42" Y="25.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAgAAAAAAAAAAAQQAAAAAAAAEAAAAAAAKAA=</HashCode>
+      <FileName>Models\SkuStocksModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Models.UserModel">
+    <Position X="70.75" Y="25.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAIAAAAAIAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UserModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Models.ViewModels.SucessViewModel">
+    <Position X="63" Y="27.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAIAAQAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\SucessViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Controllers.HomeController">
+    <Position X="62.5" Y="32.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAQAAAAAAQAAAAAgAAAAIAAAEQAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Controllers.LogController">
+    <Position X="58" Y="32.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAgAIgAAA=</HashCode>
+      <FileName>Controllers\LogController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Controllers.OrderController">
+    <Position X="28" Y="32.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAQAAAAAAAAAAAAAAAgAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\OrderController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Controllers.ProductController">
+    <Position X="47.5" Y="32.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAUACAAEAAAAAQQA=</HashCode>
+      <FileName>Controllers\ProductController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Controllers.ShowcaseController">
+    <Position X="34.75" Y="32.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAUACAAEAQAQAAgA=</HashCode>
+      <FileName>Controllers\ShowcaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Controllers.SkuController">
+    <Position X="53" Y="32.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAUACAAEAAEAAAAA=</HashCode>
+      <FileName>Controllers\SkuController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Controllers.SkuStocksController">
+    <Position X="41.25" Y="32.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAEAIAAAAAAAAAAAAAAAAAIAAEAAUACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\SkuStocksController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Controllers.UserManagementController">
+    <Position X="74" Y="32.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAACAQAAAAAAAAAAAEAAUACAAgAACAAAAA=</HashCode>
+      <FileName>Controllers\UserManagementController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Areas.Identity.Pages.Account.Manage.ChangePasswordModel">
+    <Position X="78.5" Y="22" Width="1.5" />
+    <NestedTypes>
+      <Class Name="StuffAndThings.Areas.Identity.Pages.Account.Manage.ChangePasswordModel.InputModel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAgAABAAAAAMAAAAAAAAAAEAIAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Areas.Identity.Pages.Account.Manage.EmailModel">
+    <Position X="82" Y="24.75" Width="1.5" />
+    <NestedTypes>
+      <Class Name="StuffAndThings.Areas.Identity.Pages.Account.Manage.EmailModel.InputModel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Areas\Identity\Pages\Account\Manage\Email.cshtml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAABAAgACAAAAAgAQBAAAAAEACAAAAAAgABgIAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\Email.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Areas.Identity.Pages.Account.Manage.IndexModel">
+    <Position X="76.5" Y="26.75" Width="1.5" />
+    <NestedTypes>
+      <Class Name="StuffAndThings.Areas.Identity.Pages.Account.Manage.IndexModel.InputModel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Areas\Identity\Pages\Account\Manage\Index.cshtml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAABAAgAAAAAAAgAQBAAAAAEAAAAAAAAAAEAIAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\Index.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Areas.Identity.Pages.Account.Manage.ManageNavPages">
+    <Position X="76.5" Y="22" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAABAACAggAAAKAgCQiAAAAAAAwAAAAUAAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\ManageNavPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Areas.Identity.Pages.Account.Manage.SetPasswordModel">
+    <Position X="78.5" Y="25.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="StuffAndThings.Areas.Identity.Pages.Account.Manage.SetPasswordModel.InputModel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Areas\Identity\Pages\Account\Manage\SetPassword.cshtml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAgAABAAAAAEAAAAAAAAAAEAIAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Manage\SetPassword.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Areas.Identity.Pages.Account.ConfirmEmailModel">
+    <Position X="82" Y="22" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\ConfirmEmail.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Areas.Identity.Pages.Account.ForgotPasswordModel">
+    <Position X="85.5" Y="22" Width="1.5" />
+    <NestedTypes>
+      <Class Name="StuffAndThings.Areas.Identity.Pages.Account.ForgotPasswordModel.InputModel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Areas\Identity\Pages\Account\ForgotPassword.cshtml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAEACAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\ForgotPassword.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Areas.Identity.Pages.Account.LoginModel">
+    <Position X="83.75" Y="22" Width="1.5" />
+    <NestedTypes>
+      <Class Name="StuffAndThings.Areas.Identity.Pages.Account.LoginModel.InputModel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Areas\Identity\Pages\Account\Login.cshtml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AQAABAAAAAAAAAAgAABAAAAAMAAAAQAAAAIEAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Login.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Areas.Identity.Pages.Account.LogoutModel">
+    <Position X="83.75" Y="26" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAABAAAAAIAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Logout.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Areas.Identity.Pages.Account.RegisterModel">
+    <Position X="80.25" Y="22" Width="1.5" />
+    <NestedTypes>
+      <Class Name="StuffAndThings.Areas.Identity.Pages.Account.RegisterModel.InputModel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Areas\Identity\Pages\Account\Register.cshtml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAgAABAAAAAMACAAQAAAAIEAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\Register.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Areas.Identity.Pages.Account.RegisterConfirmationModel">
+    <Position X="80.25" Y="26" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAMAACAAAAAggAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\RegisterConfirmation.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Areas.Identity.Pages.Account.ResetPasswordModel">
+    <Position X="78.5" Y="29" Width="1.5" />
+    <NestedTypes>
+      <Class Name="StuffAndThings.Areas.Identity.Pages.Account.ResetPasswordModel.InputModel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Areas\Identity\Pages\Account\ResetPassword.cshtml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAEAAAAAAAAAQEAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\ResetPassword.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StuffAndThings.Areas.Identity.IdentityHostingStartup" BaseTypeListCollapsed="true">
+    <Position X="74.75" Y="22" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\IdentityHostingStartup.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Enum Name="StuffAndThings.Models.Enums.DiscriminatorEnum">
+    <Position X="70" Y="27.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Models\Enums\DiscriminatorEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="StuffAndThings.Models.Enums.LogTypeEnum">
+    <Position X="58.25" Y="27.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAACAAQAAAAAAAAAAAAAAAgAAAAIAAAAAAAAEAIAQ=</HashCode>
+      <FileName>Models\Enums\LogTypeEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="StuffAndThings.Models.Enums.PaymentMethodEnum">
+    <Position X="26" Y="26.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQACAQAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Models\Enums\PaymentMethodEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
