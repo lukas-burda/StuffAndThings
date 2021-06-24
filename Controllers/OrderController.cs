@@ -52,9 +52,16 @@ namespace StuffAndThings.Controllers
 
                 Guid orderId = _context.Order.Include(x => x.Buyer).Include(x => x.Seller).Where(x => x.BuyerId == Guid.Parse(buyer)).Select(x => x.Id).FirstOrDefault();
 
-                int orderItemsCount = _context.OrderItems.Include(x => x.Order).Include(x => x.Seller).Include(x => x.Sku).Where(x => x.OrderId == orderId).Count();
+                List<int> orderItemsCount = _context.OrderItems.Where(x => x.OrderId == orderId).Select(x => x.Quantity).ToList();
 
-                return orderItemsCount;
+                int count = 0;
+
+                foreach (var item in orderItemsCount)
+                {
+                    count += item;
+                }
+
+                return count;
             }
             return 0;
         }
