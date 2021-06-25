@@ -18,7 +18,10 @@ namespace StuffAndThings.Data.Entities
         public virtual UserEntity Buyer { get; set; }
         [ForeignKey("SellerId")]
         public virtual UserEntity Seller { get; set; }
+        [ForeignKey("AddressId")]
+        public virtual AddressEntity Address { get; set; }
         public Guid? BuyerId { get; set; }
         public Guid? SellerId { get; set; }
+        public Guid? AddressId { get; set; }
     }
 }

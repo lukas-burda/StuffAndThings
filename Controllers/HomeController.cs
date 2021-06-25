@@ -190,6 +190,13 @@ namespace StuffAndThings.Controllers
             _context.ShowcaseItems.Add(ShowcaseItemsMapper.Mapper(scp1));
             _context.ShowcaseItems.Add(ShowcaseItemsMapper.Mapper(scp2));
 
+            AddressModel address = new AddressModel
+            {
+                Id = Guid.NewGuid()
+            };
+
+            _context.Add(AddressMapper.Mapper(address));
+
             OrderModel order = new OrderModel
             {
                 Id = Guid.NewGuid(),
@@ -205,7 +212,8 @@ namespace StuffAndThings.Controllers
                 Seller = new UserModel
                 {
                     Id = u.Id,
-                }
+                },
+                Address = address
             };
 
             _context.Order.Add(OrderMapper.Mapper(order));
