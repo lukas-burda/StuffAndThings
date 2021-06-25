@@ -25,6 +25,6 @@ namespace StuffAndThings.Data
         public DbSet<ShowcaseItemsEntity> ShowcaseItems { get; set; }
         public DbSet<OrderEntity> Order { get; set; }
         public DbSet<OrderItemsEntity> OrderItems { get; set; }
-        public DbSet<StuffAndThings.Models.ShowcaseModel> ShowcaseModel { get; set; }
+        public DbSet<AddressEntity> Addresses { get; set; }
     }
 }

@@ -11,34 +11,44 @@ namespace StuffAndThings.Data.Mapper
     {
         public static OrderModel Mapper(OrderEntity oe)
         {
-            OrderModel om = new OrderModel
+            if (oe != null)
             {
-                CreateDate = oe.CreateDate,
-                Discount = oe.Discount,
-                FriendlyCode = oe.FriendlyCode,
-                Id = oe.Id,
-                SubTotal = oe.SubTotal,
-                Total = oe.Total,
-                Buyer = UserMapper.Mapper(oe.Buyer),
-                Seller = UserMapper.Mapper(oe.Seller)
-            };
-            return om;
+                OrderModel om = new OrderModel
+                {
+                    CreateDate = oe.CreateDate,
+                    Discount = oe.Discount,
+                    FriendlyCode = oe.FriendlyCode,
+                    Id = oe.Id,
+                    SubTotal = oe.SubTotal,
+                    Total = oe.Total,
+                    Buyer = UserMapper.Mapper(oe.Buyer),
+                    Seller = UserMapper.Mapper(oe.Seller),
+                    Address = AddressMapper.Mapper(oe.Address)
+                };
+                return om;
+            }
+            return null;
         }
 
         public static OrderEntity Mapper(OrderModel om)
         {
-            OrderEntity oe = new OrderEntity
+            if (om != null)
             {
-                CreateDate = om.CreateDate,
-                Discount = om.Discount,
-                Id = om.Id,
-                FriendlyCode = om.FriendlyCode,
-                SubTotal = om.SubTotal,
-                Total = om.Total,
-                BuyerId = om.Buyer.Id,
-                SellerId = om.Seller.Id
-            };
-            return oe;
+                OrderEntity oe = new OrderEntity
+                {
+                    CreateDate = om.CreateDate,
+                    Discount = om.Discount,
+                    Id = om.Id,
+                    FriendlyCode = om.FriendlyCode,
+                    SubTotal = om.SubTotal,
+                    Total = om.Total,
+                    BuyerId = om.Buyer.Id,
+                    SellerId = om.Seller.Id,
+                    AddressId = om.Address.Id
+                };
+                return oe;
+            }
+            return null;
         }
 
         public static List<OrderModel> Mapper(List<OrderEntity> oeList)
@@ -55,7 +65,8 @@ namespace StuffAndThings.Data.Mapper
                     SubTotal = oe.SubTotal,
                     Total = oe.Total,
                     Buyer = UserMapper.Mapper(oe.Buyer),
-                    Seller = UserMapper.Mapper(oe.Seller)
+                    Seller = UserMapper.Mapper(oe.Seller),
+                    Address = AddressMapper.Mapper(oe.Address)
                 };
 
                 omList.Add(om);
@@ -78,7 +89,8 @@ namespace StuffAndThings.Data.Mapper
                     SubTotal = om.SubTotal,
                     Total = om.Total,
                     BuyerId = om.Buyer.Id,
-                    SellerId = om.Seller.Id
+                    SellerId = om.Seller.Id,
+                    AddressId = om.Address.Id
                 };
 
                 oeList.Add(oe);

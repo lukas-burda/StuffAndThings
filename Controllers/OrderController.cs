@@ -27,7 +27,7 @@ namespace StuffAndThings.Controllers
             if (buyer != null)
             {
                 DBContext _context = new DBContext();
-                OrderModel order = OrderMapper.Mapper(_context.Order.Include(x => x.Buyer).Include(x => x.Seller).Where(x => x.BuyerId == Guid.Parse(buyer)).FirstOrDefault());
+                OrderModel order = OrderMapper.Mapper(_context.Order.Include(x => x.Buyer).Include(x => x.Seller).Include(x => x.Address).Where(x => x.BuyerId == Guid.Parse(buyer)).FirstOrDefault());
 
                 if (order != null)
                 {
@@ -50,7 +50,7 @@ namespace StuffAndThings.Controllers
             {
                 DBContext _context = new DBContext();
 
-                Guid orderId = _context.Order.Include(x => x.Buyer).Include(x => x.Seller).Where(x => x.BuyerId == Guid.Parse(buyer)).Select(x => x.Id).FirstOrDefault();
+                Guid orderId = _context.Order.Include(x => x.Buyer).Include(x => x.Seller).Include(x => x.Address).Where(x => x.BuyerId == Guid.Parse(buyer)).Select(x => x.Id).FirstOrDefault();
 
                 List<int> orderItemsCount = _context.OrderItems.Where(x => x.OrderId == orderId).Select(x => x.Quantity).ToList();
 
@@ -74,7 +74,7 @@ namespace StuffAndThings.Controllers
             {
                 DBContext _context = new DBContext();
 
-                OrderModel order = OrderMapper.Mapper(_context.Order.Include(x => x.Buyer).Include(x => x.Seller).Where(x => x.BuyerId == Guid.Parse(buyer)).FirstOrDefault());
+                OrderModel order = OrderMapper.Mapper(_context.Order.Include(x => x.Buyer).Include(x => x.Seller).Include(x => x.Address).Where(x => x.BuyerId == Guid.Parse(buyer)).FirstOrDefault());
 
                 SkuStocksModel stock = StockMapper.Mapper(_context.Stocks.Include(x => x.Seller).Include(x => x.Sku).Where(x => x.SellerId == order.Seller.Id && x.Sku.Id == Guid.Parse(skuId)).FirstOrDefault());
 
@@ -133,7 +133,7 @@ namespace StuffAndThings.Controllers
             {
                 DBContext _context = new DBContext();
 
-                OrderModel order = OrderMapper.Mapper(_context.Order.Include(x => x.Buyer).Include(x => x.Seller).Where(x => x.BuyerId == Guid.Parse(buyer)).FirstOrDefault());
+                OrderModel order = OrderMapper.Mapper(_context.Order.Include(x => x.Buyer).Include(x => x.Seller).Include(x => x.Address).Where(x => x.BuyerId == Guid.Parse(buyer)).FirstOrDefault());
 
                 OrderItemsModel orderItems = OrderItemsMapper.Mapper(_context.OrderItems.Where(x => x.OrderId == order.Id && x.SkuId == Guid.Parse(skuId)).FirstOrDefault());
 

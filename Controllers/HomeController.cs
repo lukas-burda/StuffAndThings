@@ -80,137 +80,161 @@ namespace StuffAndThings.Controllers
         [HttpGet]
         public IActionResult Carregar()
         {
+            var buyer = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             DBContext _context = new DBContext();
-            ProductModel p1 = new ProductModel
+
+            OrderModel validacao = OrderMapper.Mapper(_context.Order.Include(x => x.Address).Include(x => x.Buyer).Include(x => x.Seller).Where(x => x.BuyerId == Guid.Parse(buyer)).FirstOrDefault());
+            if (validacao == null)
             {
-                Id = Guid.NewGuid(),
-                Code = "0001",
-                Name = "Coca-Cola",
-                Description = "Refrigerante",
-                ImageUrl = "https://i.imgur.com/ps6alt2.jpg",
-                Skus = new List<SkuModel>()
-            };
-
-            SkuModel s1 = new SkuModel
-            {
-                Id = Guid.NewGuid(),
-                Barcode = "793001215",
-                Name = "350 ml",
-                Color = "#ff0000",
-                Price = 4.50
-            };
-
-            SkuModel s2 = new SkuModel
-            {
-                Id = Guid.NewGuid(),
-                Barcode = "793001216",
-                Name = "2 L",
-                Color = "#ff0000",
-                ImageUrl = "https://i.imgur.com/ps6alt2.jpg",
-                Price = 7.00
-            };
-
-            p1.Skus.Add(s1);
-            p1.Skus.Add(s2);
-
-            _context.Products.Add(ProductMapper.Mapper(p1));
-
-            ProductModel p2 = new ProductModel
-            {
-                Id = Guid.NewGuid(),
-                Name = "Fanta Laranja",
-                Code = "0002",
-                Description = "Refri de laranja",
-                ImageUrl = "https://i.imgur.com/cxKXQ0k.png",
-                Skus = new List<SkuModel>()
-            };
-
-            SkuModel s3 = new SkuModel
-            {
-                Id = Guid.NewGuid(),
-                Name = "350 ml",
-                Barcode = "79300251362",
-                Price = 4.50,
-                Color = "#f24f00",
-                ImageUrl = "https://i.imgur.com/cxKXQ0k.png"
-            };
-
-            p2.Skus.Add(s3);
-
-            _context.Products.Add(ProductMapper.Mapper(p2));
-
-            UserModel u = new UserModel
-            {
-                Id = Guid.NewGuid(),
-                FullName = "Shopping Palladium",
-                Document = "08355847000109",
-                Discriminator = Models.Enums.DiscriminatorEnum.Seller
-            };
-
-            _context.Users.Add(UserMapper.Mapper(u));
-
-            SkuStocksModel ss = new SkuStocksModel
-            {
-                Id = Guid.NewGuid(),
-                AvailableQuantity = 52,
-                LastUpdate = DateTime.Now,
-                Sku = s1,
-                Seller = u
-            };
-
-            _context.Stocks.Add(StockMapper.Mapper(ss));
-
-            ShowcaseModel sc = new ShowcaseModel
-            {
-                Id = Guid.NewGuid(),
-                Name = "Inverno",
-                StartDate = DateTime.Now,
-                EndDate = DateTime.Now,
-                LastUpdate = DateTime.Now
-            };
-
-            ShowcaseItemsModel scp1 = new ShowcaseItemsModel()
-            {
-                Id = Guid.NewGuid(),
-                ShowCase = sc,
-                Sku = s2
-            };
-
-            ShowcaseItemsModel scp2 = new ShowcaseItemsModel()
-            {
-                Id = Guid.NewGuid(),
-                ShowCase = sc,
-                Sku = s3
-            };
-
-            ShowcaseItemsMapper.Mapper(scp1);
-            ShowcaseItemsMapper.Mapper(scp2);
-
-            _context.Showcases.Add(ShowcaseMapper.Mapper(sc));
-            _context.ShowcaseItems.Add(ShowcaseItemsMapper.Mapper(scp1));
-            _context.ShowcaseItems.Add(ShowcaseItemsMapper.Mapper(scp2));
-
-            OrderModel order = new OrderModel
-            {
-                Id = Guid.NewGuid(),
-                CreateDate = DateTime.Now,
-                Discount = 0,
-                SubTotal = 0,
-                Total = 0,
-                FriendlyCode = "LUKAS",
-                Buyer = new UserModel
+                ProductModel p1 = new ProductModel
                 {
-                    Id = Guid.Parse(this.User.FindFirstValue(ClaimTypes.NameIdentifier)),
-                },
-                Seller = new UserModel
+                    Id = Guid.NewGuid(),
+                    Code = "0001",
+                    Name = "Coca-Cola",
+                    Description = "Refrigerante",
+                    ImageUrl = "https://i.imgur.com/ps6alt2.jpg",
+                    Skus = new List<SkuModel>()
+                };
+
+                SkuModel s1 = new SkuModel
                 {
-                    Id = u.Id,
-                }
-            };
+                    Id = Guid.NewGuid(),
+                    Barcode = "793001215",
+                    Name = "350 ml",
+                    Color = "#ff0000",
+                    Price = 4.50
+                };
 
-            _context.Order.Add(OrderMapper.Mapper(order));
+                SkuModel s2 = new SkuModel
+                {
+                    Id = Guid.NewGuid(),
+                    Barcode = "793001216",
+                    Name = "2 L",
+                    Color = "#ff0000",
+                    ImageUrl = "https://i.imgur.com/ps6alt2.jpg",
+                    Price = 7.00
+                };
 
-            _context.SaveChanges();
+                p1.Skus.Add(s1);
+                p1.Skus.Add(s2);
+
+                _context.Products.Add(ProductMapper.Mapper(p1));
+
+                ProductModel p2 = new ProductModel
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Fanta Laranja",
+                    Code = "0002",
+                    Description = "Refri de laranja",
+                    ImageUrl = "https://i.imgur.com/cxKXQ0k.png",
+                    Skus = new List<SkuModel>()
+                };
+
+                SkuModel s3 = new SkuModel
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "350 ml",
+                    Barcode = "79300251362",
+                    Price = 4.50,
+                    Color = "#f24f00",
+                    ImageUrl = "https://i.imgur.com/cxKXQ0k.png"
+                };
+
+                p2.Skus.Add(s3);
+
+                _context.Products.Add(ProductMapper.Mapper(p2));
+
+                UserModel u = new UserModel
+                {
+                    Id = Guid.NewGuid(),
+                    FullName = "Shopping Palladium",
+                    Document = "08355847000109",
+                    Discriminator = Models.Enums.DiscriminatorEnum.Seller
+                };
+
+                _context.Users.Add(UserMapper.Mapper(u));
+
+                SkuStocksModel ss = new SkuStocksModel
+                {
+                    Id = Guid.NewGuid(),
+                    AvailableQuantity = 52,
+                    LastUpdate = DateTime.Now,
+                    Sku = s2,
+                    Seller = u
+                };
+
+                SkuStocksModel ss2 = new SkuStocksModel
+                {
+                    Id = Guid.NewGuid(),
+                    AvailableQuantity = 31,
+                    LastUpdate = DateTime.Now,
+                    Sku = s3,
+                    Seller = u
+                };
+
+                _context.Stocks.Add(StockMapper.Mapper(ss));
+                _context.Stocks.Add(StockMapper.Mapper(ss2));
+
+                ShowcaseModel sc = new ShowcaseModel
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Inverno",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    LastUpdate = DateTime.Now
+                };
+
+                ShowcaseItemsModel scp1 = new ShowcaseItemsModel()
+                {
+                    Id = Guid.NewGuid(),
+                    ShowCase = sc,
+                    Sku = s2
+                };
+
+                ShowcaseItemsModel scp2 = new ShowcaseItemsModel()
+                {
+                    Id = Guid.NewGuid(),
+                    ShowCase = sc,
+                    Sku = s3
+                };
+
+                ShowcaseItemsMapper.Mapper(scp1);
+                ShowcaseItemsMapper.Mapper(scp2);
+
+                _context.Showcases.Add(ShowcaseMapper.Mapper(sc));
+                _context.ShowcaseItems.Add(ShowcaseItemsMapper.Mapper(scp1));
+                _context.ShowcaseItems.Add(ShowcaseItemsMapper.Mapper(scp2));
+
+                AddressModel address = new AddressModel
+                {
+                    Id = Guid.NewGuid()
+                };
+
+                _context.Add(AddressMapper.Mapper(address));
+
+                OrderModel order = new OrderModel
+                {
+                    Id = Guid.NewGuid(),
+                    CreateDate = DateTime.Now,
+                    Discount = 0,
+                    SubTotal = 0,
+                    Total = 0,
+                    FriendlyCode = "LUKAS",
+                    Buyer = new UserModel
+                    {
+                        Id = Guid.Parse(this.User.FindFirstValue(ClaimTypes.NameIdentifier)),
+                    },
+                    Seller = new UserModel
+                    {
+                        Id = u.Id,
+                    },
+                    Address = address
+                };
+
+                _context.Order.Add(OrderMapper.Mapper(order));
+
+                _context.SaveChanges();
+            }
             
             return RedirectToAction("Index");
         }
