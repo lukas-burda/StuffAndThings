@@ -9,6 +9,9 @@
 @{ ViewData["Title"] = "Home Page"; }
 
 <style>
+    .largura-90 {
+        width: 95%;
+    }
     .carousel-item {
         height: 32rem;
         position: relative;
@@ -19,18 +22,18 @@
     }
 </style>
 
-<header class="bg-dark py-5">
+<header class="bg-dark py-5 ml-5 mr-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Stuff & Things</h1>
+            <h1 class="display-4 fw-bolder"> Stuff & Things</h1>
             <p class="lead fw-normal text-white-50 mb-0">Find stuffs were made exclusive for you.</p>
         </div>
     </div>
 </header>
 @{
     <section id="bannerCarousel" class="carousel" data-ride="carousel">
-        <div>
-            <div>
+        <div class="d-flex justify-content-center mt-1">
+            <div class=" largura-90">
                 <ol class="carousel-indicators">
                     <li data-target="#bannerCarousel" data-slide-to="0" class="active"></li>
                     <li data-target="#bannerCarousel" data-slide-to="1"></li>
