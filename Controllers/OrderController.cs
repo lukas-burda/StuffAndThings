@@ -116,6 +116,14 @@ namespace StuffAndThings.Controllers
                         _context.Update(currentOrder);
                     }
 
+                    var newstock = _context.Stocks.Find(stock.Id);
+                    newstock.Id = stock.Id;
+                    newstock.SellerId = order.Seller.Id;
+                    newstock.SkuId = stock.Sku.Id;
+                    newstock.AvailableQuantity -= 1;
+                    newstock.LastUpdate = DateTime.Now;
+
+                    _context.Update(newstock);
                     _context.SaveChanges();
                     return "OK";
                 }
