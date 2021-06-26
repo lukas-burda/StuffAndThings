@@ -148,7 +148,13 @@ namespace StuffAndThings.Controllers
                 var currentItem = _context.OrderItems.Find(orderItem.Id);
                 currentItem.Quantity -= 1;
 
-                _context.Update(currentItem);
+                _context.Update(currentItem); 
+
+                var currentOrder = _context.Order.Find(order.Id);
+                currentOrder.SubTotal -= orderItem.Sku.Price;
+                currentOrder.Total -= orderItem.Sku.Price;
+
+                _context.Update(currentOrder);
                 _context.SaveChanges();
                 return "OK";
             }
