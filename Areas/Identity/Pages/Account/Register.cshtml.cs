@@ -67,7 +67,7 @@ namespace StuffAndThings.Areas.Identity.Pages.Account
 
             public string FullName { get; set; }
 
-            public DiscriminatorEnum Discriminator { get; set; }
+            public DiscriminatorEnum Discriminator { get; set; } = Models.Enums.DiscriminatorEnum.Buyer;
         }
 
         public async Task OnGetAsync(string returnUrl = null)
