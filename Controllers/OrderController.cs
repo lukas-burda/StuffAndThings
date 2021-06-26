@@ -133,7 +133,7 @@ namespace StuffAndThings.Controllers
                 return "FAIL";
         }
 
-        public async Task<string> RemoveItemToCart(string skuId)
+        public async Task<string> RemoveItemFromCart(string skuId)
         {
             var buyer = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -143,9 +143,12 @@ namespace StuffAndThings.Controllers
 
                 OrderModel order = OrderMapper.Mapper(_context.Order.Include(x => x.Buyer).Include(x => x.Seller).Include(x => x.Address).Where(x => x.BuyerId == Guid.Parse(buyer)).FirstOrDefault());
 
-                OrderItemsModel orderItems = OrderItemsMapper.Mapper(_context.OrderItems.Where(x => x.OrderId == order.Id && x.SkuId == Guid.Parse(skuId)).FirstOrDefault());
+                OrderItemsModel orderItem = OrderItemsMapper.Mapper(_context.OrderItems.Include(x => x.Order).Include(x => x.Seller).Include(x => x.Sku).Where(x => x.OrderId == order.Id && x.SkuId == Guid.Parse(skuId)).FirstOrDefault());
 
-                _context.OrderItems.Remove(OrderItemsMapper.Mapper(orderItems));
+                var currentItem = _context.OrderItems.Find(orderItem.Id);
+                currentItem.Quantity -= 1;
+
+                _context.Update(currentItem);
                 _context.SaveChanges();
                 return "OK";
             }
