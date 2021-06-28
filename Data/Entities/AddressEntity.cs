@@ -10,6 +10,8 @@ namespace StuffAndThings.Data.Entities
     {
         public Guid Id { get; set; }
         public string Country { get; set; }
+        public string City { get; set; }
+        public string Neighborhood { get; set; }
         public StateEnum State { get; set; }
         public string Street { get; set; }
         public string Number { get; set; }

@@ -17,6 +17,8 @@ namespace StuffAndThings.Data.Mapper
                 {
                     Id = addressEntity.Id,
                     CEP = addressEntity.CEP,
+                    City = addressEntity.City,
+                    Neighborhood = addressEntity.Neighborhood,
                     Country = addressEntity.Country,
                     Number = addressEntity.Number,
                     State = addressEntity.State,
@@ -35,6 +37,8 @@ namespace StuffAndThings.Data.Mapper
                 {
                     Id = addressModel.Id,
                     CEP = addressModel.CEP,
+                    City = addressModel.City,
+                    Neighborhood = addressModel.Neighborhood,
                     Country = addressModel.Country,
                     Number = addressModel.Number,
                     State = addressModel.State,
@@ -56,6 +60,8 @@ namespace StuffAndThings.Data.Mapper
                     {
                         Id = item.Id,
                         CEP = item.CEP,
+                        City = item.City,
+                        Neighborhood = item.Neighborhood,
                         Country = item.Country,
                         Number = item.Number,
                         State = item.State,
@@ -79,6 +85,8 @@ namespace StuffAndThings.Data.Mapper
                     {
                         Id = item.Id,
                         CEP = item.CEP,
+                        City = item.City,
+                        Neighborhood = item.Neighborhood,
                         Country = item.Country,
                         Number = item.Number,
                         State = item.State,

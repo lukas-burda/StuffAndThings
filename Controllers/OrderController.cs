@@ -20,7 +20,7 @@ namespace StuffAndThings.Controllers
             return View("Finalize2", order);
         }
 
-        public IActionResult Finalize()
+        public IActionResult Checkout()
         {
             var buyer = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
