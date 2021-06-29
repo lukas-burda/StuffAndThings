@@ -212,6 +212,13 @@ namespace StuffAndThings.Controllers
 
                 _context.Add(AddressMapper.Mapper(address));
 
+                PaymentModel payment = new PaymentModel
+                {
+                    Id = Guid.NewGuid()
+                };
+
+                _context.Add(PaymentMapper.Mapper(payment));
+
                 OrderModel order = new OrderModel
                 {
                     Id = Guid.NewGuid(),
@@ -228,7 +235,9 @@ namespace StuffAndThings.Controllers
                     {
                         Id = u.Id,
                     },
-                    Address = address
+                    Address = address,
+                    Payment = payment
+                    
                 };
 
                 _context.Order.Add(OrderMapper.Mapper(order));

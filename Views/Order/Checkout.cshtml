@@ -77,7 +77,7 @@
         </div>
         <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Billing address</h4>
-            <form asp-action="Checkout">
+            <form asp-action="Finalize">
                 <form class="needs-validation" novalidate>
                     <div class="row">
                         <div class="col-md-12 mb-3">
@@ -97,6 +97,7 @@
                     <div class="row">
                         <div class="col-md-5 mb-3">
                             <label for="Street">Street</label>
+                            <input type="text" asp-for="Address.Id" class="form-control" id="Street" placeholder="Bourbon Street" hidden>
                             <input type="text" asp-for="Address.Street" class="form-control" id="Street" placeholder="Bourbon Street" required>
                             <div class="invalid-feedback">
                                 Please enter your shipping street.
@@ -172,43 +173,36 @@
 
                     <h4 class="mb-3">Payment</h4>
 
+                    <input type="text" asp-for="Payment.Id" class="form-control" id="Payment" hidden>
+
                     <div class="d-block my-3">
                         <div class="custom-control custom-radio">
-                            <input id="pix" name="paymentMethod" type="radio" class="custom-control-input" onclick="javascript:ShowHideRadio()">
+                            <input id="pix" asp-for="Payment.Method" value="1" name="paymentMethod" type="radio" class="custom-control-input" onclick="ShowHideRadio()">
                             <label class="custom-control-label" for="pix">Pix</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" onclick="javascript:ShowHideRadio()">
+                            <input id="credit" name="paymentMethod" asp-for="Payment.Method" value="2" type="radio" class="custom-control-input" onclick="ShowHideRadio()">
                             <label class="custom-control-label" for="credit">Credit card</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input id="billticket" name="paymentMethod" type="radio" class="custom-control-input" onclick="javascript:ShowHideRadio()">
-                            <label class="custom-control-label" for="billticket">Bill Ticket</label>
+                            <input id="billticket" name="paymentMethod" asp-for="Payment.Method" value="3" type="radio" class="custom-control-input" onclick="ShowHideRadio()">
+                            <label class="custom-control-label" for="billticket">BankSlip</label>
                         </div>
                     </div>
 
-                    <div id="pixDIV" style="display: none">
+                    <div id="payCodeDIV" style="display: none">
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <h4>"Teste PIX"</h4>
+                                <h4 id="PayCodeAuth"></h4>
                             </div>
                         </div>
                     </div>
-
-                    <div id="billticketDIV" style="display: none">
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <h4>"Teste BILL"</h4>
-                            </div>
-                        </div>
-                    </div>
-
 
                     <div id="creditDIV" style="display: none">
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="cc-name">Name on card</label>
-                                <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                                <input type="text" asp-for="Payment.NameOnCard" class="form-control" id="cc-name" placeholder="" required>
                                 <small class="text-muted">Full name as displayed on card</small>
                                 <div class="invalid-feedback">
                                     Name on card is required
@@ -216,7 +210,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="cc-number">Credit card number</label>
-                                <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                                <input type="text" asp-for="Payment.CardNumbers" class="form-control" id="cc-number" placeholder="" required>
                                 <div class="invalid-feedback">
                                     Credit card number is required
                                 </div>
@@ -225,14 +219,14 @@
                         <div class="row">
                             <div class="col-md-3 mb-3">
                                 <label for="cc-expiration">Expiration</label>
-                                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                                <input type="text" asp-for="Payment.Expiration" class="form-control" id="cc-expiration" placeholder="" required>
                                 <div class="invalid-feedback">
                                     Expiration date required
                                 </div>
                             </div>
                             <div class="col-md-3 mb-3">
                                 <label for="cc-expiration">CVV</label>
-                                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                                <input type="text" class="form-control" asp-for="Payment.CVV" id="cc-cvv" placeholder="" required>
                                 <div class="invalid-feedback">
                                     Security code required
                                 </div>
@@ -240,7 +234,7 @@
                         </div>
                     </div>
                     <hr class="mb-4">
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Finalize</button>
                 </form>
             </form>
         </div>
@@ -259,53 +253,25 @@
 
     function ShowHideRadio() {
         if (document.getElementById('pix').checked) {
-            document.getElementById('pixDIV').style.display = 'block';
+            document.getElementById('payCodeDIV').style.display = 'block';
             document.getElementById('creditDIV').style.display = 'none';
-            document.getElementById('billticketDIV').style.display = 'none';
+            GeneratePaymentMethodAuth('pix');
             console.log("deu o pix")
         }
 
         if (document.getElementById('credit').checked) {
-            document.getElementById('pixDIV').style.display = 'none';
+            document.getElementById('payCodeDIV').style.display = 'none';
             document.getElementById('creditDIV').style.display = 'block';
-            document.getElementById('billticketDIV').style.display = 'none';
             console.log("deu o credit")
         }
 
         if (document.getElementById('billticket').checked) {
-            document.getElementById('pixDIV').style.display = 'none';
             document.getElementById('creditDIV').style.display = 'none';
-            document.getElementById('billticketDIV').style.display = 'block';
+            document.getElementById('payCodeDIV').style.display = 'block';
+            GeneratePaymentMethodAuth('bankslip');
             console.log("deu o bill")
         }
 
-    }
-
-    function ShowInputCredit() {
-        var x = document.getElementById("creditDIV");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-    }
-
-    function ShowPixInfo() {
-        var x = document.getElementById("pixDIV");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-    }
-
-    function ShowBillInfo() {
-        var x = document.getElementById("billDIV");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
     }
 
     function RemoveItemToCart(obj) {
@@ -316,4 +282,15 @@
             window.location.reload()
         })
     }
+
+    function GeneratePaymentMethodAuth(obj) {
+        $.ajax({
+            type: "GET",
+            url: "/Order/GeneratePaymentMethodAuth?paymentMethod="+obj
+        }).done(function (PayCode) {
+            $("#PayCodeAuth").html(PayCode)
+            console.log(PayCode)
+        })
+    }
+
 </script>

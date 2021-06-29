@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,11 +15,26 @@ namespace StuffAndThings.Controllers
 {
     public class OrderController : Controller
     {
-        public IActionResult Index()
+
+        public IActionResult Finalize(OrderModel order)
         {
-            OrderModel order = new OrderModel();
-            return View("Finalize2", order);
+            
+            if(order.Payment.Method == Models.Enums.PaymentMethodEnum.Pix || order.Payment.Method == Models.Enums.PaymentMethodEnum.BankSlip)
+            {
+                order.Payment.Status = Models.Enums.PaymentStatusEnum.Pending;
+
+            } 
+            if(order.Payment.Method == Models.Enums.PaymentMethodEnum.CreditCard)
+            {
+                order.Payment.Status = Models.Enums.PaymentStatusEnum.Pay;
+            }
+
+            DBContext _context = new DBContext();
+            _context.Update(OrderMapper.Mapper(order));
+            _context.SaveChanges();
+            return View("Finalize", order);
         }
+
 
         public IActionResult Checkout()
         {
@@ -40,6 +56,20 @@ namespace StuffAndThings.Controllers
                 }
             }
             return View();
+        }
+
+        public async Task<string> GeneratePaymentMethodAuth(string paymentMethod)
+        {
+            string code = "";
+            if (paymentMethod == "bankslip")
+            {
+                code = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{Guid.NewGuid()}"));
+            } 
+            if (paymentMethod == "pix")
+            {
+                code = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{Guid.NewGuid()}"));
+            }
+            return code;
         }
 
         public async Task<int> CountItems()

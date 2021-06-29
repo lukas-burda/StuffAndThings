@@ -23,7 +23,8 @@ namespace StuffAndThings.Data.Mapper
                     Total = oe.Total,
                     Buyer = UserMapper.Mapper(oe.Buyer),
                     Seller = UserMapper.Mapper(oe.Seller),
-                    Address = AddressMapper.Mapper(oe.Address)
+                    Address = AddressMapper.Mapper(oe.Address),
+                    Payment = PaymentMapper.Mapper(oe.Payment)
                 };
                 return om;
             }
@@ -44,7 +45,8 @@ namespace StuffAndThings.Data.Mapper
                     Total = om.Total,
                     BuyerId = om.Buyer.Id,
                     SellerId = om.Seller.Id,
-                    AddressId = om.Address.Id
+                    AddressId = om.Address.Id,
+                    PaymentId = om.Payment.Id
                 };
                 return oe;
             }
@@ -66,7 +68,9 @@ namespace StuffAndThings.Data.Mapper
                     Total = oe.Total,
                     Buyer = UserMapper.Mapper(oe.Buyer),
                     Seller = UserMapper.Mapper(oe.Seller),
-                    Address = AddressMapper.Mapper(oe.Address)
+                    Address = AddressMapper.Mapper(oe.Address),
+                    Payment = PaymentMapper.Mapper(oe.Payment)
+                    
                 };
 
                 omList.Add(om);
@@ -90,7 +94,8 @@ namespace StuffAndThings.Data.Mapper
                     Total = om.Total,
                     BuyerId = om.Buyer.Id,
                     SellerId = om.Seller.Id,
-                    AddressId = om.Address.Id
+                    AddressId = om.Address.Id,
+                    PaymentId = om.Payment.Id
                 };
 
                 oeList.Add(oe);

@@ -14,6 +14,7 @@ namespace StuffAndThings.Models
         public double Total { get; set; } = 0;
         public double SubTotal { get; set; } = 0;
         public double Discount { get; set; } = 0;
+        public PaymentModel Payment { get; set; }
         public virtual AddressModel Address { get; set; }
         public virtual UserModel Buyer { get; set; }
         public virtual UserModel Seller { get; set; }
@@ -24,8 +25,5 @@ namespace StuffAndThings.Models
             Buyers = new List<UserModel>();
             OrderItems = new List<OrderItemsModel>();
         }
-
     }
-
-
 }

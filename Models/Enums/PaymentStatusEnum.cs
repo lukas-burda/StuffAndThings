@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace StuffAndThings.Models.Enums
 {
-    public enum PaymentMethodEnum
+    public enum  PaymentStatusEnum
     {
-        Pix = 1,
-        CreditCard = 2,
-        BankSlip = 3
+        Pending = 1,
+        Processing = 2,
+        Pay = 3,
+        Finalized = 4
     }
 }

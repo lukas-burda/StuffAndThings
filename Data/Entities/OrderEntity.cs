@@ -20,8 +20,11 @@ namespace StuffAndThings.Data.Entities
         public virtual UserEntity Seller { get; set; }
         [ForeignKey("AddressId")]
         public virtual AddressEntity Address { get; set; }
+        [ForeignKey("PaymentId")]
+        public virtual PaymentEntity Payment { get; set; }
         public Guid? BuyerId { get; set; }
         public Guid? SellerId { get; set; }
         public Guid? AddressId { get; set; }
+        public Guid? PaymentId { get; set; }
     }
 }
