@@ -26,6 +26,6 @@ namespace StuffAndThings.Data
         public DbSet<OrderEntity> Order { get; set; }
         public DbSet<OrderItemsEntity> OrderItems { get; set; }
         public DbSet<AddressEntity> Addresses { get; set; }
-        public DbSet<PaymentModel> Payment { get; set; }
+        public DbSet<PaymentEntity> Payment { get; set; }
     }
 }

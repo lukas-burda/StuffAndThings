@@ -17,7 +17,11 @@ namespace StuffAndThings.Data.Mapper
                 {
                     Id = paymentEntity.Id,
                     Method = paymentEntity.Method,
-                    Status = paymentEntity.Status
+                    Status = paymentEntity.Status,
+                    CardNumber = paymentEntity.CardNumber,
+                    CVV = paymentEntity.CVV,
+                    Expiration = paymentEntity.Expiration,
+                    NameOnCard = paymentEntity.NameOnCard
                 };
                 return paymentModel;
             }
@@ -32,7 +36,11 @@ namespace StuffAndThings.Data.Mapper
                 {
                     Id = paymentModel.Id,
                     Method = paymentModel.Method,
-                    Status = paymentModel.Status
+                    Status = paymentModel.Status,
+                    CardNumber = paymentModel.CardNumber,
+                    NameOnCard = paymentModel.NameOnCard,
+                    Expiration = paymentModel.Expiration,
+                    CVV = paymentModel.CVV
                 };
                 return paymentEntity;
             }

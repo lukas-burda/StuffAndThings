@@ -11,11 +11,10 @@ namespace StuffAndThings.Models
         public Guid Id { get; set; }
         public PaymentMethodEnum Method { get; set; }
         public PaymentStatusEnum Status { get; set; }
-
-        public string NameOnCard { get; set; } = null;
-        public string CardNumbers { get; set; } = null;
-        public string Expiration { get; set; } = null;
-        public string CVV { get; set; } = null;
+        public string NameOnCard { get; set; }
+        public string CardNumber { get; set; }
+        public string Expiration { get; set; }
+        public string CVV { get; set; }
 
     }
 
