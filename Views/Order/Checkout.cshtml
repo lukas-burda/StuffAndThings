@@ -138,33 +138,6 @@
                             <label asp-for="Address.State">State</label>
                             <select onmousedown="if(this.options.length>8){this.size=8;}" onblur="this.size=0;" onchange='this.size=0;' class="custom-select d-block w-100" asp-for="Address.State" asp-items="Html.GetEnumSelectList<StateEnum>()" id="state" required>
                                 <option value="">Choose...</option>
-                                @*<option>RS</option>
-                    <option>SC</option>
-                    <option>PR</option>
-                    <option>SP</option>
-                    <option>MS</option>
-                    <option>MG</option>
-                    <option>RJ</option>
-                    <option>ES</option>
-                    <option>GO</option>
-                    <option>MT</option>
-                    <option>BA</option>
-                    <option>TO</option>
-                    <option>RO</option>
-                    <option>AC</option>
-                    <option>AM</option>
-                    <option>RR</option>
-                    <option>PA</option>
-                    <option>AP</option>
-                    <option>MA</option>
-                    <option>PI</option>
-                    <option>CE</option>
-                    <option>RN</option>
-                    <option>PB</option>
-                    <option>PE</option>
-                    <option>AL</option>
-                    <option>SE</option>
-                    <option>DF</option>*@
                             </select>
                             <div class="invalid-feedback">
                                 Please provide a valid state.
@@ -173,20 +146,20 @@
                     </div>
 
                     <h4 class="mb-3">Payment</h4>
-
                     <input type="text" asp-for="Payment.Id" class="form-control" id="Payment" hidden>
+                    <input asp-for="Payment.Method" class="form-control" id="PaymentMethod" hidden>
 
                     <div class="d-block my-3">
                         <div class="custom-control custom-radio">
-                            <input id="pix" asp-for="Payment.Method" value="1" name="paymentMethod" type="radio" class="custom-control-input" onclick="ShowHideRadio()">
+                            <input id="pix" name="paymentMethod" type="radio" class="custom-control-input" onclick="ShowHideRadio()">
                             <label class="custom-control-label" for="pix">Pix</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input id="credit" asp-for="Payment.Method" value="2" type="radio" class="custom-control-input" onclick="ShowHideRadio()">
+                            <input id="credit" type="radio" class="custom-control-input" onclick="ShowHideRadio()">
                             <label class="custom-control-label" for="credit">Credit card</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input id="billticket" asp-for="Payment.Method" value="3" type="radio" class="custom-control-input" onclick="ShowHideRadio()">
+                            <input id="billticket" type="radio" class="custom-control-input" onclick="ShowHideRadio()">
                             <label class="custom-control-label" for="billticket">BankSlip</label>
                         </div>
                     </div>
@@ -211,7 +184,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="cc-number">Credit card number</label>
-                                <input type="text" asp-for="Payment.CardNumbers" class="form-control" id="cc-number" placeholder="">
+                                <input type="text" asp-for="Payment.CardNumber" class="form-control" id="cc-number" placeholder="">
                                 <div class="invalid-feedback">
                                     Credit card number is required
                                 </div>
@@ -257,12 +230,14 @@
             document.getElementById('payCodeDIV').style.display = 'block';
             document.getElementById('creditDIV').style.display = 'none';
             GeneratePaymentMethodAuth('pix');
+            $("#PaymentMethod").val('1');
             console.log("deu o pix")
         }
 
         if (document.getElementById('credit').checked) {
             document.getElementById('payCodeDIV').style.display = 'none';
             document.getElementById('creditDIV').style.display = 'block';
+            $("#PaymentMethod").val('2');
             console.log("deu o credit")
         }
 
@@ -270,6 +245,7 @@
             document.getElementById('creditDIV').style.display = 'none';
             document.getElementById('payCodeDIV').style.display = 'block';
             GeneratePaymentMethodAuth('bankslip');
+            $("#PaymentMethod").val('3');
             console.log("deu o bill")
         }
 

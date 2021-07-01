@@ -18,19 +18,20 @@ namespace StuffAndThings.Controllers
 
         public IActionResult Finalize(OrderModel order)
         {
-            
-            if(order.Payment.Method == Models.Enums.PaymentMethodEnum.Pix || order.Payment.Method == Models.Enums.PaymentMethodEnum.BankSlip)
-            {
-                order.Payment.Status = Models.Enums.PaymentStatusEnum.Pending;
-
-            } 
-            if(order.Payment.Method == Models.Enums.PaymentMethodEnum.CreditCard)
-            {
-                order.Payment.Status = Models.Enums.PaymentStatusEnum.Pay;
-            }
-
             DBContext _context = new DBContext();
-            _context.Update(OrderMapper.Mapper(order));
+
+            AddressModel address = order.Address;
+            _context.Update(AddressMapper.Mapper(address));
+
+            PaymentModel payment = order.Payment;
+
+            if (order.Payment.Method == Models.Enums.PaymentMethodEnum.Pix || order.Payment.Method == Models.Enums.PaymentMethodEnum.BankSlip)
+                payment.Status = Models.Enums.PaymentStatusEnum.Pending;
+            if(order.Payment.Method == Models.Enums.PaymentMethodEnum.CreditCard)
+                payment.Status = Models.Enums.PaymentStatusEnum.Pay;
+            
+            _context.Update(PaymentMapper.Mapper(payment));
+
             _context.SaveChanges();
             return View("Finalize", order);
         }
@@ -43,7 +44,7 @@ namespace StuffAndThings.Controllers
             if (buyer != null)
             {
                 DBContext _context = new DBContext();
-                OrderModel order = OrderMapper.Mapper(_context.Order.Include(x => x.Buyer).Include(x => x.Seller).Include(x => x.Address).Where(x => x.BuyerId == Guid.Parse(buyer)).FirstOrDefault());
+                OrderModel order = OrderMapper.Mapper(_context.Order.Include(x => x.Buyer).Include(x => x.Seller).Include(x => x.Address).Include(x => x.Payment).Where(x => x.BuyerId == Guid.Parse(buyer)).FirstOrDefault());
 
                 if (order != null)
                 {

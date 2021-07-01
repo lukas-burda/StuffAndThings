@@ -11,5 +11,9 @@ namespace StuffAndThings.Data.Entities
         public Guid Id { get; set; }
         public PaymentMethodEnum Method { get; set; }
         public PaymentStatusEnum Status { get; set; }
+        public string NameOnCard { get; set; }
+        public string CardNumber { get; set; }
+        public string Expiration { get; set; }
+        public string CVV { get; set; }
     }
 }

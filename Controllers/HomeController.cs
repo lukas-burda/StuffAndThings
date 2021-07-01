@@ -226,7 +226,7 @@ namespace StuffAndThings.Controllers
                     Discount = 0,
                     SubTotal = 0,
                     Total = 0,
-                    FriendlyCode = "LUKAS",
+                    FriendlyCode = "S&T-X3VI5A",
                     Buyer = new UserModel
                     {
                         Id = Guid.Parse(this.User.FindFirstValue(ClaimTypes.NameIdentifier)),
